@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "VelogM"
 include(":app")
+include(":data")
+include(":domain")
+include(":data-local")
+include(":core-ui")
