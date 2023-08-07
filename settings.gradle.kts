@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "VelogAndroid"
-include ':app'
+rootProject.name = "VelogM"
+include(":app")
