@@ -1,27 +1,21 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     kotlin("android")
     kotlin("kapt")
-    kotlin("plugin.serialization") version Versions.KOTLIN_VERSION
     id("dagger.hilt.android.plugin")
-
+    kotlin("plugin.serialization") version Versions.KOTLIN_VERSION
 }
 
 android {
-    namespace = Configuration.PACKAGE_NAME
+    namespace = "com.velogm.presentation"
     compileSdk = Configuration.COMPILE_SDK
 
     defaultConfig {
-        applicationId = Configuration.PACKAGE_NAME
         minSdk = Configuration.MIN_SDK
         targetSdk = Configuration.TARGET_SDK
-        versionCode = Configuration.VERSION_CODE
-        versionName = Configuration.VERSION_NAME
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -34,11 +28,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = Versions.JAVA_VERSION
-        targetCompatibility = Versions.JAVA_VERSION
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = Versions.JVM_VERSION
+        jvmTarget = "1.8"
     }
     buildFeatures {
         dataBinding = true
@@ -47,10 +41,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":presentation"))
+
     implementation(project(":core-ui"))
     implementation(project(":domain"))
-    implementation(project(":data"))
     // Kotlin
     implementation(KotlinX.KOTLINX_SERIALIZATION)
     // AndroidX
@@ -85,5 +78,4 @@ dependencies {
     implementation(Jakewharton.TIMBER)
     implementation(Jakewharton.CONVERTER)
     implementation(ThirdParty.COIL)
-    implementation(ThirdParty.ZXING)
 }

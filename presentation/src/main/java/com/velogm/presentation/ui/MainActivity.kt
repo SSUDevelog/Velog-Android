@@ -1,8 +1,8 @@
-package com.velogandroid
+package com.velogm.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.velogandroid.R
+import com.velogm.presentation.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
