@@ -1,5 +1,5 @@
 object Configuration {
-    const val PACKAGE_NAME = "com.example.velogandroid"
+    const val PACKAGE_NAME = "com.velogandroid"
     const val COMPILE_SDK = 33
     const val TARGET_SDK = 33
     const val MIN_SDK = 26

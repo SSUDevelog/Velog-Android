@@ -86,4 +86,8 @@ dependencies {
     implementation(Jakewharton.CONVERTER)
     implementation(ThirdParty.COIL)
     implementation(ThirdParty.ZXING)
+
+    //Google
+    implementation(Google.GOOGLE_PLAY_SERVICE)
+
 }

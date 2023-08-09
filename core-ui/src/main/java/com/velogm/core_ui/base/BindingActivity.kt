@@ -18,10 +18,7 @@ abstract class BindingActivity<T : ViewDataBinding>(
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutRes)
         binding.lifecycleOwner = this
-        initView()
     }
-
-    protected abstract fun initView()
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         hideKeyboard(currentFocus ?: View(this))
