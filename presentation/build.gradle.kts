@@ -78,4 +78,7 @@ dependencies {
     implementation(Jakewharton.TIMBER)
     implementation(Jakewharton.CONVERTER)
     implementation(ThirdParty.COIL)
+
+    //google play
+    implementation(Google.GOOGLE_PLAY)
 }
