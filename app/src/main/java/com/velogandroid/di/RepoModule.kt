@@ -1,5 +1,7 @@
 package com.velogandroid.di
 
+import com.velogm.data.repositoryimpl.AuthRepositoryImpl
+import com.velogm.domain.repository.AuthRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -9,8 +11,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
-//    @Singleton
-//    @Binds
-//    abstract fun providesBookMarkRepository(repoImpl: TestRepositoryImpl): TestRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindsAuthRepository(
+        authRepositoryImpl: AuthRepositoryImpl,
+    ): AuthRepository
+
 
 }

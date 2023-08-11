@@ -86,5 +86,7 @@ dependencies {
     implementation(Jakewharton.CONVERTER)
     implementation(ThirdParty.COIL)
     implementation(ThirdParty.ZXING)
+    // shared preference
+    implementation("androidx.security:security-crypto-ktx:1.1.0-alpha06")
 
 }
