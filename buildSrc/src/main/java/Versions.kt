@@ -39,5 +39,4 @@ object Versions {
 
     const val CONSTRAINT_VERSION = "2.0.0-beta1"
 
-    const val GOOGLE_SERVICE_AUTH = "20.6.0"
 }
