@@ -1,3 +1,5 @@
+import java.util.*
+
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -19,12 +21,20 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "CLIENT_ID", Properties().apply {
+                load(project.rootProject.file("local.properties").inputStream())
+            }["client.id"].toString())
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "CLIENT_ID", Properties().apply {
+                load(project.rootProject.file("local.properties").inputStream())
+            }["client.id"].toString())
         }
     }
     compileOptions {
@@ -78,4 +88,7 @@ dependencies {
     implementation(Jakewharton.TIMBER)
     implementation(Jakewharton.CONVERTER)
     implementation(ThirdParty.COIL)
+
+    //google play
+    implementation(Google.GOOGLE_PLAY)
 }
