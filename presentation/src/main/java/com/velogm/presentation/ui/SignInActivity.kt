@@ -11,6 +11,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.Scope
 import com.google.android.gms.tasks.Task
+import com.velogm.presentation.BuildConfig
 import com.velogm.presentation.databinding.ActivitySignInBinding
 import timber.log.Timber
 
@@ -45,8 +46,8 @@ class SignInActivity : AppCompatActivity() {
             val googleSignInOption =
                 GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestScopes(Scope("https://www.googleapis.com/auth/pubsub"))
-                    .requestServerAuthCode("26369999400-177svh4fk05jhsvocjaeittgh1dq4eb1.apps.googleusercontent.com")// string 파일에 저장해둔 client id 를 이용해 server authcode를 요청한다.
-                    .requestEmail() // 이메일도 요청할 수 있다.
+                    .requestServerAuthCode(BuildConfig.CLIENT_ID)
+                    .requestEmail()
                     .build()
             val mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOption)
 
