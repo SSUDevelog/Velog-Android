@@ -15,7 +15,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name="com.velogm.presentation.ui.MainActivity"
+            android:name="com.velogm.presentation.ui.SignInActivity"
             android:exported="true"
             android:screenOrientation="portrait">
 
