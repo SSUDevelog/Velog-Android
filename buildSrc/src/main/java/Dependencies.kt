@@ -18,7 +18,7 @@ object AndroidX {
         "androidx.navigation:navigation-ui-ktx:${Versions.NAV_VERSION}"
 
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT_VERSION}"
-
+    const val DATA_STORE = "androidx.datastore:datastore-preferences:${Versions.DATA_STORE_VERSION}"
 }
 
 object TestDependencies {

@@ -18,6 +18,7 @@
             android:name="com.velogm.presentation.ui.SignInActivity"
             android:exported="true"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,6 +31,6 @@
             android:exported="true"
             android:screenOrientation="portrait">
         </activity>
-
+      
     </application>
 </manifest>

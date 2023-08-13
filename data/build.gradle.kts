@@ -38,6 +38,7 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":data-local"))
     // AndroidX
     implementation(AndroidX.APP_COMPAT)
     implementation(AndroidX.CORE_KTX)

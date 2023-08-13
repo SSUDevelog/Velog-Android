@@ -97,6 +97,10 @@ dependencies {
     implementation(ThirdParty.COIL)
     implementation(ThirdParty.ZXING)
 
+    // shared preference
+    implementation("androidx.security:security-crypto-ktx:1.1.0-alpha06")
+
     //google play
     implementation(Google.GOOGLE_PLAY)
+
 }
