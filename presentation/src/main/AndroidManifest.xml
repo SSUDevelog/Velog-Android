@@ -25,5 +25,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.velogm.presentation.ui.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 </manifest>
