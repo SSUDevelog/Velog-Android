@@ -6,7 +6,7 @@ import com.velogm.data.dto.response.TokenResponseDto
 import javax.inject.Inject
 
 class SignDataSourceImpl @Inject constructor(
-    private val apiService: com.data_remote.api.SignApiService
+    private val apiService: SignApiService
 ):SignDataSource{
     override suspend fun getGoogleLogin(code: String): TokenResponseDto {
         return apiService.getGoogleLogin(code)
