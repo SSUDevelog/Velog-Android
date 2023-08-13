@@ -1,7 +1,7 @@
 package com.velogandroid.di
 
 import com.velogm.data.datasource.SignDataSource
-import com.velogm.data.datasource.remote.SignDataSourceImpl
+import com.data_remote.datasource.SignDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

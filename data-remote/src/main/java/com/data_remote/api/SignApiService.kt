@@ -1,4 +1,4 @@
-package com.velogm.data.api
+package com.data_remote.api
 
 import com.velogm.data.dto.response.TokenResponseDto
 import retrofit2.http.GET

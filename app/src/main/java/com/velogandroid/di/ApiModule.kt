@@ -1,7 +1,7 @@
 package com.velogandroid.di
 
 
-import com.velogm.data.api.SignApiService
+import com.data_remote.api.SignApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
