@@ -51,14 +51,6 @@ dependencies {
     //Hilt
     implementation(Google.HILT_ANDROID)
     kapt(Google.HILT_ANDROID_COMPILER)
-    // Third-Party
-    implementation(SquareUp.RETROFIT2)
-    implementation(SquareUp.RETROFIT2_CONVERTER_GSON)
-    implementation(SquareUp.OKHTTP3)
-    implementation(SquareUp.OKHTTP3_LOGGING)
-    implementation(SquareUp.OKHTTP3_BOM)
-    implementation(Jakewharton.TIMBER)
-    implementation(Jakewharton.CONVERTER)
 
     implementation(KotlinX.KOTLINX_COROUTINE)
 }
