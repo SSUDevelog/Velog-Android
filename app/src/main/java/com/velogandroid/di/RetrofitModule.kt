@@ -4,6 +4,7 @@ import android.util.Log
 import com.velogandroid.di.extension.isJsonArray
 import com.velogandroid.di.extension.isJsonObject
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.velogandroid.BuildConfig.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,10 +37,8 @@ object RetrofitModule {
             when {
                 message.isJsonObject() ->
                     Log.d("Retrofit2", JSONObject(message).toString(4))
-
                 message.isJsonArray() ->
                     Log.d("Retrofit2", JSONArray(message).toString(4))
-
                 else -> {
                     Log.d("Retrofit2", "CONNECTION INFO -> $message")
                 }
@@ -52,9 +51,9 @@ object RetrofitModule {
     @Singleton
     @Provides
     @VelogRetrofit
-    fun provideTestRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+    fun provideVelogRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-        .baseUrl("")
+        .baseUrl(BASE_URL)
         .client(okHttpClient)
         .build()
 
