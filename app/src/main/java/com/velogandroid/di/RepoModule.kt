@@ -1,7 +1,9 @@
 package com.velogandroid.di
 
 import com.velogm.data.repositoryimpl.AuthRepositoryImpl
+import com.velogm.data.repositoryimpl.SignRepositoryImpl
 import com.velogm.domain.repository.AuthRepository
+import com.velogm.domain.repository.SignRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,8 +17,13 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindsAuthRepository(
-        authRepositoryImpl: AuthRepositoryImpl,
+        RepositoryImpl: AuthRepositoryImpl,
     ): AuthRepository
 
+    @Binds
+    @Singleton
+    abstract fun bindsSignRepository(
+        RepositoryImpl: SignRepositoryImpl,
+    ): SignRepository
 
 }

@@ -1,10 +1,13 @@
 package com.velogandroid.di
 
 import android.util.Log
-import com.velogandroid.di.extension.isJsonArray
-import com.velogandroid.di.extension.isJsonObject
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.velogandroid.BuildConfig.BASE_URL
+import com.velogandroid.di.extension.isJsonArray
+import com.velogandroid.di.extension.isJsonObject
+import com.velogm.data.TokenInterceptor
+import com.velogm.data_local.datasource.TokenImpl
+import com.velogm.domain.SharedPreferenceToken
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,12 +27,22 @@ import javax.inject.Singleton
 object RetrofitModule {
     @Provides
     @Singleton
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
+    fun provideOkHttpClient(
+        loggingInterceptor: HttpLoggingInterceptor,
+        @Token tokenInterceptor: Interceptor
+    ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-//            .addInterceptor(tokenInterceptor())
+            .addInterceptor(tokenInterceptor)
             .build()
 
+    @Provides
+    @Singleton
+    fun provideDataStore(DataStore: TokenImpl): SharedPreferenceToken = DataStore
+    @Provides
+    @Singleton
+    @Token
+    fun provideAuthInterceptor(interceptor: TokenInterceptor): Interceptor = interceptor
     @Provides
     @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
@@ -57,14 +70,5 @@ object RetrofitModule {
         .client(okHttpClient)
         .build()
 
-    private fun tokenInterceptor(): Interceptor {
-        val requestInterceptor = Interceptor { chain ->
-            val original = chain.request()
-            val builder = original.newBuilder()
-            builder.addHeader("Authorization", "헤더의 토큰 값")
-            chain.proceed(builder.build())
-        }
-        return requestInterceptor
-    }
 }
 

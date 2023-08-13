@@ -8,5 +8,5 @@ interface AuthRepository {
     fun getAccessToken(): String
     fun saveRefreshToken(b: String)
     fun getRefreshToken(): String
-    suspend fun getGoogleLogin(code: String): Flow<Token>
+
 }

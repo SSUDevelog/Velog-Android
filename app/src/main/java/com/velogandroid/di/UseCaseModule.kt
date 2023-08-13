@@ -1,6 +1,6 @@
 package com.velogandroid.di
 
-import com.velogm.domain.repository.AuthRepository
+import com.velogm.domain.repository.SignRepository
 import com.velogm.domain.usecase.AccessTokenUseCase
 import dagger.Module
 import dagger.Provides
@@ -11,14 +11,14 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class UseCaseModule {
-//    @Singleton
+    //    @Singleton
 //    @Provides
 //    fun provideTicketUseCase(repository: TestRepository): TestUseCase {
 //        return TestUseCase(repository)
 //    }
     @Singleton
     @Provides
-    fun provideTokenUseCase(repository: AuthRepository): AccessTokenUseCase{
+    fun provideTokenUseCase(repository: SignRepository): AccessTokenUseCase {
         return AccessTokenUseCase(repository)
     }
 }

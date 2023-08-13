@@ -67,6 +67,7 @@ dependencies {
     implementation(project(":core-ui"))
     implementation(project(":domain"))
     implementation(project(":data"))
+    implementation(project(":data-local"))
     // Kotlin
     implementation(KotlinX.KOTLINX_SERIALIZATION)
     // AndroidX

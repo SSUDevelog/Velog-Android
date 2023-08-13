@@ -1,4 +1,4 @@
-package com.velogm.data.datasource
+package com.velogm.data_local.datasource
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
@@ -18,3 +18,4 @@ class SharedPreferencesDataSource @Inject constructor(
         set(value) = prefs.edit { putString("RefreshToken", value) }
 
 }
+
