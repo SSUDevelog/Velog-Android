@@ -11,6 +11,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.velogm.presentation.BuildConfig.CLIENT_ID
 import com.velogm.presentation.databinding.ActivitySignInBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -45,7 +46,7 @@ class SignInActivity : AppCompatActivity() {
         binding.btnSignInGoogle.setOnClickListener {
             val googleSignInOption =
                 GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestServerAuthCode("620436138121-051c0803i10duapm9af1go7miu2makes.apps.googleusercontent.com")
+                    .requestServerAuthCode(CLIENT_ID)
                     .build()
             val mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOption)
 
