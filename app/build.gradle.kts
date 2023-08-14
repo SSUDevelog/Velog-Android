@@ -31,6 +31,9 @@ android {
             buildConfigField("String", "CLIENT_ID", Properties().apply {
                 load(project.rootProject.file("local.properties").inputStream())
             }["client.id"].toString())
+            buildConfigField("String", "BASE_URL", Properties().apply {
+                load(project.rootProject.file("local.properties").inputStream())
+            }["base.url"].toString())
         }
         release {
             isMinifyEnabled = false
@@ -41,6 +44,9 @@ android {
             buildConfigField("String", "CLIENT_ID", Properties().apply {
                 load(project.rootProject.file("local.properties").inputStream())
             }["client.id"].toString())
+            buildConfigField("String", "BASE_URL", Properties().apply {
+                load(project.rootProject.file("local.properties").inputStream())
+            }["base.url"].toString())
         }
     }
     compileOptions {
@@ -61,6 +67,7 @@ dependencies {
     implementation(project(":core-ui"))
     implementation(project(":domain"))
     implementation(project(":data"))
+    implementation(project(":data-local"))
     // Kotlin
     implementation(KotlinX.KOTLINX_SERIALIZATION)
     // AndroidX

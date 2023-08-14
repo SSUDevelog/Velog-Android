@@ -1,6 +1,7 @@
 package com.velogandroid.di
 
 
+import com.velogm.data.api.SignApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,4 +17,8 @@ object ApiModule {
 //    fun provideBookMarkService(@VelogRetrofit retrofit: Retrofit): TestApiService =
 //        retrofit.create(TestApiService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideSignService(@VelogRetrofit retrofit: Retrofit): SignApiService =
+        retrofit.create(SignApiService::class.java)
 }
