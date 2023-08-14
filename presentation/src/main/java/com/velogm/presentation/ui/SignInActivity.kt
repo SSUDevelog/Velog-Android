@@ -1,5 +1,6 @@
 package com.velogm.presentation.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
@@ -11,6 +12,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.velogm.domain.SharedPreferenceToken
 import com.velogm.presentation.BuildConfig.CLIENT_ID
 import com.velogm.presentation.databinding.ActivitySignInBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +29,15 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initView()
+
+        // 임시
+         if (viewModel.getToken().isNullOrBlank()){
+             Timber.tag("token").d("Not token")
+             initView()
+         } else{
+             Timber.tag("token").d(viewModel.getToken())
+             navigateTo<MainActivity>()
+         }
     }
 
     private fun initView() {
@@ -69,6 +79,13 @@ class SignInActivity : AppCompatActivity() {
             Timber.d(googleTokenAuth)
         } catch (e: ApiException) {
             Timber.d("signInResult:failed Code = " + e.statusCode)
+        }
+    }
+
+    private inline fun <reified T : Activity> navigateTo() {
+        Intent(this@SignInActivity, T::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(this)
         }
     }
 

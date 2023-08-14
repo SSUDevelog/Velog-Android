@@ -20,4 +20,6 @@ class SignInViewModel @Inject constructor(
             Timber.d(authRepository.getAccessToken())
         }
     }
+    fun getToken() = authRepository.getAccessToken()
+
 }
