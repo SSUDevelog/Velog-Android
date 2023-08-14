@@ -30,7 +30,7 @@ class SignInActivity : AppCompatActivity() {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 임시
+        // 임시 여기 로직 다시 짜야됨 스플래쉬로 옮길거임 그리고
          if (viewModel.getToken().isNullOrBlank()){
              Timber.tag("token").d("Not token")
              initView()
