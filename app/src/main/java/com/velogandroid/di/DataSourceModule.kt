@@ -12,10 +12,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 abstract class DataSourceModule {
 
-//    @Singleton
-//    @Binds
-//    abstract fun providesBookMarkDataSource(DataSourceImpl: TestDataSourceImpl): TestDataSource
-
     @Singleton
     @Binds
     abstract fun providesSignDataSource(DataSourceImpl: SignDataSourceImpl): SignDataSource

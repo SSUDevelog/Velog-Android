@@ -12,7 +12,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import com.velogm.domain.SharedPreferenceToken
 import com.velogm.presentation.BuildConfig.CLIENT_ID
 import com.velogm.presentation.databinding.ActivitySignInBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,15 +28,17 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // 임시 여기 로직 다시 짜야됨 스플래쉬로 옮길거임 그리고
-         if (viewModel.getToken().isNullOrBlank()){
-             Timber.tag("token").d("Not token")
-             initView()
-         } else{
-             Timber.tag("token").d(viewModel.getToken())
-             navigateTo<MainActivity>()
-         }
+        /***
+         * 임시 여기 로직 다시 짜야됨 스플래쉬로 옮길거임 그리고
+         * refresh token이 없고 access token의 만료기한이 정해져 있지 않고 있음
+         * */
+        if (viewModel.getToken().isNullOrBlank()) {
+            Timber.tag("token").d("Not token")
+            initView()
+        } else {
+            Timber.tag("token").d(viewModel.getToken())
+            navigateTo<MainActivity>()
+        }
     }
 
     private fun initView() {
@@ -68,15 +69,10 @@ class SignInActivity : AppCompatActivity() {
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            val email = account?.email.toString()
-            var googletoken = account?.idToken.toString()
             var googleTokenAuth = account?.serverAuthCode.toString()
-            if (!googleTokenAuth.isNullOrBlank()){
+            if (!googleTokenAuth.isNullOrBlank()) {
                 viewModel.getGoogleLogin(googleTokenAuth)
             }
-            Timber.d(email)
-            Timber.d(googletoken)
-            Timber.d(googleTokenAuth)
         } catch (e: ApiException) {
             Timber.d("signInResult:failed Code = " + e.statusCode)
         }
