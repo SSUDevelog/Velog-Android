@@ -1,6 +1,6 @@
-package com.velogm.data.datasource.remote
+package com.data_remote.datasource
 
-import com.velogm.data.api.SignApiService
+import com.data_remote.api.SignApiService
 import com.velogm.data.datasource.SignDataSource
 import com.velogm.data.dto.response.TokenResponseDto
 import javax.inject.Inject
