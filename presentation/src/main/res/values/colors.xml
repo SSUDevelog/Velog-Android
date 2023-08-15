@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Velog Main Color -->
+    <color name="main">#1EC897</color>
+    <color name="error">#FF4D4D</color>
+    <!-- Velog Grayscale -->
+    <color name="velog_white">#FFFFFF</color>
+    <color name="velog_gray100">#F8F9FA</color>
+    <color name="velog_gray200">#C9CCd0</color>
+    <color name="velog_gray300">#868E96</color>
+    <color name="velog_gray500">#495057</color>
+    <color name="velog_gray700">#212529</color>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

@@ -1,9 +1,12 @@
 package com.velogm.domain.repository
 
-interface AuthRepository {
+import com.velogm.domain.model.Token
+import kotlinx.coroutines.flow.Flow
 
-    fun saveAccessToken(a:String)
-    fun getAccessToken():String
-    fun saveRefreshToken(b:String)
-    fun getRefreshToken():String
+interface AuthRepository {
+    fun saveAccessToken(a: String)
+    fun getAccessToken(): String
+    fun saveRefreshToken(b: String)
+    fun getRefreshToken(): String
+
 }

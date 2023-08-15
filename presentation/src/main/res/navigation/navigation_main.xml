@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.velogm.presentation.ui.home.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/navigation_follow"
+        android:name="com.velogm.presentation.ui.follow.FollowFragment"
+        android:label="FollowFragment" />
+    <fragment
+        android:id="@+id/navigation_bookmark"
+        android:name="com.velogm.presentation.ui.bookmark.BookMarkFragment"
+        android:label="BookMarkFragment" />
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.velogm.presentation.ui.setting.SettingFragment"
+        android:label="SettingFragment" />
+</navigation>
