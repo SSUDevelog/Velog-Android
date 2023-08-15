@@ -1,6 +1,5 @@
 package com.velogm.presentation.ui
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
@@ -28,17 +27,6 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        /***
-         * 임시 여기 로직 다시 짜야됨 스플래쉬로 옮길거임 그리고
-         * refresh token이 없고 access token의 만료기한이 정해져 있지 않고 있음
-         * */
-        if (viewModel.getToken().isNullOrBlank()) {
-            Timber.tag("token").d("Not token")
-            initView()
-        } else {
-            Timber.tag("token").d(viewModel.getToken())
-            navigateTo<MainActivity>()
-        }
     }
 
     private fun initView() {
@@ -78,11 +66,5 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
-    private inline fun <reified T : Activity> navigateTo() {
-        Intent(this@SignInActivity, T::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(this)
-        }
-    }
 
 }
