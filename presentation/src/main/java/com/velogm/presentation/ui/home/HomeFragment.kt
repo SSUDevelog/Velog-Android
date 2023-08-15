@@ -17,7 +17,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val testData = listOf<String>("1", "2", "3", "4")
+        val testData = listOf<String>("1", "2", "3", )
         initAdapter(testData)
         initTabLayoutItem(testData)
     }
