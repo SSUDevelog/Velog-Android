@@ -11,11 +11,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class UseCaseModule {
-    //    @Singleton
-//    @Provides
-//    fun provideTicketUseCase(repository: TestRepository): TestUseCase {
-//        return TestUseCase(repository)
-//    }
+
     @Singleton
     @Provides
     fun provideTokenUseCase(repository: SignRepository): AccessTokenUseCase {

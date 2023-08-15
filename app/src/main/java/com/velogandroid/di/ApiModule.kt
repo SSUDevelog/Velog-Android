@@ -12,11 +12,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiModule {
-//    @Provides
-//    @Singleton
-//    fun provideBookMarkService(@VelogRetrofit retrofit: Retrofit): TestApiService =
-//        retrofit.create(TestApiService::class.java)
-
     @Provides
     @Singleton
     fun provideSignService(@VelogRetrofit retrofit: Retrofit): SignApiService =
