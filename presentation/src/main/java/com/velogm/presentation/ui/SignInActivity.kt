@@ -1,5 +1,6 @@
 package com.velogm.presentation.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
@@ -27,6 +28,7 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initView()
     }
 
     private fun initView() {
@@ -43,6 +45,7 @@ class SignInActivity : AppCompatActivity() {
 
     private fun getGoogleClient() {
         binding.btnSignInGoogle.setOnClickListener {
+            Timber.d("tasdasd")
             val googleSignInOption =
                 GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestServerAuthCode(CLIENT_ID)
@@ -60,11 +63,17 @@ class SignInActivity : AppCompatActivity() {
             var googleTokenAuth = account?.serverAuthCode.toString()
             if (!googleTokenAuth.isNullOrBlank()) {
                 viewModel.getGoogleLogin(googleTokenAuth)
+                navigateTo<MainActivity>()
             }
         } catch (e: ApiException) {
             Timber.d("signInResult:failed Code = " + e.statusCode)
         }
     }
-
+    private inline fun <reified T : Activity> navigateTo() {
+        Intent(this@SignInActivity, T::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(this)
+        }
+    }
 
 }
