@@ -16,6 +16,7 @@ import com.velogm.presentation.model.TagModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -41,18 +42,23 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun initTabLayoutItem(tagData: List<TagModel>) {
+        val defaultTagData = listOf<TagModel>(TagModel("트랜드"), TagModel("팔로우"))
+        val finalTagData = defaultTagData + tagData
+        Timber.d("$finalTagData")
         val homeTabLayout = binding.tablayoutHome
         homeTabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         TabLayoutMediator(homeTabLayout, viewPager) { tab, position ->
-            tab.text = tagData[position].tag
+            tab.text = finalTagData[position].tag
         }.attach()
     }
 
     private fun initAdapter(tagData: List<TagModel>) {
-        demoCollectionAdapter = HomeCollectionAdapter(requireActivity(), tagData)
+        val defaultTagData = listOf<TagModel>(TagModel("트랜드"), TagModel("팔로우"))
+        val finalTagData = defaultTagData + tagData
+        demoCollectionAdapter = HomeCollectionAdapter(requireActivity(), finalTagData)
         viewPager = binding.pager
         viewPager.adapter = demoCollectionAdapter
-        demoCollectionAdapter.setData(tagData)
+        demoCollectionAdapter.setData(finalTagData)
         demoCollectionAdapter.notifyDataSetChanged()
     }
 

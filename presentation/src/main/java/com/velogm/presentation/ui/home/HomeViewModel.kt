@@ -23,9 +23,8 @@ class HomeViewModel @Inject constructor(
     val tagListData: StateFlow<UiState<List<TagModel>>> = _tagListData.asStateFlow()
     fun getTag() = viewModelScope.launch {
         getTagUseCase().collect {
-            val tagList = it?.toTagModelEntity()
-            if (tagList != null) _tagListData.value = UiState.Success(tagList)
-            else _tagListData.value = UiState.Empty
+            val tagList = it.toTagModelEntity()
+            _tagListData.value = UiState.Success(tagList)
             Timber.d(it.toString())
         }
     }
