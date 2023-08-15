@@ -2,4 +2,5 @@
     <string name="app_name">VelogAndroid</string>
     <string name="tv_sign_in_title">벨로그를 \n모바일로 더 간편하게</string>
     <string name="btn_sign_in_google">Sign in with Google</string>
+    <string name="tv_home_home">Home</string>
 </resources>

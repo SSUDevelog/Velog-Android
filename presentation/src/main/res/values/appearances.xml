@@ -9,7 +9,7 @@
     </style>
 
     <style name="TextAppearance.VelogM.Display">
-        <item name="fontFamily">@font/font_pretendard_medium</item>
+        <item name="fontFamily">@font/font_pretendard_bold</item>
         <item name="android:textSize">28sp</item>
         <item name="lineHeight">36dp</item>
     </style>
