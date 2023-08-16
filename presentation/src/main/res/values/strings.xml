@@ -6,4 +6,5 @@
     <string name="tv_add_tag">내 태그</string>
     <string name="tv_all_clear">모두 지우기</string>
     <string name="tv_pop_tag">인기 태그</string>
+    <string name="tv_add_tag_hint">태그를 추가해보세요</string>
 </resources>

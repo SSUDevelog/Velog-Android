@@ -21,6 +21,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
+                android:layout_marginEnd="20dp"
                 android:id="@+id/toolbar_add_tag"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -28,12 +29,13 @@
                 app:navigationIcon="@drawable/ic_chevron_left">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingStart="16dp"
                     android:layout_height="wrap_content"
                     android:background="@color/velog_gray100"
                     android:drawableStart="@drawable/ic_add_tag"
                     android:drawablePadding="8dp"
-                    android:hint="태그를 추가해보세요"
+                    android:hint="@string/tv_add_tag_hint"
                     android:minHeight="48dp"
                     android:textAppearance="@style/TextAppearance.VelogM.Body1_M"
                     android:textColor="@color/velog_gray500" />

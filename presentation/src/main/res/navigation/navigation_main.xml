@@ -7,7 +7,11 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.velogm.presentation.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/navigation_home_to_add_tag"
+            app:destination="@id/navigation_add_tag" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_follow"
         android:name="com.velogm.presentation.ui.follow.FollowFragment"
@@ -20,4 +24,8 @@
         android:id="@+id/navigation_setting"
         android:name="com.velogm.presentation.ui.setting.SettingFragment"
         android:label="SettingFragment" />
+    <fragment
+        android:id="@+id/navigation_add_tag"
+        android:name="com.velogm.presentation.ui.addtag.AddTagFragment"
+        android:label="AddTagFragment" />
 </navigation>

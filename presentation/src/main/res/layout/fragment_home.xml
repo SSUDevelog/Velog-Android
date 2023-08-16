@@ -33,8 +33,10 @@
             app:layout_constraintTop_toTopOf="@id/tv_home_title" />
 
         <ImageView
+            android:paddingEnd="24dp"
             android:id="@+id/iv_plus_btn"
             android:layout_width="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/tablayout_home"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_add"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +46,6 @@
             android:id="@+id/tablayout_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@id/iv_plus_btn"
             app:layout_constraintStart_toEndOf="@id/iv_plus_btn"
