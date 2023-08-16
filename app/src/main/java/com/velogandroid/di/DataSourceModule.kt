@@ -1,8 +1,8 @@
 package com.velogandroid.di
 
-import com.data_remote.datasource.HomeDataSourceImpl
+import com.data_remote.datasource.TagDataSourceImpl
 import com.data_remote.datasource.SignDataSourceImpl
-import com.velogm.data.datasource.HomeDataSource
+import com.velogm.data.datasource.TagDataSource
 import com.velogm.data.datasource.SignDataSource
 import dagger.Binds
 import dagger.Module
@@ -20,5 +20,5 @@ abstract class DataSourceModule {
 
     @Singleton
     @Binds
-    abstract fun providesHomeDataSource(DataSourceImpl: HomeDataSourceImpl): HomeDataSource
+    abstract fun providesHomeDataSource(DataSourceImpl: TagDataSourceImpl): TagDataSource
 }
