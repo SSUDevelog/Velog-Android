@@ -46,7 +46,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         val finalTagData = defaultTagData + tagData
         Timber.d("$finalTagData")
         val homeTabLayout = binding.tablayoutHome
-        homeTabLayout.tabMode = TabLayout.MODE_SCROLLABLE
+
         TabLayoutMediator(homeTabLayout, viewPager) { tab, position ->
             tab.text = finalTagData[position].tag
         }.attach()
