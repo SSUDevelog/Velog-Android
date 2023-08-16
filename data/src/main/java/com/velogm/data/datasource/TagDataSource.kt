@@ -1,5 +1,7 @@
 package com.velogm.data.datasource
 
-interface HomeDataSource {
+interface TagDataSource {
     suspend fun getTag(): List<String>
+
+    suspend fun getPopularTag(): List<String>
 }
