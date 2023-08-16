@@ -1,4 +1,4 @@
-package com.velogm.presentation.ui.addtag
+package com.velogm.presentation.ui.addtag.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,6 @@ import com.velogm.presentation.model.TagModel
 import com.velogm.presentation.ui.addtag.viewholder.MyTagViewHolder
 
 class AddTagAdapter(
-//    private val onMoveToArticleDetailClick: (ArticleModel, Int) -> Unit = { _, _ -> }
 ) : ListAdapter<TagModel, MyTagViewHolder>(
     MyTagDiffCalback
 ) {
