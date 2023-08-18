@@ -37,4 +37,13 @@ class TagRepositoryImpl @Inject constructor(
             emit(result.getOrDefault(""))
         }
     }
+
+    override suspend fun addTag(tag: String): Flow<String> {
+        return flow {
+            val result = kotlin.runCatching {
+                dataSource.addTag(tag)
+            }
+            emit(result.getOrDefault(""))
+        }
+    }
 }

@@ -21,4 +21,8 @@ class TagDataSourceImpl @Inject constructor(
         return apiService.deleteTag(tag)
     }
 
+    override suspend fun addTag(tag: String): String {
+        return apiService.addTag(tag)
+    }
+
 }
