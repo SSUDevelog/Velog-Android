@@ -3,6 +3,7 @@ package com.velogm.presentation.ui.addtag
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.velogm.core_ui.view.UiState
+import com.velogm.domain.usecase.AddTagUseCase
 import com.velogm.domain.usecase.DeleteTagUseCase
 import com.velogm.domain.usecase.GetPopularTagUseCase
 import com.velogm.domain.usecase.GetTagUseCase
@@ -20,7 +21,8 @@ import javax.inject.Inject
 class AddTagViewModel @Inject constructor(
     private val getTagUseCase: GetTagUseCase,
     private val getPopularTagUseCase: GetPopularTagUseCase,
-    private val deleteTagUseCase: DeleteTagUseCase
+    private val deleteTagUseCase: DeleteTagUseCase,
+    private val addTagUseCase: AddTagUseCase
 ) : ViewModel() {
 
     private val _tagListData = MutableStateFlow<UiState<List<TagModel>>>(UiState.Loading)
@@ -51,6 +53,12 @@ class AddTagViewModel @Inject constructor(
 
     fun deleteTag(tag:String) = viewModelScope.launch {
         deleteTagUseCase(tag).collect {
+            Timber.d(it.toString())
+        }
+    }
+
+    fun addTag(tag:String) = viewModelScope.launch {
+        addTagUseCase(tag).collect {
             Timber.d(it.toString())
         }
     }
