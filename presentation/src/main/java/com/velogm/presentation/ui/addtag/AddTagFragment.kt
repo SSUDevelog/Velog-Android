@@ -15,6 +15,7 @@ import com.velogm.presentation.R
 import com.velogm.presentation.databinding.FragmentAddTagBinding
 import com.velogm.presentation.ui.addtag.adapter.AddTagAdapter
 import com.velogm.presentation.ui.addtag.adapter.PopularTagAdapter
+import com.velogm.presentation.ui.addtag.dialog.DeleteDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -34,7 +35,12 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
         addTag()
         myTagAdapter = AddTagAdapter(deleteTagClick = {
             Timber.tag("deleteTag").d(it.tag)
-//            viewModel.deleteTag(it.tag)
+            val dialog = DeleteDialogFragment(
+                deleteTag = {
+                    viewModel.deleteTag(it.tag)
+                }
+            )
+            dialog.show(childFragmentManager, "delete")
         })
         binding.rvAddTagList.adapter = myTagAdapter
         popularTagAdapter = PopularTagAdapter()
@@ -79,7 +85,6 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
             ) {
                 viewModel.addTag(binding.etvAddTag.text.toString())
                 binding.etvAddTag.text?.clear()
-                viewModel.getTag()
                 true
             } else {
                 false

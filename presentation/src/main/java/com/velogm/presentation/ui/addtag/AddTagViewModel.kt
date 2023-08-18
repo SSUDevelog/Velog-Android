@@ -30,6 +30,7 @@ class AddTagViewModel @Inject constructor(
 
     private val _tagPopularListData = MutableStateFlow<UiState<List<TagModel>>>(UiState.Loading)
     val tagPopularListData: StateFlow<UiState<List<TagModel>>> = _tagPopularListData.asStateFlow()
+
     init {
         getPopularTag()
         getTag()
@@ -53,13 +54,13 @@ class AddTagViewModel @Inject constructor(
 
     fun deleteTag(tag:String) = viewModelScope.launch {
         deleteTagUseCase(tag).collect {
-            Timber.d(it.toString())
+            Timber.tag("test").d(it.toString())
         }
     }
 
     fun addTag(tag:String) = viewModelScope.launch {
         addTagUseCase(tag).collect {
-            Timber.d(it.toString())
+            Timber.tag("test").d(it.toString())
         }
     }
 }
