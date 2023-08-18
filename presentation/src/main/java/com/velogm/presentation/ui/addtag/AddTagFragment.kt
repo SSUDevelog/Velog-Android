@@ -1,7 +1,9 @@
 package com.velogm.presentation.ui.addtag
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -25,10 +27,10 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
     private val viewModel by viewModels<AddTagViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.addTag("알고리즘")
         setNavigation()
         collectMyTagListData()
         collectPopularTagListData()
+        addTag()
         myTagAdapter = AddTagAdapter()
         binding.rvAddTagList.adapter = myTagAdapter
         popularTagAdapter = PopularTagAdapter()
@@ -64,5 +66,20 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
                 else -> {}
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun addTag() {
+        binding.etvAddTag.setOnEditorActionListener { _, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE ||
+                (event != null && event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER)
+            ) {
+                viewModel.addTag(binding.etvAddTag.text.toString())
+                binding.etvAddTag.text?.clear()
+                viewModel.getTag()
+                true
+            } else {
+                false
+            }
+        }
     }
 }

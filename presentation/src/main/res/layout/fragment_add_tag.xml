@@ -29,7 +29,10 @@
                 app:navigationIcon="@drawable/ic_chevron_left">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etv_add_tag"
                     android:layout_width="match_parent"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
                     android:paddingStart="16dp"
                     android:layout_height="wrap_content"
                     android:background="@color/velog_gray100"
