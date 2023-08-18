@@ -18,6 +18,7 @@ import com.velogm.presentation.ui.addtag.adapter.PopularTagAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
 @AndroidEntryPoint
 class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_add_tag) {
@@ -31,7 +32,10 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
         collectMyTagListData()
         collectPopularTagListData()
         addTag()
-        myTagAdapter = AddTagAdapter()
+        myTagAdapter = AddTagAdapter(deleteTagClick = {
+            Timber.tag("deleteTag").d(it.tag)
+//            viewModel.deleteTag(it.tag)
+        })
         binding.rvAddTagList.adapter = myTagAdapter
         popularTagAdapter = PopularTagAdapter()
         binding.rvAddTagPopularList.adapter = popularTagAdapter

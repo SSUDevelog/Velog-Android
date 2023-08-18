@@ -9,6 +9,7 @@ import com.velogm.presentation.model.TagModel
 import com.velogm.presentation.ui.addtag.viewholder.MyTagViewHolder
 
 class AddTagAdapter(
+    private val deleteTagClick: (TagModel) -> Unit = { _ -> }
 ) : ListAdapter<TagModel, MyTagViewHolder>(
     MyTagDiffCalback
 ) {
@@ -16,7 +17,7 @@ class AddTagAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyTagViewHolder {
         val binding =
             ItemMyTagBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyTagViewHolder(binding)
+        return MyTagViewHolder(binding,deleteTagClick)
     }
 
     override fun onBindViewHolder(holder: MyTagViewHolder, position: Int) {
