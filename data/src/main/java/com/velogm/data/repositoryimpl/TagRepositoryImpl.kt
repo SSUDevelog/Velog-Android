@@ -28,4 +28,13 @@ class TagRepositoryImpl @Inject constructor(
             emit(result.getOrDefault(emptyList()))
         }
     }
+
+    override suspend fun deleteTag(tag:String): Flow<String> {
+        return flow {
+            val result = kotlin.runCatching {
+                dataSource.deleteTag(tag)
+            }
+            emit(result.getOrDefault(""))
+        }
+    }
 }

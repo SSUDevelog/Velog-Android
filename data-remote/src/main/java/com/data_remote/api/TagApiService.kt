@@ -1,6 +1,8 @@
 package com.data_remote.api
 
+import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface TagApiService {
     @GET("/tag/gettag")
@@ -10,4 +12,9 @@ interface TagApiService {
     @GET("/tag/popularpost")
     suspend fun getPopularTag(
     ):List<String>
+
+    @DELETE("/tag/deletetag")
+    suspend fun deleteTag(
+        @Query("tag") tag:String
+    ):String
 }
