@@ -3,6 +3,7 @@ package com.velogandroid.di
 import com.velogm.domain.repository.TagRepository
 import com.velogm.domain.repository.SignRepository
 import com.velogm.domain.usecase.AccessTokenUseCase
+import com.velogm.domain.usecase.DeleteTagUseCase
 import com.velogm.domain.usecase.GetPopularTagUseCase
 import com.velogm.domain.usecase.GetTagUseCase
 import dagger.Module
@@ -31,5 +32,11 @@ class UseCaseModule {
     @Provides
     fun providePopularTagUseCase(repository: TagRepository): GetPopularTagUseCase {
         return GetPopularTagUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideDeleteTagUseCase(repository: TagRepository): DeleteTagUseCase {
+        return DeleteTagUseCase(repository)
     }
 }
