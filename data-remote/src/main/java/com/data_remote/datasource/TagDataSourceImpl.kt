@@ -17,4 +17,8 @@ class TagDataSourceImpl @Inject constructor(
         return apiService.getPopularTag()
     }
 
+    override suspend fun deleteTag(tag: String): String {
+        return apiService.deleteTag(tag)
+    }
+
 }

@@ -25,7 +25,7 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
     private val viewModel by viewModels<AddTagViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.deleteTag("알고리즘")
         setNavigation()
         collectMyTagListData()
         collectPopularTagListData()

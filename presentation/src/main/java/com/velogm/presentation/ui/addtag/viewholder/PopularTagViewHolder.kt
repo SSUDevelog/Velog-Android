@@ -15,16 +15,9 @@ class PopularTagViewHolder(
         val tagNum = (position + 1).toString()
         binding.tagNum = tagNum
 
-
         // 임시 구현 고칠게요
-        when (tagNum) {
-            "1" -> {
-                binding.tvPopularTagNum.setTextColor(ContextCompat.getColor(binding.root.context, R.color.main))
-            }
-            "2" -> {
-                binding.tvPopularTagNum.setTextColor(ContextCompat.getColor(binding.root.context, R.color.main))
-            }
-            "3" -> {
+      when (tagNum) {
+            "1","2","3" -> {
                 binding.tvPopularTagNum.setTextColor(ContextCompat.getColor(binding.root.context, R.color.main))
             }
             else -> {}
