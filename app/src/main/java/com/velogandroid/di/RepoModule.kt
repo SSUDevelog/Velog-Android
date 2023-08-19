@@ -3,9 +3,11 @@ package com.velogandroid.di
 import com.velogm.data.repositoryimpl.AuthRepositoryImpl
 import com.velogm.data.repositoryimpl.TagRepositoryImpl
 import com.velogm.data.repositoryimpl.SignRepositoryImpl
+import com.velogm.data.repositoryimpl.SubscribeRepositoryImpl
 import com.velogm.domain.repository.AuthRepository
 import com.velogm.domain.repository.TagRepository
 import com.velogm.domain.repository.SignRepository
+import com.velogm.domain.repository.SubscribeRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -33,5 +35,11 @@ abstract class RepositoryModule {
     abstract fun bindsHomeRepository(
         RepositoryImpl: TagRepositoryImpl,
     ): TagRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindsSubscribeRepository(
+        RepositoryImpl: SubscribeRepositoryImpl,
+    ): SubscribeRepository
 
 }
