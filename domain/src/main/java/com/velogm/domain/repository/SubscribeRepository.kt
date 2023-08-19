@@ -4,6 +4,7 @@ import com.velogm.domain.model.PostList
 import kotlinx.coroutines.flow.Flow
 
 interface SubscribeRepository {
-
     suspend fun getTrendPosts(): Flow<PostList>
+
+    suspend fun getFollowPosts(): Flow<PostList>
 }
