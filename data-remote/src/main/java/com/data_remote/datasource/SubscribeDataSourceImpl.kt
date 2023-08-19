@@ -12,5 +12,9 @@ class SubscribeDataSourceImpl @Inject constructor(
         return apiService.getTrendPost()
     }
 
+    override suspend fun getFollowPost(): PostListDto {
+        return apiService.getFollowPost()
+    }
+
 
 }

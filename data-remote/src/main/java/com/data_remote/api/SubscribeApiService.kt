@@ -8,4 +8,8 @@ interface SubscribeApiService {
     @GET("/subscribe/trendposts")
     suspend fun getTrendPost(
     ): PostListDto
+
+    @GET("/subscribe/subscriberpost")
+    suspend fun getFollowPost(
+    ): PostListDto
 }

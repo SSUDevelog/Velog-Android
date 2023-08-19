@@ -20,4 +20,13 @@ class SubscribeRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getFollowPosts(): Flow<PostList> {
+        return flow {
+            val result = runCatching {
+                dataSource.getFollowPost().toPostListEntity()
+            }
+            emit(result.getOrDefault(PostList(emptyList())))
+        }
+    }
+
 }
