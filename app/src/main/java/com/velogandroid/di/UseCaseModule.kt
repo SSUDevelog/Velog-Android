@@ -52,7 +52,13 @@ class UseCaseModule {
 
     @Singleton
     @Provides
-    fun provideGetFollowPostUseCase(repository: SubscribeRepository): GetFollowPosts {
-        return GetFollowPosts(repository)
+    fun provideGetFollowPostUseCase(repository: SubscribeRepository): GetFollowPostsUseCase {
+        return GetFollowPostsUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetTagPostUseCase(repository:TagRepository): GetTagPostsUseCase {
+        return GetTagPostsUseCase(repository)
     }
 }
