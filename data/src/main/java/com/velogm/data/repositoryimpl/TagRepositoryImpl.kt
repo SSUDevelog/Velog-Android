@@ -34,7 +34,7 @@ class TagRepositoryImpl @Inject constructor(
             val result = kotlin.runCatching {
                 dataSource.deleteTag(tag)
             }
-            emit(result.getOrDefault(""))
+            emit(result.getOrDefault("test"))
         }
     }
 
@@ -43,7 +43,7 @@ class TagRepositoryImpl @Inject constructor(
             val result = kotlin.runCatching {
                 dataSource.addTag(tag)
             }
-            emit(result.getOrDefault(""))
+            emit(result.getOrDefault("test"))
         }
     }
 }

@@ -33,6 +33,7 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
         collectMyTagListData()
         collectPopularTagListData()
         addTag()
+        collectEventData()
         myTagAdapter = AddTagAdapter(deleteTagClick = {
             Timber.tag("deleteTag").d(it.tag)
             val dialog = DeleteDialogFragment(
@@ -91,4 +92,17 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
             }
         }
     }
+
+    private fun collectEventData() {
+        viewModel.eventData.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    viewModel.getTag()
+                    Timber.d("getTag")
+                }
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
+    }
+
 }
