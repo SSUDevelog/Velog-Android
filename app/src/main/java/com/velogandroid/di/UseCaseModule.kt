@@ -49,4 +49,10 @@ class UseCaseModule {
     fun provideGetTrendPostUseCase(repository: SubscribeRepository): GetTrendPostUseCase {
         return GetTrendPostUseCase(repository)
     }
+
+    @Singleton
+    @Provides
+    fun provideGetFollowPostUseCase(repository: SubscribeRepository): GetFollowPosts {
+        return GetFollowPosts(repository)
+    }
 }

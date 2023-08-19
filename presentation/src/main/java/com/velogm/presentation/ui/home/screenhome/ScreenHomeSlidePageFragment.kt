@@ -29,7 +29,10 @@ class ScreenHomeSlidePageFragment :
         binding.rvPostList.adapter = postAdapter
 
         val data = arguments?.getString("data")
-        if (data == "트렌드") viewModel.getTrendPost()
+        when(data){
+            "트렌드" -> viewModel.getTrendPost()
+            "팔로우" -> viewModel.getFollowPost()
+        }
 
         collectPostListData()
     }

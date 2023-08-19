@@ -3,6 +3,7 @@ package com.velogm.presentation.ui.home.screenhome
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.velogm.core_ui.view.UiState
+import com.velogm.domain.usecase.GetFollowPosts
 import com.velogm.domain.usecase.GetTrendPostUseCase
 import com.velogm.presentation.mapper.toPostModelList
 import com.velogm.presentation.model.PostModelList
@@ -17,7 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ScreenViewModel @Inject constructor(
-    private val getTrendPostUseCase: GetTrendPostUseCase
+    private val getTrendPostUseCase: GetTrendPostUseCase,
+    private val getFollowPosts: GetFollowPosts
 ) : ViewModel() {
 
     private val _postListData = MutableStateFlow<UiState<PostModelList>>(UiState.Loading)
@@ -28,6 +30,13 @@ class ScreenViewModel @Inject constructor(
        getTrendPostUseCase().collect {
             val postList= it.toPostModelList()
            _postListData.value=UiState.Success(postList)
+        }
+    }
+
+    fun getFollowPost() = viewModelScope.launch {
+        getFollowPosts().collect {
+            val postList= it.toPostModelList()
+            _postListData.value=UiState.Success(postList)
         }
     }
 }
