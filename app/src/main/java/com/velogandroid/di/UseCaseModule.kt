@@ -1,9 +1,8 @@
 package com.velogandroid.di
 
-import com.velogm.domain.repository.HomeRepository
+import com.velogm.domain.repository.TagRepository
 import com.velogm.domain.repository.SignRepository
-import com.velogm.domain.usecase.AccessTokenUseCase
-import com.velogm.domain.usecase.GetTagUseCase
+import com.velogm.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +21,25 @@ class UseCaseModule {
 
     @Singleton
     @Provides
-    fun provideHomeUseCase(repository: HomeRepository): GetTagUseCase {
+    fun provideHomeUseCase(repository: TagRepository): GetTagUseCase {
         return GetTagUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun providePopularTagUseCase(repository: TagRepository): GetPopularTagUseCase {
+        return GetPopularTagUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideDeleteTagUseCase(repository: TagRepository): DeleteTagUseCase {
+        return DeleteTagUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAddTagUseCase(repository: TagRepository): AddTagUseCase {
+        return AddTagUseCase(repository)
     }
 }

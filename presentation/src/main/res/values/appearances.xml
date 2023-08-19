@@ -46,7 +46,7 @@
 
     <style name="TextAppearance.VelogM.Body1_M">
         <item name="fontFamily">@font/font_pretendard_medium</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="lineHeight">20dp</item>
     </style>
 

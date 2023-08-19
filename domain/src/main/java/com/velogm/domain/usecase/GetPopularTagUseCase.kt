@@ -4,9 +4,9 @@ import com.velogm.domain.model.Tag
 import com.velogm.domain.repository.TagRepository
 import kotlinx.coroutines.flow.Flow
 
-class GetTagUseCase(
+class GetPopularTagUseCase(
     private val repository: TagRepository
 ) {
     suspend operator fun invoke(): Flow<List<Tag>> =
-        repository.getTag()
+        repository.getPopularTag()
 }
