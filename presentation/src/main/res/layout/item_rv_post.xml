@@ -5,18 +5,22 @@
 
     <data>
 
+        <variable
+            name="post"
+            type="com.velogm.presentation.model.PostModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_height="310dp">
+        android:layout_height="310dp"
+        android:layout_marginTop="20dp">
 
         <ImageView
             android:id="@+id/iv_home_post"
+            imageUrl="@{post.img}"
+            android:scaleType="fitXY"
             android:layout_width="match_parent"
             android:layout_height="119dp"
-            android:src="@drawable/ic_launcher_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:gravity="center"
+            android:text="@{post.title}"
             android:textAppearance="@style/TextAppearance.VelogM.Subhead"
             android:textColor="@color/velog_gray700"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,34 +53,38 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:gravity="center"
+            android:text="@{post.summary}"
             android:textAppearance="@style/TextAppearance.VelogM.Body1_M"
             android:textColor="@color/velog_gray500"
             app:layout_constraintEnd_toEndOf="parent"
+            android:maxLines="2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_post_title"
             tools:text="어쩌구 저쭈구" />
 
 
         <TextView
-            app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/tv_post_name"
-            tools:text="어쩌구 저쭈구"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:layout_marginBottom="12dp"
-            android:layout_width="wrap_content"
+            android:text="@{post.name}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_height="wrap_content" />
+            tools:text="어쩌구 저쭈구" />
 
 
         <TextView
-            android:layout_marginStart="8dp"
             android:id="@+id/tv_post_date"
-            tools:text="어쩌구 저쭈구"
-            android:layout_marginBottom="12dp"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="12dp"
+            android:text="@{post.date}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_post_name"
-            android:layout_height="wrap_content" />
+            tools:text="어쩌구 저쭈구" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

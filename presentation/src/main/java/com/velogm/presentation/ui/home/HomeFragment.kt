@@ -57,7 +57,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     //하드코딩 수정할게요
     private fun initTabLayoutItem(tagData: List<TagModel>) {
-        val defaultTagData = listOf<TagModel>(TagModel("트랜드"), TagModel("팔로우"))
+        val defaultTagData = listOf<TagModel>(TagModel("트렌드"), TagModel("팔로우"))
         val finalTagData = defaultTagData + tagData
         Timber.d("$finalTagData")
         val homeTabLayout = binding.tablayoutHome
@@ -68,7 +68,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun initAdapter(tagData: List<TagModel>) {
-        val defaultTagData = listOf<TagModel>(TagModel("트랜드"), TagModel("팔로우"))
+        val defaultTagData = listOf<TagModel>(TagModel("트렌드"), TagModel("팔로우"))
         val finalTagData = defaultTagData + tagData
         demoCollectionAdapter = HomeCollectionAdapter(requireActivity(), finalTagData)
         viewPager = binding.pager
