@@ -25,7 +25,8 @@
                 android:layout_height="wrap_content"
                 app:title="Follow"
                 app:titleMarginStart="20dp"
-                app:titleTextAppearance="@style/TextAppearance.VelogM.Display">
+                app:titleTextAppearance="@style/TextAppearance.VelogM.Display"
+                app:titleTextColor="@color/velog_gray700">
 
                 <ImageView
                     android:id="@+id/iv_follow_reading_glasses"
@@ -51,6 +52,7 @@
             android:paddingVertical="4dp"
             android:text="@string/tv_follow_title"
             android:textAppearance="@style/TextAppearance.VelogM.Body2_B"
+            android:textColor="@color/velog_gray700"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appbar_follow" />
 

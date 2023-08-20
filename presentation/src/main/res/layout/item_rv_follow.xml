@@ -22,6 +22,7 @@
         android:layout_marginHorizontal="8dp"
         android:layout_marginVertical="10dp"
         android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+        android:textColor="@color/velog_gray700"
         app:layout_constraintEnd_toStartOf="@id/tv_item_rv_follow_cancel"
         app:layout_constraintStart_toEndOf="@id/iv_item_rv_follow_follower"
         app:layout_constraintTop_toTopOf="parent"

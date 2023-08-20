@@ -7,4 +7,8 @@
     <string name="tv_item_rv_follow_cancel">팔로우 취소</string>
     <string name="tv_follow_title">팔로우 중인 사람</string>
     <string name="content_description_follow_reading_glasses">돋보기</string>
+    <string name="tv_bottom_sheet_follow_add_title">팔로우 추가</string>
+    <string name="content_description_bottom_sheet_follow_add_cancel">취소 아이콘</string>
+    <string name="et_bottom_sheet_follow_add">팔로우를 추가해보세요.</string>
+    <string name="tv_bottom_sheet_follow_add_btn">추가</string>
 </resources>
