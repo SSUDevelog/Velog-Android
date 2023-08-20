@@ -11,4 +11,6 @@
     <string name="content_description_bottom_sheet_follow_add_cancel">취소 아이콘</string>
     <string name="et_bottom_sheet_follow_add">팔로우를 추가해보세요.</string>
     <string name="tv_bottom_sheet_follow_add_btn">추가</string>
+    <string name="tv_follow_empty_title_1">아직 팔로우 한 사람이 없어요.</string>
+    <string name="tv_follow_empty_title_2">다른 사람들을 팔로우해 보세요.</string>
 </resources>
