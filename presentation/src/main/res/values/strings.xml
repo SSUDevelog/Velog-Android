@@ -16,4 +16,8 @@
     <string name="tv_dialog_follow_title">정말 팔로우를 취소하시겠습니까?</string>
     <string name="btn_dialog_follow_no">아니오</string>
     <string name="btn_dialog_follow_yes">네</string>
+    <string name="tv_all_clear">모두 지우기</string>
+    <string name="tv_pop_tag">인기 태그</string>
+    <string name="tv_add_tag_hint">태그를 추가해보세요</string>
+    <string name="tv_intro_delete_tag">정말 태그를 삭제하시겠습니까?</string>
 </resources>

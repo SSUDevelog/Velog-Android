@@ -1,7 +1,7 @@
 package com.velogandroid.di
 
 
-import com.data_remote.api.HomeApiService
+import com.data_remote.api.TagApiService
 import com.data_remote.api.SignApiService
 import dagger.Module
 import dagger.Provides
@@ -20,6 +20,6 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideHomeService(@VelogRetrofit retrofit: Retrofit): HomeApiService =
-        retrofit.create(HomeApiService::class.java)
+    fun provideHomeService(@VelogRetrofit retrofit: Retrofit): TagApiService =
+        retrofit.create(TagApiService::class.java)
 }

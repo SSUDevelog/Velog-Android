@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/iv_intro_delete_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete_tag_dialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_delete_tag_intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tv_intro_delete_tag"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_gray500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_intro_delete_ic" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_delete_tag_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="6dp"
+            android:background="@color/velog_white"
+            android:text="취소"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_gray300"
+            app:layout_constraintEnd_toStartOf="@+id/btn_delete_tag_delete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_delete_tag_intro" />
+
+        <Button
+            android:id="@+id/btn_delete_tag_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/shape_main_fill_4_rect"
+            android:text="삭제"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_delete_tag_cancel"
+            app:layout_constraintTop_toBottomOf="@id/tv_delete_tag_intro" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -2,11 +2,12 @@ package com.velogm.presentation.ui.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.velogm.core_ui.base.BindingFragment
 import com.velogm.core_ui.view.UiState
@@ -29,6 +30,20 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
         viewModel.getTag()
 
+        collectTagListData()
+        moveToAddTag()
+    }
+
+    private fun moveToAddTag() {
+        binding.ivPlusBtn.setOnClickListener {
+            findNavController().navigate(
+                R.id.navigation_home_to_add_tag, bundleOf(
+                )
+            )
+        }
+    }
+
+    private fun collectTagListData() {
         viewModel.tagListData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
@@ -38,7 +53,6 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
                 else -> {}
             }
         }.launchIn(lifecycleScope)
-
     }
 
     //하드코딩 수정할게요
