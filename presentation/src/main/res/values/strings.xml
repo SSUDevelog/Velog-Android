@@ -4,4 +4,7 @@
     <string name="btn_sign_in_google">Sign in with Google</string>
     <string name="tv_home_home">Home</string>
     <string name="tv_add_tag">내 태그</string>
+    <string name="tv_item_rv_follow_cancel">팔로우 취소</string>
+    <string name="tv_follow_title">팔로우 중인 사람</string>
+    <string name="content_description_follow_reading_glasses">돋보기</string>
 </resources>
