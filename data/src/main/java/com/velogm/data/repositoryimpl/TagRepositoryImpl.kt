@@ -1,6 +1,7 @@
 package com.velogm.data.repositoryimpl
 
 import com.velogm.data.datasource.TagDataSource
+import com.velogm.domain.model.PostList
 import com.velogm.domain.model.Tag
 import com.velogm.domain.repository.TagRepository
 import kotlinx.coroutines.flow.Flow
@@ -44,6 +45,15 @@ class TagRepositoryImpl @Inject constructor(
                 dataSource.addTag(tag)
             }
             emit(result.getOrDefault("test"))
+        }
+    }
+
+    override suspend fun getTagPosts(tag: String): Flow<PostList> {
+        return flow {
+            val result = runCatching {
+                PostList(dataSource.getTagPosts(tag).map { it.toPostEntity() })
+            }
+            emit(result.getOrDefault(PostList(emptyList())))
         }
     }
 }

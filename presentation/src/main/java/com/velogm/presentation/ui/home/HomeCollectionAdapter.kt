@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.velogm.presentation.model.TagModel
+import com.velogm.presentation.ui.home.screenhome.ScreenHomeSlidePageFragment
 
 class HomeCollectionAdapter(fragmentActivity: FragmentActivity, data: List<TagModel>) :
     FragmentStateAdapter(fragmentActivity) {

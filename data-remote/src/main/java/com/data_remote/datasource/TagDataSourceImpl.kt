@@ -2,6 +2,8 @@ package com.data_remote.datasource
 
 import com.data_remote.api.TagApiService
 import com.velogm.data.datasource.TagDataSource
+import com.velogm.data.dto.response.PostListDto
+import com.velogm.data.dto.response.TrendPostDto
 import javax.inject.Inject
 
 class TagDataSourceImpl @Inject constructor(
@@ -23,6 +25,10 @@ class TagDataSourceImpl @Inject constructor(
 
     override suspend fun addTag(tag: String): String {
         return apiService.addTag(tag)
+    }
+
+    override suspend fun getTagPosts(tag: String): List<TrendPostDto> {
+        return apiService.getTagPost(tag)
     }
 
 }

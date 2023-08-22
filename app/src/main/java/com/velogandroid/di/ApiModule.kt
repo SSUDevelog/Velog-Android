@@ -3,6 +3,7 @@ package com.velogandroid.di
 
 import com.data_remote.api.TagApiService
 import com.data_remote.api.SignApiService
+import com.data_remote.api.SubscribeApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,4 +23,9 @@ object ApiModule {
     @Singleton
     fun provideHomeService(@VelogRetrofit retrofit: Retrofit): TagApiService =
         retrofit.create(TagApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideSubscribeService(@VelogRetrofit retrofit: Retrofit): SubscribeApiService =
+        retrofit.create(SubscribeApiService::class.java)
 }

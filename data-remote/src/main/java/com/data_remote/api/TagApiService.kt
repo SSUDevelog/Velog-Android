@@ -1,5 +1,6 @@
 package com.data_remote.api
 
+import com.velogm.data.dto.response.TrendPostDto
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -23,5 +24,10 @@ interface TagApiService {
     suspend fun addTag(
         @Query("tag") tag:String
     ):String
+
+    @GET("/tag/gettagpost")
+    suspend fun getTagPost(
+        @Query("tag") tag:String
+    ): List<TrendPostDto>
 
 }
