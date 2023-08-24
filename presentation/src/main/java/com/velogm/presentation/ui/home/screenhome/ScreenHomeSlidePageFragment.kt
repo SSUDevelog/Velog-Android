@@ -30,17 +30,10 @@ class ScreenHomeSlidePageFragment :
 
         val data = arguments?.getString("data")
 
-        if (data == "트렌드") {
-            viewModel.getTrendPost()
-            Timber.d("11111111")
-        }
-        if (data == "팔로우") {
-            viewModel.getFollowPost()
-            Timber.d("22222222")
-        }
-        if (data != "트렌드" && data != "팔로우") {
-            viewModel.getTagPost(data.toString())
-            Timber.d("33333333")
+        when(data){
+            "트렌드" -> viewModel.getTrendPost()
+            "팔로우" -> viewModel.getFollowPost()
+            else -> viewModel.getTagPost(data.toString())
         }
 
         collectPostListData()
