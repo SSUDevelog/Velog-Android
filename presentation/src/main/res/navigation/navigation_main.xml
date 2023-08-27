@@ -11,6 +11,9 @@
         <action
             android:id="@+id/navigation_home_to_add_tag"
             app:destination="@id/navigation_add_tag" />
+        <action
+            android:id="@+id/navigation_home_to_home_search"
+            app:destination="@id/navigation_home_search" />
     </fragment>
     <fragment
         android:id="@+id/navigation_follow"
@@ -28,4 +31,8 @@
         android:id="@+id/navigation_add_tag"
         android:name="com.velogm.presentation.ui.addtag.AddTagFragment"
         android:label="AddTagFragment" />
+    <fragment
+        android:id="@+id/navigation_home_search"
+        android:name="com.velogm.presentation.ui.home.search.SearchFragment"
+        android:label="SearchFragment" />
 </navigation>
