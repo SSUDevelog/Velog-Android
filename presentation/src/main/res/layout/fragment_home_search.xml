@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,5 +11,107 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_home_search"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:paddingBottom="12dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_add_tag"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:navigationIcon="@drawable/ic_chevron_left">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etv_home_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/velog_gray100"
+                    android:drawableStart="@drawable/ic_search"
+                    android:drawablePadding="8dp"
+                    android:hint="@string/etv_home_search_title"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingStart="16dp"
+                    android:textAppearance="@style/TextAppearance.VelogM.Body1_M"
+                    android:textColor="@color/velog_gray500" />
+            </androidx.appcompat.widget.Toolbar>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:id="@+id/tv_recent_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/tv_recent_search"
+            android:textAppearance="@style/TextAppearance.VelogM.Headline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar_home_search" />
+
+        <TextView
+            android:id="@+id/tv_add_tag_all_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:paddingHorizontal="20dp"
+            android:text="@string/tv_all_clear"
+            android:textAppearance="@style/TextAppearance.VelogM.Caption2"
+            android:textColor="@color/velog_gray200"
+            app:layout_constraintBottom_toBottomOf="@id/tv_recent_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_recent_search" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recent_search_tag_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:paddingVertical="4dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="@id/tv_recent_search"
+            app:layout_constraintTop_toBottomOf="@id/tv_recent_search"
+            tools:listitem="@layout/item_my_tag" />
+
+        <View
+            android:id="@+id/view_home_search_line"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/velog_gray100"
+            app:layout_constraintTop_toBottomOf="@id/rv_recent_search_tag_list" />
+
+        <TextView
+            android:id="@+id/tv_home_search_popular_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/tv_pop_tag"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_B"
+            android:textColor="@color/velog_gray700"
+            app:layout_constraintStart_toStartOf="@id/tv_recent_search"
+            app:layout_constraintTop_toBottomOf="@id/view_home_search_line" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_home_search_popular_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="@id/tv_add_tag_all_clear"
+            app:layout_constraintStart_toStartOf="@id/tv_recent_search"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_search_popular_tag"
+            tools:listitem="@layout/item_popular_tag" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

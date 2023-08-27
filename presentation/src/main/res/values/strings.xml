@@ -20,4 +20,6 @@
     <string name="tv_pop_tag">인기 태그</string>
     <string name="tv_add_tag_hint">태그를 추가해보세요</string>
     <string name="tv_intro_delete_tag">정말 태그를 삭제하시겠습니까?</string>
+    <string name="etv_home_search_title">검색어를 입력해보세요.</string>
+    <string name="tv_recent_search">최근 검색어</string>
 </resources>
