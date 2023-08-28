@@ -83,13 +83,8 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
 
     private fun search() {
         binding.etvHomeSearch.setOnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE ||
+            actionId == EditorInfo.IME_ACTION_DONE ||
                 (event != null && event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER)
-            ) {
-                true
-            } else {
-                false
-            }
         }
     }
 
