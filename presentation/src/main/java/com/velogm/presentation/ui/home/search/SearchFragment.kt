@@ -27,7 +27,7 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
 
     private lateinit var myTagAdapter: AddTagAdapter
     private lateinit var popularTagAdapter: PopularTagAdapter
-    private val viewModel by viewModels<AddTagViewModel>()
+    private val viewModel by viewModels<SearchViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         collectMyTagListData()
@@ -35,10 +35,8 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
         search()
         collectEventData()
         myTagAdapter = AddTagAdapter(deleteTagClick = {
-            Timber.tag("deleteTag").d(it.tag)
             val dialog = DeleteDialogFragment(
                 deleteTag = {
-                    viewModel.deleteTag(it.tag)
                 }
             )
             dialog.show(childFragmentManager, "delete")
@@ -93,7 +91,6 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
             when (it) {
                 is UiState.Success -> {
                     viewModel.getTag()
-                    Timber.d("getTag")
                 }
                 else -> {}
             }
