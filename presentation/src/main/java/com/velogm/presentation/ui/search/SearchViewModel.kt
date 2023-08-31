@@ -1,4 +1,4 @@
-package com.velogm.presentation.ui.home.search
+package com.velogm.presentation.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

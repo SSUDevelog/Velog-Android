@@ -18,7 +18,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         initView()
     }
 
-   private fun initView() {
+    private fun initView() {
         val navController =
             supportFragmentManager.findFragmentById(R.id.fc_main)?.findNavController()!!
 
