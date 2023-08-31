@@ -14,7 +14,11 @@ class WebViewActivity : BindingActivity<ActivityWebviewBinding>(R.layout.activit
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         webViewSetting()
-        binding.webview.loadUrl("https://developer.android.com/guide/webapps/webview?hl=ko")
+        val url = intent.getStringExtra("url")
+        if (url != null) {
+            binding.webview.loadUrl(url)
+        }
+
     }
     private fun webViewSetting() {
         binding.webview.settings.apply {

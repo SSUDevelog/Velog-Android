@@ -27,9 +27,10 @@ class ScreenHomeSlidePageFragment :
 
         postAdapter = PostAdapter(bookMarkClick = {
             Timber.tag("Post").d(it.url)
-            Intent(requireContext(), WebViewActivity::class.java).apply {
-                startActivity(this)
+            val intent = Intent(requireContext(), WebViewActivity::class.java).apply {
+                putExtra("url", it.url)
             }
+            startActivity(intent)
         })
         binding.rvPostList.adapter = postAdapter
 
