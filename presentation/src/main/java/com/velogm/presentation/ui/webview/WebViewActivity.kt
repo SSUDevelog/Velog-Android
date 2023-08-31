@@ -2,6 +2,8 @@ package com.velogm.presentation.ui.webview
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.findNavController
 import com.velogm.core_ui.base.BindingActivity
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.ActivityWebviewBinding
@@ -17,6 +19,10 @@ class WebViewActivity : BindingActivity<ActivityWebviewBinding>(R.layout.activit
         val url = intent.getStringExtra("url")
         if (url != null) {
             binding.webview.loadUrl(url)
+        }
+        //수정할게여
+        binding.toolbarHomeSearch.setOnClickListener {
+            onBackPressed()
         }
 
     }
