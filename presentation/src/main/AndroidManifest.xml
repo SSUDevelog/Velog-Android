@@ -34,5 +34,9 @@
             android:name="com.velogm.presentation.ui.SignInActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.velogm.presentation.ui.webview.WebViewActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>
