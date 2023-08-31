@@ -7,14 +7,19 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.BuildConfig.CLIENT_ID
 import com.velogm.presentation.databinding.ActivitySignInBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -29,6 +34,19 @@ class SignInActivity : AppCompatActivity() {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initView()
+        collectToken()
+    }
+
+    private fun collectToken() {
+        viewModel.token.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    viewModel.saveToken(it.data)
+                    navigateTo<MainActivity>()
+                }
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun initView() {
@@ -61,9 +79,9 @@ class SignInActivity : AppCompatActivity() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             var googleTokenAuth = account?.serverAuthCode.toString()
+            Timber.tag("test").d(googleTokenAuth)
             if (!googleTokenAuth.isNullOrBlank()) {
                 viewModel.getGoogleLogin(googleTokenAuth)
-                navigateTo<MainActivity>()
             }
         } catch (e: ApiException) {
             Timber.d("signInResult:failed Code = " + e.statusCode)

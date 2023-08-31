@@ -9,7 +9,7 @@ import com.velogm.presentation.model.PostModel
 import com.velogm.presentation.ui.home.screenhome.viewholder.PostViewHolder
 
 class PostAdapter(
-    private val deleteTagClick: (PostModel) -> Unit = { _ -> }
+    private val bookMarkClick: (PostModel) -> Unit = { _ -> }
 ) : ListAdapter<PostModel, PostViewHolder>(
     PostDiffCalback
 ) {
@@ -17,7 +17,7 @@ class PostAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding =
             ItemRvPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding,deleteTagClick)
+        return PostViewHolder(binding,bookMarkClick)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {

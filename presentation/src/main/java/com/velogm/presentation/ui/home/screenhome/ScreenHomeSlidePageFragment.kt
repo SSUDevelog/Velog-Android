@@ -23,7 +23,7 @@ class ScreenHomeSlidePageFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        postAdapter = PostAdapter(deleteTagClick = {
+        postAdapter = PostAdapter(bookMarkClick = {
             Timber.tag("Post").d(it.url)
         })
         binding.rvPostList.adapter = postAdapter

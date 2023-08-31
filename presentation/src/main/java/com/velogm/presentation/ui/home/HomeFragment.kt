@@ -29,7 +29,12 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getTag()
-
+        binding.ivSearchBtn.setOnClickListener {
+            findNavController().navigate(
+                R.id.navigation_home_to_home_search, bundleOf(
+                )
+            )
+        }
         collectTagListData()
         moveToAddTag()
     }
