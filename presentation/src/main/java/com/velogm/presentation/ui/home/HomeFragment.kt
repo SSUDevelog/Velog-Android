@@ -22,12 +22,11 @@ import timber.log.Timber
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
-    private lateinit var demoCollectionAdapter: HomeCollectionAdapter
+    private lateinit var homeCollectionAdapter: HomeCollectionAdapter
     private lateinit var viewPager: ViewPager2
     private val viewModel by viewModels<HomeViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel.getTag()
         binding.ivSearchBtn.setOnClickListener {
             findNavController().navigate(
@@ -37,6 +36,9 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         }
         collectTagListData()
         moveToAddTag()
+        homeCollectionAdapter = HomeCollectionAdapter(childFragmentManager, lifecycle)
+        viewPager = binding.pager
+        viewPager.adapter = homeCollectionAdapter
     }
 
     private fun moveToAddTag() {
@@ -76,11 +78,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         val defaultTagData = listOf<TagModel>(TagModel("트렌드"), TagModel("팔로우"))
         val finalTagData = defaultTagData + tagData
         Timber.tag("finalTagData").d("$finalTagData")
-        demoCollectionAdapter = HomeCollectionAdapter(requireActivity(), finalTagData)
-        viewPager = binding.pager
-        viewPager.adapter = demoCollectionAdapter
-        demoCollectionAdapter.setData(finalTagData)
-        demoCollectionAdapter.notifyDataSetChanged()
+        homeCollectionAdapter.setData(finalTagData)
     }
 
 }

@@ -22,7 +22,6 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-
     private inline fun <reified T : Activity> navigateTo() {
         Intent(this@SplashActivity, T::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)

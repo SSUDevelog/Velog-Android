@@ -1,4 +1,4 @@
-package com.velogm.presentation.ui.home.search
+package com.velogm.presentation.ui.search
 
 import android.os.Bundle
 import android.view.View
