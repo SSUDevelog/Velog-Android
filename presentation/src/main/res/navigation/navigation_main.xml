@@ -33,6 +33,6 @@
         android:label="AddTagFragment" />
     <fragment
         android:id="@+id/navigation_home_search"
-        android:name="com.velogm.presentation.ui.home.search.SearchFragment"
+        android:name="com.velogm.presentation.ui.search.SearchFragment"
         android:label="SearchFragment" />
 </navigation>
