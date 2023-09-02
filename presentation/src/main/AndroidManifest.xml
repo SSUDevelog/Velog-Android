@@ -29,6 +29,7 @@
         <activity
             android:name="com.velogm.presentation.ui.MainActivity"
             android:exported="true"
+            android:windowSoftInputMode="adjustNothing"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.velogm.presentation.ui.SignInActivity"
