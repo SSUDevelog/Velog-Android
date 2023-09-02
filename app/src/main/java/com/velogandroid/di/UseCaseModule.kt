@@ -1,8 +1,8 @@
 package com.velogandroid.di
 
-import com.velogm.domain.repository.TagRepository
 import com.velogm.domain.repository.SignRepository
 import com.velogm.domain.repository.SubscribeRepository
+import com.velogm.domain.repository.TagRepository
 import com.velogm.domain.usecase.*
 import dagger.Module
 import dagger.Provides
@@ -60,5 +60,11 @@ class UseCaseModule {
     @Provides
     fun provideGetTagPostUseCase(repository:TagRepository): GetTagPostsUseCase {
         return GetTagPostsUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetFollowerUseCase(repository: SubscribeRepository): GetFollowerUseCase {
+        return GetFollowerUseCase(repository)
     }
 }
