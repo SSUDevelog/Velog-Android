@@ -12,20 +12,22 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/velog_white"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_white_fill_12_rect">
 
         <ImageView
             android:id="@+id/iv_home_post"
             imageUrl="@{post.img}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:maxHeight="119dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <ImageView
             android:layout_width="wrap_content"
@@ -58,9 +60,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="4dp"
-            android:minHeight="104dp"
             android:gravity="center"
             android:maxLines="3"
+            android:minHeight="104dp"
             android:text="@{post.summary}"
             android:textAppearance="@style/TextAppearance.VelogM.Body1_M"
             android:textColor="@color/velog_gray500"
