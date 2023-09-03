@@ -26,6 +26,7 @@ class FollowViewModel @Inject constructor(
             _getFollower.value = UiState.Success(it)
             Timber.d("Success")
         }
+        _getFollower.value = UiState.Loading
     }
 
 }

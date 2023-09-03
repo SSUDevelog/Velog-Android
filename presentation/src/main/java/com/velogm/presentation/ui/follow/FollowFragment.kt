@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.velogm.core_ui.base.BindingFragment
+import com.velogm.core_ui.fragment.toast
 import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.FragmentFollowBinding
@@ -28,18 +29,22 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
 
     private fun initView() {
         viewModel.getFollower()
-        observeFollower()
+        collectFollower()
     }
 
-    private fun observeFollower() {
+    private fun collectFollower() {
         viewModel.getFollower.flowWithLifecycle(lifecycle).onEach {
             when (it) {
+                is UiState.Loading -> {
+                    toast("Loading")
+                }
                 is UiState.Success -> {
                     binding.rvFollow.adapter =
                         FollowerAdapter(onMoveToFollowerClick = { it, position ->
-                            viewModel.getFollower()
+
                         }).apply {
                             submitList(it.data)
+                            if(it.data.isNullOrEmpty()) binding.layoutFollowEmpty.visibility = View.VISIBLE
                         }
                 }
 
