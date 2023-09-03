@@ -60,6 +60,7 @@ class ScreenHomeSlidePageFragment :
     }
 
     companion object {
+        @JvmStatic
         fun newInstance(data: String): ScreenHomeSlidePageFragment {
             val fragment = ScreenHomeSlidePageFragment()
             val args = Bundle()
