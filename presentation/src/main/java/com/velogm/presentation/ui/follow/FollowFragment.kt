@@ -30,6 +30,7 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
     private fun initView() {
         viewModel.getFollower()
         collectFollower()
+        collectDeleteFollower()
     }
 
     private fun collectFollower() {
@@ -38,14 +39,30 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
                 is UiState.Loading -> {
                     toast("Loading")
                 }
-                is UiState.Success -> {
-                    binding.rvFollow.adapter =
-                        FollowerAdapter(onMoveToFollowerClick = { it, position ->
 
-                        }).apply {
-                            submitList(it.data)
-                            if(it.data.isNullOrEmpty()) binding.layoutFollowEmpty.visibility = View.VISIBLE
-                        }
+                is UiState.Success -> {
+                    binding.rvFollow.adapter = FollowerAdapter(deleteFollowerClick = {
+                        val dialog = DeleteFollowerDialogFragment(deleteFollower = {
+                            viewModel.deleteFollower(it.name)
+                        })
+                        dialog.show(childFragmentManager, "delete")
+                    }).apply {
+                        submitList(it.data)
+                        if (it.data.isNullOrEmpty()) binding.layoutFollowEmpty.visibility =
+                            View.VISIBLE
+                    }
+                }
+
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun collectDeleteFollower() {
+        viewModel.deleteFollower.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    viewModel.getFollower()
                 }
 
                 else -> {}

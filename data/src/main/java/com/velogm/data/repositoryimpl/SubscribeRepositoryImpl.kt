@@ -1,6 +1,7 @@
 package com.velogm.data.repositoryimpl
 
 import com.velogm.data.datasource.SubscribeDataSource
+import com.velogm.domain.model.DeleteFollower
 import com.velogm.domain.model.Follower
 import com.velogm.domain.model.PostList
 import com.velogm.domain.repository.SubscribeRepository
@@ -36,6 +37,15 @@ class SubscribeRepositoryImpl @Inject constructor(
                 dataSource.getFollower().map { followerDto -> followerDto.toFollowerEntity() }
             }
             emit(result.getOrDefault(emptyList()))
+        }
+    }
+
+    override suspend fun deleteFollower(followerName: String): Flow<DeleteFollower> {
+        return flow {
+            val result = runCatching {
+                dataSource.deleteFollower(followerName).toDeleteFollowerEntity()
+            }
+            emit(result.getOrDefault(DeleteFollower("test", true)))
         }
     }
 

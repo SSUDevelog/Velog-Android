@@ -9,7 +9,7 @@ import com.velogm.presentation.databinding.ItemRvFollowBinding
 import com.velogm.presentation.ui.follow.viewholder.FollowerViewHolder
 
 class FollowerAdapter(
-    private val onMoveToFollowerClick: (Follower, Int) -> Unit = { _, _ -> }
+    private val deleteFollowerClick: (Follower) -> Unit = { _ -> }
 ) :
     ListAdapter<Follower, FollowerViewHolder>(
         FollowerDiffCallback
@@ -18,7 +18,7 @@ class FollowerAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowerViewHolder {
         val binding =
             ItemRvFollowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FollowerViewHolder(binding, onMoveToFollowerClick)
+        return FollowerViewHolder(binding, deleteFollowerClick)
     }
 
     override fun onBindViewHolder(holder: FollowerViewHolder, position: Int) {
