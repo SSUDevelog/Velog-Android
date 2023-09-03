@@ -9,7 +9,7 @@
     <item
         android:id="@+id/navigation_follow"
         android:icon="@drawable/selector_follow_icon"
-        android:title="팔로우" />
+        android:title="팔로워" />
 
     <item
         android:id="@+id/navigation_bookmark"
