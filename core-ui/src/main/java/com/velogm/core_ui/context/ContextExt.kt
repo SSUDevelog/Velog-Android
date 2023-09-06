@@ -2,7 +2,9 @@ package com.velogm.core_ui.context
 
 import android.app.Activity
 import android.content.Context
-import android.os.Build
+import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
@@ -37,28 +39,14 @@ fun Context.hideKeyboard(view: View) {
     inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
 }
 
-fun Context.dialogFragmentResize(dialogFragment: DialogFragment, width: Float, height: Float) {
-    val windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-
-    if (Build.VERSION.SDK_INT < 30) {
-
-        val display = applicationContext.resources.displayMetrics
-
-        val window = dialogFragment.dialog?.window
-
-        val x = display.widthPixels
-        val y = display.heightPixels
-        window?.setLayout(x, y)
-
-    } else {
-
-        val rect = windowManager.currentWindowMetrics.bounds
-
-        val window = dialogFragment.dialog?.window
-
-        val x = (rect.width() * width).toInt()
-        val y = (rect.height() * height).toInt()
-
-        window?.setLayout(x, y)
-    }
+fun Context.dialogFragmentResize(dialogFragment: DialogFragment, horizontalMargin: Float) {
+    val dpToPixel = Resources.getSystem().displayMetrics.density
+    val dialogHorizontalMarginInPixels =
+        (dpToPixel * horizontalMargin + 0.5f).toInt() // 반올림 처리
+    val deviceWidth = Resources.getSystem().displayMetrics.widthPixels
+    dialogFragment.dialog?.window?.setLayout(
+        deviceWidth - 2 * dialogHorizontalMarginInPixels,
+        WindowManager.LayoutParams.WRAP_CONTENT
+    )
+    dialogFragment.dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 }

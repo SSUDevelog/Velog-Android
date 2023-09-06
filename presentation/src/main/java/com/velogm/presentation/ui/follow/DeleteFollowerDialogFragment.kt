@@ -1,8 +1,6 @@
 package com.velogm.presentation.ui.follow
 
 import android.content.DialogInterface
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import com.velogm.core_ui.base.BindingDialogFragment
@@ -23,8 +21,7 @@ class DeleteFollowerDialogFragment(
 
     override fun onResume() {
         super.onResume()
-        context?.dialogFragmentResize(this, 0.83f, 0.27f)
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        context?.dialogFragmentResize(this, 30.0f)
     }
 
 
