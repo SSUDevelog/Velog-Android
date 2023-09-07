@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_white_fill_12_rect"
+        android:paddingVertical="20dp">
+
+        <ImageView
+            android:id="@+id/iv_dialog_follow_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_follow_dialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_dialog_follow_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/tv_dialog_follow_title"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_gray500"
+            app:layout_constraintTop_toBottomOf="@id/iv_dialog_follow_cancel" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_dialog_follow_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/shape_gray100_fill_4_rect"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="41dp"
+            android:paddingVertical="6dp"
+            android:text="@string/btn_dialog_follow_no"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_gray300"
+            app:layout_constraintEnd_toStartOf="@id/btn_dialog_follow_yes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_dialog_follow_title"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_dialog_follow_yes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/shape_gray100_fill_4_rect"
+            android:backgroundTint="@color/main"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="41dp"
+            android:paddingVertical="6dp"
+            android:text="@string/btn_dialog_follow_yes"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_dialog_follow_no"
+            app:layout_constraintTop_toBottomOf="@id/tv_dialog_follow_title"
+            tools:ignore="TouchTargetSizeCheck" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -23,4 +23,7 @@
     <string name="etv_home_search_title">검색어를 입력해보세요.</string>
     <string name="tv_recent_search">최근 검색어</string>
     <string name="tv_easyvel">EasyVel</string>
+    <string name="et_follow_hint">사용자를 추가해보세요.</string>
+    <string name="contentDescription_iv_follow">팔로워 이미지</string>
+
 </resources>
