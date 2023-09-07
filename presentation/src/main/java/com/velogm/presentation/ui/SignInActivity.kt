@@ -87,6 +87,7 @@ class SignInActivity : AppCompatActivity() {
             Timber.d("signInResult:failed Code = " + e.statusCode)
         }
     }
+
     private inline fun <reified T : Activity> navigateTo() {
         Intent(this@SignInActivity, T::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
