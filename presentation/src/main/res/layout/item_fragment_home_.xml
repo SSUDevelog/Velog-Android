@@ -9,13 +9,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/velog_gray100">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_post_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:orientation="vertical"
             android:paddingVertical="4dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -23,6 +23,10 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_rv_post" />
 
+
+        <include
+            android:id="@+id/empty_follow"
+            layout="@layout/empty_follow"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

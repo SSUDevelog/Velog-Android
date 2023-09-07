@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:visibility="invisible"
+        android:id="@+id/empty_follow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_follow_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_follow_empty" />
+
+        <TextView
+            android:id="@+id/tv_follow_empty_title_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tv_follow_empty_title_1"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_B"
+            android:textColor="@color/velog_gray300" />
+
+        <TextView
+            android:id="@+id/tv_follow_empty_title_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/tv_follow_empty_title_2"
+            android:textAppearance="@style/TextAppearance.VelogM.Body1_M"
+            android:textColor="@color/velog_gray200" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

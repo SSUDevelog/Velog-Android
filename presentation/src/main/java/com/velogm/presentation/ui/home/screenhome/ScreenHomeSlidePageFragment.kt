@@ -49,7 +49,10 @@ class ScreenHomeSlidePageFragment :
         viewModel.postListData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
-                    postAdapter.submitList(it.data.trendPostModel)
+                    val trendPostModel = it.data.trendPostModel
+                    postAdapter.submitList(trendPostModel)
+                    binding.rvPostList.visibility = if (trendPostModel.isNotEmpty()) View.VISIBLE else View.INVISIBLE
+                    binding.emptyFollow.emptyFollow.visibility = if (trendPostModel.isEmpty()) View.VISIBLE else View.INVISIBLE
                 }
                 else -> {}
             }
@@ -57,6 +60,7 @@ class ScreenHomeSlidePageFragment :
     }
 
     companion object {
+        @JvmStatic
         fun newInstance(data: String): ScreenHomeSlidePageFragment {
             val fragment = ScreenHomeSlidePageFragment()
             val args = Bundle()

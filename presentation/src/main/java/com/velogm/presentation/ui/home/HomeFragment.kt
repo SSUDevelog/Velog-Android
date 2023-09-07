@@ -41,6 +41,10 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         viewPager.adapter = homeCollectionAdapter
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getTag()
+    }
     private fun moveToAddTag() {
         binding.ivPlusBtn.setOnClickListener {
             findNavController().navigate(
@@ -70,7 +74,8 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         val homeTabLayout = binding.tablayoutHome
 
         TabLayoutMediator(homeTabLayout, viewPager) { tab, position ->
-            tab.text = finalTagData[position].tag
+            val tagModel = finalTagData.getOrElse(position) { TagModel("") }
+            tab.text = tagModel.tag
         }.attach()
     }
 

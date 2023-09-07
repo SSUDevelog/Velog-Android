@@ -17,7 +17,13 @@ class TokenInterceptor @Inject constructor(
         val result = chain.proceed(request)
         //refresh가 없는디요 ???
         when (result.code) {
-            401 -> accessToken = ""
+            401 -> {
+                try {
+
+                } catch (t: Throwable) {
+                    accessToken = ""
+                }
+            }
         }
         return result
     }

@@ -7,11 +7,12 @@ import com.velogm.core_ui.view.ItemDiffCallback
 import com.velogm.presentation.databinding.ItemMyTagBinding
 import com.velogm.presentation.model.TagModel
 import com.velogm.presentation.ui.addtag.viewholder.MyTagViewHolder
+import com.velogm.presentation.ui.home.screenhome.PostAdapter
 
 class AddTagAdapter(
     private val deleteTagClick: (TagModel) -> Unit = { _ -> }
 ) : ListAdapter<TagModel, MyTagViewHolder>(
-    MyTagDiffCalback
+    MyTagDiffCalback,
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyTagViewHolder {
