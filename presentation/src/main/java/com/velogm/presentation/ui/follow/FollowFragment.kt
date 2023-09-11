@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.velogm.core_ui.base.BindingFragment
 import com.velogm.core_ui.fragment.toast
 import com.velogm.core_ui.view.UiState
@@ -31,6 +32,7 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
         viewModel.getFollower()
         collectFollower()
         collectDeleteFollower()
+        openAddFollower()
     }
 
     private fun collectFollower() {
@@ -48,8 +50,10 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
                         dialog.show(childFragmentManager, "delete")
                     }).apply {
                         submitList(it.data)
-                        if (it.data.isNullOrEmpty()) binding.layoutFollowEmpty.visibility =
-                            View.VISIBLE
+                        binding.layoutFollowEmpty.visibility =
+                            if (it.data.isEmpty()) View.VISIBLE else View.GONE
+                        binding.rvFollow.visibility =
+                            if (it.data.isEmpty()) View.GONE else View.VISIBLE
                     }
                 }
 
@@ -68,5 +72,11 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
                 else -> {}
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun openAddFollower() {
+        binding.tvFollowAddFollower.setOnClickListener {
+            findNavController().navigate(R.id.action_follow_to_addFollowerFragment)
+        }
     }
 }
