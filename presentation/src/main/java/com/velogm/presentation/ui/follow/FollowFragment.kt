@@ -52,8 +52,6 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
                         submitList(it.data)
                         binding.layoutFollowEmpty.visibility =
                             if (it.data.isEmpty()) View.VISIBLE else View.GONE
-                        binding.rvFollow.visibility =
-                            if (it.data.isEmpty()) View.GONE else View.VISIBLE
                     }
                 }
 
