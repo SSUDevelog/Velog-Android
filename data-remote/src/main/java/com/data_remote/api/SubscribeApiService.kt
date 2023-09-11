@@ -2,6 +2,7 @@ package com.data_remote.api
 
 import com.velogm.data.dto.response.DeleteFollowerDto
 import com.velogm.data.dto.response.FollowerDto
+import com.velogm.data.dto.response.InputFollowerDto
 import com.velogm.data.dto.response.PostListDto
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -25,4 +26,9 @@ interface SubscribeApiService {
     suspend fun deleteFollower(
         @Path(value = "targetName") followerName: String
     ): DeleteFollowerDto
+
+    @GET("/subscribe/inputname/{name}")
+    suspend fun getInputFollower(
+        @Path(value = "name") followerName: String?
+    ): InputFollowerDto
 }

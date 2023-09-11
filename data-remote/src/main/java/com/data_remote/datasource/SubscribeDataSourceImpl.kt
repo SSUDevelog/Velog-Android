@@ -4,6 +4,7 @@ import com.data_remote.api.SubscribeApiService
 import com.velogm.data.datasource.SubscribeDataSource
 import com.velogm.data.dto.response.DeleteFollowerDto
 import com.velogm.data.dto.response.FollowerDto
+import com.velogm.data.dto.response.InputFollowerDto
 import com.velogm.data.dto.response.PostListDto
 import javax.inject.Inject
 
@@ -24,5 +25,9 @@ class SubscribeDataSourceImpl @Inject constructor(
 
     override suspend fun deleteFollower(followerName: String): DeleteFollowerDto {
         return apiService.deleteFollower(followerName)
+    }
+
+    override suspend fun getInputFollower(followeNmae: String?): InputFollowerDto {
+        return apiService.getInputFollower(followeNmae)
     }
 }

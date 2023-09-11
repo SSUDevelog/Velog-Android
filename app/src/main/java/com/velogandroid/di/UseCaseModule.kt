@@ -73,4 +73,10 @@ class UseCaseModule {
     fun provideDeleteFollowerUseCase(repository: SubscribeRepository): DeleteFollowerUseCase {
         return DeleteFollowerUseCase(repository)
     }
+
+    @Singleton
+    @Provides
+    fun provideGetInputFollowerUseCase(repository: SubscribeRepository): GetInputFollowerUseCase {
+        return GetInputFollowerUseCase(repository)
+    }
 }
