@@ -1,8 +1,9 @@
 package com.velogm.presentation.ui.follow
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
-import androidx.core.widget.doAfterTextChanged
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -33,7 +34,9 @@ class AddFollowerFragment :
     private fun initView() {
         initClickEventListeners()
         initEditText()
+        addFolower()
         colloectInputResult()
+        collectEventData()
     }
 
     private fun colloectInputResult() {
@@ -69,13 +72,34 @@ class AddFollowerFragment :
     }
 
     private fun initEditText() {
-        Timber.d("검색 editText 설정")
-        binding.etAddFollowerSearch.doAfterTextChanged { text ->
-            Timber.d("검색 editText 텍스트 수정됨 / 키워드 = ${binding.etAddFollowerSearch.text}")
-            val keyword: String? =
-                if (binding.etAddFollowerSearch.text.toString() != "") binding.etAddFollowerSearch.text.toString() else null
-            viewModel.getInputFollower(keyword)
-            searchDebouncer.setDelay(text.toString(), 1000L) {}
+        binding.etAddFollowerSearch.setOnEditorActionListener { _, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE ||
+                (event != null && event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER)
+            ) {
+                viewModel.getInputFollower(binding.etAddFollowerSearch.text.toString())
+                binding.etAddFollowerSearch.text?.clear()
+                true
+            } else {
+                false
+            }
+        }
+    }
+
+    private fun addFolower() {
+        binding.tvAddFolllowerLabel.setOnClickListener {
+            viewModel.addFollower(binding.tvAddFollowerName.text.toString())
+        }
+    }
+
+    private fun collectEventData() {
+        viewModel.eventData.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    Timber.d("follow success")
+                }
+
+                else -> {}
+            }
         }
     }
 }

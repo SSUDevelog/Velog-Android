@@ -16,4 +16,6 @@ interface SubscribeRepository {
     suspend fun deleteFollower(followerName: String): Flow<DeleteFollower>
 
     suspend fun getInputFollower(followerName: String?): Flow<InputFollower>
+
+    suspend fun postAddFollower(followrName: String): Flow<String>
 }

@@ -6,7 +6,9 @@ import com.velogm.data.dto.response.InputFollowerDto
 import com.velogm.data.dto.response.PostListDto
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface SubscribeApiService {
 
@@ -31,4 +33,10 @@ interface SubscribeApiService {
     suspend fun getInputFollower(
         @Path(value = "name") followerName: String?
     ): InputFollowerDto
+
+    @POST("/subscribe/addsubscriber")
+    suspend fun postAddFollower(
+        @Query("fcmToken") token: String,
+        @Query("name") followerName: String
+    ): String
 }

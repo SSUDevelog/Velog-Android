@@ -16,3 +16,7 @@ data class InputFollower(
     val userName: String,
     val validate: Boolean
 )
+
+data class AddFollower(
+    val follower: String
+)
