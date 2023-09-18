@@ -16,5 +16,5 @@ interface SubscribeDataSource {
 
     suspend fun getInputFollower(followerName: String?): InputFollowerDto
 
-    suspend fun postAddFollower(followerName: String): String
+    suspend fun postAddFollower(followerName: String, fcmToken: String): String
 }

@@ -59,10 +59,10 @@ class SubscribeRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun postAddFollower(followerName: String): Flow<String> {
+    override suspend fun postAddFollower(followerName: String, fcmToken: String): Flow<String> {
         return flow {
             val result = kotlin.runCatching {
-                dataSource.postAddFollower(followerName)
+                dataSource.postAddFollower(followerName, fcmToken)
             }
             emit(result.getOrDefault("test"))
         }

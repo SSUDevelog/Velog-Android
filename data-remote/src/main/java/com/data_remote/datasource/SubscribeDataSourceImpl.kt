@@ -31,7 +31,7 @@ class SubscribeDataSourceImpl @Inject constructor(
         return apiService.getInputFollower(followerName)
     }
 
-    override suspend fun postAddFollower(followerName: String): String {
-        return apiService.postAddFollower("1", followerName)
+    override suspend fun postAddFollower(followerName: String, fcmToken: String): String {
+        return apiService.postAddFollower(fcmToken, followerName)
     }
 }

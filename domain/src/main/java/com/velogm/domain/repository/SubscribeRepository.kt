@@ -17,5 +17,5 @@ interface SubscribeRepository {
 
     suspend fun getInputFollower(followerName: String?): Flow<InputFollower>
 
-    suspend fun postAddFollower(followerName: String): Flow<String>
+    suspend fun postAddFollower(followerName: String, fcmToken: String): Flow<String>
 }

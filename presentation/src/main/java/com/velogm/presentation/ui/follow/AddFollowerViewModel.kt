@@ -2,6 +2,8 @@ package com.velogm.presentation.ui.follow
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.velogm.core_ui.view.UiState
 import com.velogm.domain.model.InputFollower
 import com.velogm.domain.usecase.AddFollowerUseCase
@@ -28,6 +30,12 @@ class AddFollowerViewModel @Inject constructor(
     private val _eventData = MutableSharedFlow<UiState<String>>()
     val eventData: SharedFlow<UiState<String>> = _eventData.asSharedFlow()
 
+    private var fcmToken: String = ""
+
+    init {
+        getFcmToken()
+    }
+
     fun getInputFollower(followerName: String?) = viewModelScope.launch {
         getInputFollowerUseCase(followerName).collect {
             _getInputFollower.value = UiState.Success(it)
@@ -37,8 +45,19 @@ class AddFollowerViewModel @Inject constructor(
     }
 
     fun addFollower(followerName: String) = viewModelScope.launch {
-        addFollowerUseCase(followerName).collect {
+        addFollowerUseCase(followerName, fcmToken).collect {
             _eventData.emit(UiState.Success(it))
         }
+    }
+
+    private fun getFcmToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener {
+            if (!it.isSuccessful) {
+                Timber.d("fcm registration token failed")
+                return@OnCompleteListener
+            }
+            fcmToken = it.result
+            Timber.tag("fcmtoken").d(it.result.toString())
+        })
     }
 }

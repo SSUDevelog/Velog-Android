@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 class AddFollowerUseCase(
     private val repository: SubscribeRepository
 ) {
-    suspend operator fun invoke(followerName: String): Flow<String> =
-        repository.postAddFollower(followerName)
+    suspend operator fun invoke(followerName: String, fcmToken: String): Flow<String> =
+        repository.postAddFollower(followerName, fcmToken)
 }
