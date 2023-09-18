@@ -17,7 +17,6 @@ import com.velogm.presentation.util.Follow.FOLLOWER_LIST
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import timber.log.Timber
 
 @AndroidEntryPoint
 class AddFollowerFragment :
@@ -98,9 +97,20 @@ class AddFollowerFragment :
     }
 
     private fun collectEventData() {
-        viewModel.eventData.observe(viewLifecycleOwner) {
-            binding.tvAddFollowerLabel.text = "팔로우 취소"
-        }
+        viewModel.eventData.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> {
+                    toast("Loading")
+                }
+
+                is UiState.Success -> {
+                    binding.tvAddFollowerLabel.text = "팔로우 취소"
+                }
+
+                else -> {}
+            }
+
+        }.launchIn(lifecycleScope)
     }
 }
 
