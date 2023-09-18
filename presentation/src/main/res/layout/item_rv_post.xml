@@ -35,12 +35,12 @@
             android:layout_marginStart="12dp"
             android:orientation="horizontal"
             android:paddingVertical="4dp"
-            tools:listitem="@layout/item_my_tag"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toTopOf="@id/iv_post_bookmark"
             app:layout_constraintBottom_toBottomOf="@id/iv_post_bookmark"
+            app:layout_constraintEnd_toStartOf="@id/iv_post_bookmark"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/iv_post_bookmark"/>
+            app:layout_constraintTop_toTopOf="@id/iv_post_bookmark"
+            tools:listitem="@layout/item_post_tag" />
 
         <ImageView
             android:id="@+id/iv_post_bookmark"
@@ -89,14 +89,14 @@
         <ImageView
             android:id="@+id/ic_follower"
             android:layout_width="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_follower"
-            android:layout_marginBottom="12dp"
             android:layout_marginStart="16dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:src="@drawable/ic_follower"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_post_summary"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_post_summary" />
 
         <TextView
             android:id="@+id/tv_post_name"
@@ -107,9 +107,9 @@
             android:text="@{post.name}"
             android:textAppearance="@style/TextAppearance.VelogM.Caption1"
             android:textColor="@color/velog_gray300"
-            app:layout_constraintTop_toBottomOf="@id/tv_post_summary"
-            app:layout_constraintStart_toEndOf="@id/ic_follower"
             app:layout_constraintBottom_toBottomOf="@id/ic_follower"
+            app:layout_constraintStart_toEndOf="@id/ic_follower"
+            app:layout_constraintTop_toBottomOf="@id/tv_post_summary"
             tools:text="어쩌구 저쭈구" />
 
 
@@ -122,9 +122,9 @@
             android:text="@{post.date}"
             android:textAppearance="@style/TextAppearance.VelogM.Caption1"
             android:textColor="@color/velog_gray300"
-            app:layout_constraintTop_toBottomOf="@id/tv_post_summary"
-            app:layout_constraintStart_toEndOf="@id/tv_post_name"
             app:layout_constraintBottom_toBottomOf="@id/ic_follower"
+            app:layout_constraintStart_toEndOf="@id/tv_post_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_post_summary"
             tools:text="어쩌구 저쭈구" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
