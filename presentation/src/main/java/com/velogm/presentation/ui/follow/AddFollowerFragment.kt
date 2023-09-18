@@ -13,7 +13,7 @@ import com.velogm.core_ui.fragment.toast
 import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.FragmentAddFollowerBinding
-import com.velogm.presentation.util.Debouncer
+import com.velogm.presentation.util.Follow.FOLLOWER_LIST
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -24,7 +24,6 @@ class AddFollowerFragment :
     BindingFragment<FragmentAddFollowerBinding>(R.layout.fragment_add_follower) {
 
     private val viewModel by viewModels<AddFollowerViewModel>()
-    private val searchDebouncer = Debouncer<String>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,12 +33,12 @@ class AddFollowerFragment :
     private fun initView() {
         initClickEventListeners()
         initEditText()
-        addFolower()
-        colloectInputResult()
+        addFollower()
+        collectInputResult()
         collectEventData()
     }
 
-    private fun colloectInputResult() {
+    private fun collectInputResult() {
         viewModel.getInputFollower.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> {
@@ -49,8 +48,17 @@ class AddFollowerFragment :
                 is UiState.Success -> {
                     with(binding) {
                         addFollower = it.data
+                        val list: ArrayList<String>? =
+                            requireArguments().getStringArrayList(FOLLOWER_LIST)
+
                         layoutAddFollower.visibility =
                             if (it.data.validate) View.VISIBLE else View.GONE
+
+                        if (list != null) {
+                            val isFollowing = it.data.userName in list
+                            binding.tvAddFollowerLabel.text = if (isFollowing) "팔로우 취소" else "팔로우"
+                        }
+
                         layoutAddFollowerEmpty.visibility =
                             if (!it.data.validate) View.VISIBLE else View.GONE
                     }
@@ -73,9 +81,7 @@ class AddFollowerFragment :
 
     private fun initEditText() {
         binding.etAddFollowerSearch.setOnEditorActionListener { _, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE ||
-                (event != null && event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER)
-            ) {
+            if (actionId == EditorInfo.IME_ACTION_DONE || (event != null && event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER)) {
                 viewModel.getInputFollower(binding.etAddFollowerSearch.text.toString())
                 binding.etAddFollowerSearch.text?.clear()
                 true
@@ -85,21 +91,15 @@ class AddFollowerFragment :
         }
     }
 
-    private fun addFolower() {
-        binding.tvAddFolllowerLabel.setOnClickListener {
+    private fun addFollower() {
+        binding.tvAddFollowerLabel.setOnClickListener {
             viewModel.addFollower(binding.tvAddFollowerName.text.toString())
         }
     }
 
     private fun collectEventData() {
-        viewModel.eventData.flowWithLifecycle(lifecycle).onEach {
-            when (it) {
-                is UiState.Success -> {
-                    Timber.d("follow success")
-                }
-
-                else -> {}
-            }
+        viewModel.eventData.observe(viewLifecycleOwner) {
+            binding.tvAddFollowerLabel.text = "팔로우 취소"
         }
     }
 }

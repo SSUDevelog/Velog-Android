@@ -1,5 +1,7 @@
 package com.velogm.presentation.ui.follow
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.velogm.core_ui.view.UiState
@@ -10,7 +12,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -23,8 +24,8 @@ class AddFollowerViewModel @Inject constructor(
     private val _getInputFollower = MutableStateFlow<UiState<InputFollower>>(UiState.Loading)
     val getInputFollower: StateFlow<UiState<InputFollower>> = _getInputFollower.asStateFlow()
 
-    private val _eventData = MutableStateFlow<UiState<Boolean>>(UiState.Loading)
-    val eventData: StateFlow<UiState<Boolean>> = _eventData.asStateFlow()
+    private val _eventData: MutableLiveData<String> = MutableLiveData()
+    val eventData: LiveData<String> = _eventData
 
     fun getInputFollower(followerName: String?) = viewModelScope.launch {
         getInputFollowerUseCase(followerName).collect {
@@ -35,9 +36,8 @@ class AddFollowerViewModel @Inject constructor(
     }
 
     fun addFollower(followerName: String) = viewModelScope.launch {
-        addFollowerUseCase(followerName).collectLatest {
-            _eventData.value = UiState.Success(true)
+        addFollowerUseCase(followerName).collect {
+            _eventData.value = it
         }
-        _eventData.value = UiState.Loading
     }
 }

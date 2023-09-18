@@ -110,7 +110,7 @@
                 tools:text="안녕하세요? 고양이 입니다." />
 
             <TextView
-                android:id="@+id/tv_add_folllower_label"
+                android:id="@+id/tv_add_follower_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"

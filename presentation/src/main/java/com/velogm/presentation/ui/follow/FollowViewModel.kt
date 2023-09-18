@@ -27,6 +27,7 @@ class FollowViewModel @Inject constructor(
     private val _deleteFollower = MutableStateFlow<UiState<DeleteFollower>>(UiState.Loading)
     val deleteFollower: StateFlow<UiState<DeleteFollower>> = _deleteFollower.asStateFlow()
 
+
     fun getFollower() = viewModelScope.launch {
         getFollowerUseCase().collectLatest {
             _getFollower.value = UiState.Success(it)

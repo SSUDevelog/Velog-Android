@@ -27,11 +27,11 @@ class SubscribeDataSourceImpl @Inject constructor(
         return apiService.deleteFollower(followerName)
     }
 
-    override suspend fun getInputFollower(followeNmae: String?): InputFollowerDto {
-        return apiService.getInputFollower(followeNmae)
+    override suspend fun getInputFollower(followerName: String?): InputFollowerDto {
+        return apiService.getInputFollower(followerName)
     }
 
-    override suspend fun postaddFollower(followerName: String): String {
+    override suspend fun postAddFollower(followerName: String): String {
         return apiService.postAddFollower("1", followerName)
     }
 }

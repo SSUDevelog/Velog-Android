@@ -14,7 +14,7 @@ interface SubscribeDataSource {
 
     suspend fun deleteFollower(followerName: String): DeleteFollowerDto
 
-    suspend fun getInputFollower(followeNmae: String?): InputFollowerDto
+    suspend fun getInputFollower(followerName: String?): InputFollowerDto
 
-    suspend fun postaddFollower(followerName: String): String
+    suspend fun postAddFollower(followerName: String): String
 }

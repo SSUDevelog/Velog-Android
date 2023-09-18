@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:elevation="0dp"
-                app:title="Follower"
+                app:title="Follow"
                 app:titleMarginStart="20dp"
                 app:titleTextAppearance="@style/TextAppearance.VelogM.Display"
                 app:titleTextColor="@color/velog_gray700">
