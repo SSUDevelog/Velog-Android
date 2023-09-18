@@ -23,8 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
+            android:minHeight="48dp"
             android:maxHeight="119dp"
             android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@id/rv_post_tag_list"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:gravity="center"
+            android:layout_marginTop="16dp"
             android:maxLines="1"
             android:text="@{post.title}"
             android:textAppearance="@style/TextAppearance.VelogM.Subhead"
