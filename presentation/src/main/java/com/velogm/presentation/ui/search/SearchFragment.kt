@@ -12,10 +12,9 @@ import com.velogm.core_ui.fragment.toast
 import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.FragmentHomeSearchBinding
-import com.velogm.presentation.ui.addtag.adapter.AddTagAdapter
 import com.velogm.presentation.ui.addtag.adapter.PopularTagAdapter
-import com.velogm.presentation.ui.addtag.dialog.DeleteDialogFragment
-import com.velogm.presentation.ui.home.screenhome.PostAdapter
+import com.velogm.presentation.ui.home.screenhome.adapter.PostAdapter
+import com.velogm.presentation.ui.home.screenhome.adapter.PostTagAdapter
 import com.velogm.presentation.util.Debouncer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -25,7 +24,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragment_home_search) {
 
-    private lateinit var myTagAdapter: AddTagAdapter
+    private lateinit var postTagAdapter: PostTagAdapter
     private lateinit var popularTagAdapter: PopularTagAdapter
     private lateinit var postAdapter: PostAdapter
     private val searchDebouncer = Debouncer<String>()
@@ -56,14 +55,8 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
     }
 
     private fun initTagAdapter() {
-        myTagAdapter = AddTagAdapter(deleteTagClick = {
-            val dialog = DeleteDialogFragment(
-                deleteTag = {
-                }
-            )
-            dialog.show(childFragmentManager, "delete")
-        })
-        binding.rvRecentSearchTagList.adapter = myTagAdapter
+        postTagAdapter = PostTagAdapter()
+        binding.rvRecentSearchTagList.adapter = postTagAdapter
     }
 
     private fun setNavigation() {
@@ -77,7 +70,7 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
         viewModel.tagListData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
-                    myTagAdapter.submitList(it.data)
+                    postTagAdapter.submitList(it.data)
                 }
                 else -> {}
             }

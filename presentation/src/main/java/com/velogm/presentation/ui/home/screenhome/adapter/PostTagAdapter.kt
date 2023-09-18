@@ -1,4 +1,4 @@
-package com.velogm.presentation.ui.home.screenhome
+package com.velogm.presentation.ui.home.screenhome.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.ListAdapter
 import com.velogm.core_ui.view.ItemDiffCallback
 import com.velogm.presentation.databinding.ItemPostTagBinding
 import com.velogm.presentation.model.TagModel
-import com.velogm.presentation.ui.addtag.viewholder.MyTagViewHolder
 import com.velogm.presentation.ui.home.screenhome.viewholder.MyPostTagViewHolder
 
 class PostTagAdapter(

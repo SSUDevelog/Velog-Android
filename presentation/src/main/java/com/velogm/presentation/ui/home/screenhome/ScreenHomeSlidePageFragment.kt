@@ -10,6 +10,7 @@ import com.velogm.core_ui.base.BindingFragment
 import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.ItemFragmentHomeBinding
+import com.velogm.presentation.ui.home.screenhome.adapter.PostAdapter
 import com.velogm.presentation.ui.webview.WebViewActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
