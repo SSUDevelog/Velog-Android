@@ -1,4 +1,4 @@
-package com.velogm.presentation.ui
+package com.velogandroid.service
 
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage

@@ -1,5 +1,10 @@
 package com.velogm.domain.model
 
+
+data class FollowerList(
+    val followerList: List<Follower>
+)
+
 data class Follower(
     val img: String,
     val name: String
@@ -17,6 +22,3 @@ data class InputFollower(
     val validate: Boolean
 )
 
-data class AddFollower(
-    val follower: String
-)

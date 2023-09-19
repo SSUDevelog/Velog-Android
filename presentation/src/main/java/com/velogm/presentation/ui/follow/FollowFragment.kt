@@ -32,8 +32,25 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
 
     private fun initView() {
         viewModel.getFollower()
+        collectFollowerNameList()
         collectFollower()
         collectDeleteFollower()
+    }
+
+    private fun collectFollowerNameList() {
+        viewModel.getFollowerNameList.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> {
+                    toast("Loading")
+                }
+
+                is UiState.Success -> {
+                    openAddFollower(it.data.name)
+                }
+
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun collectFollower() {
@@ -50,8 +67,6 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
                         })
                         dialog.show(childFragmentManager, "delete")
                     }).apply {
-                        val followerList: ArrayList<String> = it.data.map { follower -> follower.name } as ArrayList<String>
-                        openAddFollower(followerList)
                         submitList(it.data)
                         binding.layoutFollowEmpty.visibility =
                             if (it.data.isEmpty()) View.VISIBLE else View.GONE
@@ -78,8 +93,7 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
     private fun openAddFollower(list: ArrayList<String>) {
         binding.tvFollowAddFollower.setOnClickListener {
             findNavController().navigate(
-                R.id.action_follow_to_addFollowerFragment,
-                bundleOf(FOLLOWER_LIST to list)
+                R.id.action_follow_to_addFollowerFragment, bundleOf(FOLLOWER_LIST to list)
             )
         }
     }
