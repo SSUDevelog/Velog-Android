@@ -16,7 +16,6 @@
             android:layout_height="56dp"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingBottom="12dp"
             app:elevation="0dp"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -29,6 +28,7 @@
                 app:navigationIcon="@drawable/ic_chevron_left">
 
                 <ImageView
+                    android:id="@+id/webview_bookmark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -36,6 +36,10 @@
                     android:src="@drawable/ic_bookmark" />
 
                 <TextView
+                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="12dp"
+                    android:id="@+id/webview_follow_btn"
+                    android:layout_marginEnd="8dp"
                     android:layout_width="wrap_content"
                     android:textAppearance="@style/TextAppearance.VelogM.Caption2"
                     android:layout_height="wrap_content"
