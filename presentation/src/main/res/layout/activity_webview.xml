@@ -32,19 +32,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:paddingHorizontal="6dp"
-                    android:src="@drawable/ic_bookmark" />
+                    android:layout_marginEnd="6dp"
+                    android:padding="10dp"
+                    android:src="@drawable/selector_bookmark_icon" />
 
                 <TextView
-                    android:paddingVertical="8dp"
-                    android:paddingHorizontal="12dp"
                     android:id="@+id/webview_follow_btn"
-                    android:layout_marginEnd="8dp"
                     android:layout_width="wrap_content"
-                    android:textAppearance="@style/TextAppearance.VelogM.Caption2"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="팔로우" />
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/selector_follow_btn"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"
+                    android:text="팔로우"
+                    android:textAppearance="@style/TextAppearance.VelogM.Caption2"
+                    android:textColor="@color/selector_follow_text" />
 
             </androidx.appcompat.widget.Toolbar>
 
