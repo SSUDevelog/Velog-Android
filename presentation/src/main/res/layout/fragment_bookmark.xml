@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -7,7 +9,71 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/velog_gray100">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_scrap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/velog_white"
+            app:elevation="0dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_scrap"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                app:elevation="0dp"
+                app:title="Scrap"
+                app:titleMarginStart="20dp"
+                app:titleTextAppearance="@style/TextAppearance.VelogM.Display"
+                app:titleTextColor="@color/velog_gray500">
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <View
+                android:id="@+id/view_scrap_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="60dp"
+                android:background="@color/velog_gray200"
+                app:layout_constraintTop_toBottomOf="@id/appbar_scrap" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <TextView
+            android:id="@+id/tv_new_folder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@color/velog_gray100"
+            android:gravity="end"
+            android:paddingVertical="12dp"
+            android:paddingEnd="20dp"
+            android:text="@string/tv_new_folder"
+            android:textAppearance="@style/TextAppearance.VelogM.Body1_B"
+            android:textColor="@color/velog_gray300"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar_scrap"
+            app:layout_goneMarginEnd="20dp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_scrap"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="12dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_new_folder"
+            app:spanCount="2"
+            tools:itemCount="20"
+            tools:listitem="@layout/item_rv_bookmark" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

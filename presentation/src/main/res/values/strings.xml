@@ -25,5 +25,7 @@
     <string name="tv_easyvel">EasyVel</string>
     <string name="et_follow_hint">사용자를 추가해보세요.</string>
     <string name="contentDescription_iv_follow">팔로워 이미지</string>
+    <string name="contentDescription_iv_scrap">스크랩 폴더 이미지</string>
+    <string name="tv_new_folder">폴더 추가</string>
 
 </resources>
