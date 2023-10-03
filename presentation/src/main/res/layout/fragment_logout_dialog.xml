@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_white_fill_12_rect"
+        android:paddingVertical="20dp">
+
+        <TextView
+            android:id="@+id/tv_logout_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/tv_logout_dialog_title"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.VelogM.Subhead"
+            android:textColor="@color/velog_gray700"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_logout_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:text="@string/tv_logout_dialog_detail"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_gray500"
+            app:layout_constraintTop_toBottomOf="@id/tv_logout_title" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_logout_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/shape_gray100_fill_4_rect"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="41dp"
+            android:paddingVertical="6dp"
+            android:text="@string/btn_dialog_follow_no"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_gray300"
+            app:layout_constraintEnd_toStartOf="@id/btn_logout_yes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_logout_detail"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_logout_yes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/shape_gray100_fill_4_rect"
+            android:backgroundTint="@color/main"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="55dp"
+            android:paddingVertical="6dp"
+            android:text="@string/btn_dialog_follow_yes"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_logout_no"
+            app:layout_constraintTop_toBottomOf="@id/tv_logout_detail"
+            tools:ignore="TouchTargetSizeCheck" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
