@@ -22,7 +22,8 @@ import kotlinx.coroutines.flow.onEach
 class AddFollowerFragment :
     BindingFragment<FragmentAddFollowerBinding>(R.layout.fragment_add_follower) {
 
-    private val viewModel by viewModels<AddFollowerViewModel>()
+    private val addFollowerViewModel by viewModels<AddFollowerViewModel>()
+    private val followViewModel by viewModels<FollowViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,10 +36,11 @@ class AddFollowerFragment :
         addFollower()
         collectInputResult()
         collectEventData()
+        collectDeleteFollower()
     }
 
     private fun collectInputResult() {
-        viewModel.getInputFollower.flowWithLifecycle(lifecycle).onEach {
+        addFollowerViewModel.getInputFollower.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> {
                     toast("Loading")
@@ -81,7 +83,7 @@ class AddFollowerFragment :
     private fun initEditText() {
         binding.etAddFollowerSearch.setOnEditorActionListener { _, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE || (event != null && event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER)) {
-                viewModel.getInputFollower(binding.etAddFollowerSearch.text.toString())
+                addFollowerViewModel.getInputFollower(binding.etAddFollowerSearch.text.toString())
                 binding.etAddFollowerSearch.text?.clear()
                 true
             } else {
@@ -92,12 +94,19 @@ class AddFollowerFragment :
 
     private fun addFollower() {
         binding.tvAddFollowerLabel.setOnClickListener {
-            viewModel.addFollower(binding.tvAddFollowerName.text.toString())
+            if (binding.tvAddFollowerLabel.text == "팔로우") {
+                addFollowerViewModel.addFollower(binding.tvAddFollowerName.text.toString())
+            } else {
+                val dialog = DeleteFollowerDialogFragment(deleteFollower = {
+                    followViewModel.deleteFollower(binding.tvAddFollowerName.text.toString())
+                })
+                dialog.show(childFragmentManager, "delete")
+            }
         }
     }
 
     private fun collectEventData() {
-        viewModel.eventData.flowWithLifecycle(lifecycle).onEach {
+        addFollowerViewModel.eventData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> {
                     toast("Loading")
@@ -109,7 +118,18 @@ class AddFollowerFragment :
 
                 else -> {}
             }
+        }.launchIn(lifecycleScope)
+    }
 
+    private fun collectDeleteFollower() {
+        followViewModel.deleteFollower.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    binding.tvAddFollowerLabel.text = "팔로우"
+                }
+
+                else -> {}
+            }
         }.launchIn(lifecycleScope)
     }
 }
