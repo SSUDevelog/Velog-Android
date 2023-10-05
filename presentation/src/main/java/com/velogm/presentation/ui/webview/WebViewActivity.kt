@@ -1,9 +1,6 @@
 package com.velogm.presentation.ui.webview
 
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.navigation.fragment.findNavController
 import com.velogm.core_ui.base.BindingActivity
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.ActivityWebviewBinding
@@ -11,7 +8,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class WebViewActivity : BindingActivity<ActivityWebviewBinding>(R.layout.activity_webview) {
+class WebViewActivity :
+    BindingActivity<ActivityWebviewBinding>(R.layout.activity_webview) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +22,15 @@ class WebViewActivity : BindingActivity<ActivityWebviewBinding>(R.layout.activit
         binding.toolbarHomeSearch.setOnClickListener {
             onBackPressed()
         }
-
+//        binding.webviewBookmark.setOnClickListener {
+//            it.isSelected=true
+//        }
+//
+//        binding.webviewFollowBtn.setOnClickListener {
+//            it.isSelected=true
+//        }
     }
+
     private fun webViewSetting() {
         binding.webview.settings.apply {
             javaScriptEnabled = true

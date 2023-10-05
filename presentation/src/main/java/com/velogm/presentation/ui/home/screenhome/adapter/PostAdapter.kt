@@ -1,4 +1,4 @@
-package com.velogm.presentation.ui.home.screenhome
+package com.velogm.presentation.ui.home.screenhome.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

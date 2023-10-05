@@ -3,6 +3,8 @@ package com.velogm.presentation.ui.home.screenhome.viewholder
 import androidx.recyclerview.widget.RecyclerView
 import com.velogm.presentation.databinding.ItemRvPostBinding
 import com.velogm.presentation.model.PostModel
+import com.velogm.presentation.model.TagModel
+import com.velogm.presentation.ui.home.screenhome.adapter.PostTagAdapter
 
 class PostViewHolder(
     private val binding: ItemRvPostBinding,
@@ -13,6 +15,9 @@ class PostViewHolder(
         binding.root.setOnClickListener {
             postClick(data)
         }
+        val postTagAdapter = PostTagAdapter()
+        binding.rvPostTagList.adapter = postTagAdapter
+        postTagAdapter.submitList(data.tag.map { TagModel(it) })
         binding.executePendingBindings()
     }
 }
