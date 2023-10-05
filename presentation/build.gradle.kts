@@ -6,6 +6,7 @@ plugins {
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
     kotlin("plugin.serialization") version Versions.KOTLIN_VERSION
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -91,5 +92,10 @@ dependencies {
 
     //google play
     implementation(Google.GOOGLE_PLAY)
+
+    //google service
+    implementation(enforcedPlatform(Google.GOOGLE_FIREBASE_BOM))
+    implementation(Google.GOOGLE_FIREBASE_ANALYTICS)
+    implementation(Google.GOOGLE_FIREBASE_MESSAGING)
 
 }

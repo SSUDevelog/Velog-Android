@@ -4,6 +4,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import coil.load
 import coil.transform.RoundedCornersTransformation
+import com.velogm.presentation.R
 
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String?) {
@@ -13,7 +14,12 @@ fun loadImage(view: ImageView, url: String?) {
 
 @BindingAdapter("setCircleImage")
 fun ImageView.setCircleImage(img: String?) {
-    load(img) {
-        transformations(RoundedCornersTransformation(1000f))
+    if (img.isNullOrEmpty()) {
+        load(R.drawable.ic_follow_follower)
+    } else {
+        load(img) {
+            transformations(RoundedCornersTransformation(1000f))
+        }
     }
+
 }

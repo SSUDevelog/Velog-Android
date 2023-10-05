@@ -33,6 +33,9 @@ object Google {
     const val HILT_ANDROID_COMPILER = "com.google.dagger:hilt-android-compiler:${Versions.HILT}"
     const val GOOGLE_PLAY =
         "com.google.android.gms:play-services-auth:${Versions.GOOGLE_PLAY_VERSION}"
+    const val GOOGLE_FIREBASE_BOM = "com.google.firebase:firebase-bom:${Versions.GOOGLE_FIREBASE_BOM}"
+    const val GOOGLE_FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics-ktx"
+    const val GOOGLE_FIREBASE_MESSAGING = "com.google.firebase:firebase-messaging"
 }
 
 object SquareUp {
