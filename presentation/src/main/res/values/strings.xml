@@ -23,10 +23,17 @@
     <string name="etv_home_search_title">검색어를 입력해보세요.</string>
     <string name="tv_recent_search">최근 검색어</string>
     <string name="tv_easyvel">EasyVel</string>
-    <string name="et_follow_hint">사용자를 검색해보세요.</string>
+    <string name="et_follow_hint">사용자를 추가해보세요.</string>
     <string name="contentDescription_iv_follow">팔로워 이미지</string>
-    <string name="tv_add_follower_emtpy_title">존재하지 않는 사용자입니다.</string>
-    <string name="tv_add_follower_empty_detail">다시 검색해주세요.</string>
-    <string name="tv_add_follower_button">팔로우</string>
+    <string name="tv_setting_version">버전 정보: 1.0</string>
+    <string name="tv_setting_information">개인정보 처리방침</string>
+    <string name="tv_setting_clause">이용약관</string>
+    <string name="tv_setting_logout">로그아웃</string>
+    <string name="tv_setting_withdrawal">회원탈퇴</string>
+    <string name="tv_logout_dialog_title">로그아웃</string>
+    <string name="tv_logout_dialog_detail">정말 로그아웃 하시겠습니까?</string>
+    <string name="tv_withdrawal_dialog_warning">※ 회원님의 데이터가 사라집니다.</string>
+    <string name="tv_withdrawal_dialog_detail">정말 탈퇴하시겠습니까?</string>
+    <string name="tv_withdrawal_dialog_title">회원탈퇴</string>
 
 </resources>
