@@ -17,18 +17,25 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_white_fill_12_rect">
 
-        <ImageView
-            android:id="@+id/iv_home_post"
-            imageUrl="@{post.img}"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_home_post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:minHeight="48dp"
-            android:maxHeight="119dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="@id/rv_post_tag_list"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/iv_home_post"
+                imageUrl="@{post.img}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxHeight="119dp"
+                android:minHeight="48dp"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/background_splash_screen" />
+        </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_post_tag_list"
@@ -66,7 +73,7 @@
             android:textColor="@color/velog_gray700"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_home_post"
+            app:layout_constraintTop_toBottomOf="@id/cv_home_post"
             tools:text="내 화면에 어쩌구 저쭤구" />
 
 
