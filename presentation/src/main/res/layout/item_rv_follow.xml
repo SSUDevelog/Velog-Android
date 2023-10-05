@@ -19,10 +19,11 @@
 
         <ImageView
             android:id="@+id/iv_item_rv_follow_follower"
+            setCircleImage="@{follower.img}"
             android:layout_width="44dp"
             android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="1:1"
             android:contentDescription="@string/contentDescription_iv_follow"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_follow_follower" />
