@@ -28,6 +28,9 @@ local.properties
 # Log/OS Files
 *.log
 
+# Google Services (e.g. APIs or Firebase)
+google-services.json
+
 # Android Studio generated files and folders
 captures/
 .externalNativeBuild/

@@ -58,7 +58,7 @@ class UseCaseModule {
 
     @Singleton
     @Provides
-    fun provideGetTagPostUseCase(repository:TagRepository): GetTagPostsUseCase {
+    fun provideGetTagPostUseCase(repository: TagRepository): GetTagPostsUseCase {
         return GetTagPostsUseCase(repository)
     }
 
@@ -72,5 +72,17 @@ class UseCaseModule {
     @Provides
     fun provideDeleteFollowerUseCase(repository: SubscribeRepository): DeleteFollowerUseCase {
         return DeleteFollowerUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetInputFollowerUseCase(repository: SubscribeRepository): GetInputFollowerUseCase {
+        return GetInputFollowerUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAddFollowerUseCase(repository: SubscribeRepository): AddFollowerUseCase {
+        return AddFollowerUseCase(repository)
     }
 }

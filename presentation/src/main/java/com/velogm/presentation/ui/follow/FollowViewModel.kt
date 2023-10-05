@@ -5,8 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.velogm.core_ui.view.UiState
 import com.velogm.domain.model.DeleteFollower
 import com.velogm.domain.model.Follower
+import com.velogm.domain.model.FollowerList
 import com.velogm.domain.usecase.DeleteFollowerUseCase
 import com.velogm.domain.usecase.GetFollowerUseCase
+import com.velogm.presentation.mapper.toFollowerNameList
+import com.velogm.presentation.model.FollowerNameList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -27,9 +30,14 @@ class FollowViewModel @Inject constructor(
     private val _deleteFollower = MutableStateFlow<UiState<DeleteFollower>>(UiState.Loading)
     val deleteFollower: StateFlow<UiState<DeleteFollower>> = _deleteFollower.asStateFlow()
 
+    private val _getFollowerNameList = MutableStateFlow<UiState<FollowerNameList>>(UiState.Loading)
+    val getFollowerNameList: StateFlow<UiState<FollowerNameList>> = _getFollowerNameList
+
     fun getFollower() = viewModelScope.launch {
         getFollowerUseCase().collectLatest {
+            val nameList = FollowerList(it).toFollowerNameList()
             _getFollower.value = UiState.Success(it)
+            _getFollowerNameList.value = UiState.Success(nameList)
             Timber.d("Success")
         }
         _getFollower.value = UiState.Loading

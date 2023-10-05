@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,6 +9,132 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_setting"
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:layout_marginVertical="20dp"
+            android:background="@color/velog_white"
+            app:elevation="0dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_setting"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:elevation="0dp"
+                app:title="Setting"
+                app:titleMarginStart="20dp"
+                app:titleTextAppearance="@style/TextAppearance.VelogM.Display"
+                app:titleTextColor="@color/velog_gray500">
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <View
+            android:id="@+id/view_setting_appbar_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/velog_gray200"
+            app:layout_constraintTop_toBottomOf="@id/appbar_setting" />
+
+        <TextView
+            android:id="@+id/tv_setting_version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="34dp"
+            android:text="@string/tv_setting_version"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_gray500"
+            app:layout_constraintTop_toBottomOf="@id/view_setting_appbar_bottom" />
+
+        <View
+            android:id="@+id/view_setting_version_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="18dp"
+            android:background="@color/velog_gray100"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_version" />
+
+        <TextView
+            android:id="@+id/tv_setting_information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="18dp"
+            android:text="@string/tv_setting_information"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_gray500"
+            app:layout_constraintTop_toBottomOf="@id/view_setting_version_bottom" />
+
+        <View
+            android:id="@+id/view_setting_information_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="18dp"
+            android:background="@color/velog_gray100"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_information" />
+
+        <TextView
+            android:id="@+id/tv_setting_clause"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="18dp"
+            android:text="@string/tv_setting_clause"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_gray500"
+            app:layout_constraintTop_toBottomOf="@id/view_setting_information_bottom" />
+
+        <View
+            android:id="@+id/view_setting_clause_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="18dp"
+            android:background="@color/velog_gray100"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_clause" />
+
+        <TextView
+            android:id="@+id/tv_setting_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="18dp"
+            android:text="@string/tv_setting_logout"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_gray500"
+            app:layout_constraintTop_toBottomOf="@id/view_setting_clause_bottom" />
+
+        <View
+            android:id="@+id/view_setting_logout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="18dp"
+            android:background="@color/velog_gray100"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_logout" />
+
+        <TextView
+            android:id="@+id/tv_setting_withdrawal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="18dp"
+            android:text="@string/tv_setting_withdrawal"
+            android:textAppearance="@style/TextAppearance.VelogM.Body1_M"
+            android:textColor="@color/velog_gray300"
+            app:layout_constraintTop_toBottomOf="@id/view_setting_logout_bottom" />
+
+        <View
+            android:id="@+id/view_setting_withdrawal_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="18dp"
+            android:background="@color/velog_gray100"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_withdrawal" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
