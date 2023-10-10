@@ -28,7 +28,7 @@ class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding
     private lateinit var googleSignResultLauncher: ActivityResultLauncher<Intent>
-    private val viewModel by viewModels<SignInViewModel>()
+    private val viewModel by viewModels<SignViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +44,7 @@ class SignInActivity : AppCompatActivity() {
                 is UiState.Success -> {
                     viewModel.saveToken(it.data)
                     viewModel.saveCheckLogin(true)
+                    viewModel.saveWithdrawal(false)
                     navigateTo<MainActivity>()
                 }
 
@@ -72,7 +73,7 @@ class SignInActivity : AppCompatActivity() {
                     .requestServerAuthCode(CLIENT_ID)
                     .build()
             val mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOption)
-
+            if (viewModel.getWithdrawal()) mGoogleSignInClient.revokeAccess()
             var signIntent: Intent = mGoogleSignInClient.signInIntent
             googleSignResultLauncher.launch(signIntent)
         }
@@ -86,6 +87,7 @@ class SignInActivity : AppCompatActivity() {
             if (!googleTokenAuth.isNullOrBlank()) {
                 viewModel.getGoogleLogin(googleTokenAuth)
                 viewModel.saveCheckLogin(true)
+                viewModel.saveWithdrawal(false)
             }
         } catch (e: ApiException) {
             Timber.d("signInResult:failed Code = " + e.statusCode)

@@ -11,23 +11,25 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.velogm.core_ui.base.BindingActivity
 import com.velogm.core_ui.context.longToast
+import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.ActivityMainBinding
 import com.velogm.presentation.ui.signin.SignCheck
 import com.velogm.presentation.ui.signin.SignInActivity
-import com.velogm.presentation.ui.signin.SignInViewModel
+import com.velogm.presentation.ui.signin.SignViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
-    private val mainViewModel by viewModels<SignInViewModel>()
+    private val mainViewModel by viewModels<SignViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
         setupLogoutState()
+        setUpWithdrawalState()
     }
 
     private fun initView() {
@@ -55,6 +57,19 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
                 is SignCheck.Empty -> {
                 }
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun setUpWithdrawalState() {
+        mainViewModel.withdrawal.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    navigateToSignInActivity()
+                    longToast("회원 탈퇴 되었습니다.")
+                }
+
+                else -> {}
             }
         }.launchIn(lifecycleScope)
     }

@@ -31,5 +31,13 @@ class AuthRepositoryImpl @Inject constructor(
         sharedPrefDataSource.checkLogin = checkLogin
     }
 
+    override fun getWithdrawal(): Boolean {
+        return sharedPrefDataSource.withdrawal
+    }
+
+    override fun saveWithdrawal(checkWithdrawal: Boolean) {
+        sharedPrefDataSource.withdrawal = checkWithdrawal
+    }
+
 
 }

@@ -3,6 +3,7 @@ package com.velogm.data.repositoryimpl
 import com.velogm.data.datasource.SignDataSource
 import com.velogm.data.dto.response.toTokenEntity
 import com.velogm.domain.model.Token
+import com.velogm.domain.model.Withdrawal
 import com.velogm.domain.repository.SignRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -17,6 +18,15 @@ class SignRepositoryImpl @Inject constructor(
                 signDataSource.getGoogleLogin(code).toTokenEntity()
             }
             emit(result.getOrDefault(Token("")))
+        }
+    }
+
+    override suspend fun postWithdrawal(): Flow<Withdrawal> {
+        return flow {
+            val result = kotlin.runCatching {
+                signDataSource.postWithdrawal().toWithdrawalEntity()
+            }
+            emit(result.getOrDefault(Withdrawal(0, "", false)))
         }
     }
 }

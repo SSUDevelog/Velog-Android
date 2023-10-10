@@ -7,5 +7,7 @@ interface AuthRepository {
     fun getRefreshToken(): String
     fun checkLogin(): Boolean
     fun saveCheckLogin(checkLogin: Boolean)
+    fun getWithdrawal(): Boolean
+    fun saveWithdrawal(checkWithdrawal: Boolean)
 
 }

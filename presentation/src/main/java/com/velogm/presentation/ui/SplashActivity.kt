@@ -6,16 +6,17 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.velogm.presentation.ui.signin.SignInActivity
-import com.velogm.presentation.ui.signin.SignInViewModel
+import com.velogm.presentation.ui.signin.SignViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
-    private val viewModel by viewModels<SignInViewModel>()
+    private val viewModel by viewModels<SignViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Timber.tag("checkLogin : " + viewModel.getCheckLogin().toString())
         if (viewModel.getCheckLogin()) {
             Timber.tag("token").d("Not token")
             navigateTo<SignInActivity>()

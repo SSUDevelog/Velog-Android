@@ -85,4 +85,10 @@ class UseCaseModule {
     fun provideAddFollowerUseCase(repository: SubscribeRepository): AddFollowerUseCase {
         return AddFollowerUseCase(repository)
     }
+
+    @Singleton
+    @Provides
+    fun provideWithdrawalUseCase(repository: SignRepository): PostWithdrawalUseCase {
+        return PostWithdrawalUseCase(repository)
+    }
 }
