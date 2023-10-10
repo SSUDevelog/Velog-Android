@@ -16,13 +16,11 @@ class SplashActivity : AppCompatActivity() {
     private val viewModel by viewModels<SignViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Timber.tag("checkLogin : " + viewModel.getCheckLogin().toString())
         if (viewModel.getCheckLogin()) {
-            Timber.tag("token").d("Not token")
-            navigateTo<SignInActivity>()
-        } else {
             Timber.tag("token").d(viewModel.getToken())
             navigateTo<MainActivity>()
+        } else {
+            navigateTo<SignInActivity>()
         }
     }
 

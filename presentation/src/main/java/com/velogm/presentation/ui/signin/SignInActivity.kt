@@ -73,9 +73,15 @@ class SignInActivity : AppCompatActivity() {
                     .requestServerAuthCode(CLIENT_ID)
                     .build()
             val mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOption)
-            if (viewModel.getWithdrawal()) mGoogleSignInClient.revokeAccess()
-            var signIntent: Intent = mGoogleSignInClient.signInIntent
-            googleSignResultLauncher.launch(signIntent)
+            val signIntent: Intent = mGoogleSignInClient.signInIntent
+
+            if (viewModel.getWithdrawal()) {
+                mGoogleSignInClient.revokeAccess().addOnCompleteListener {
+                    googleSignResultLauncher.launch(signIntent)
+                }
+            } else {
+                googleSignResultLauncher.launch(signIntent)
+            }
         }
     }
 
