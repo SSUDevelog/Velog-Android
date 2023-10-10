@@ -17,5 +17,9 @@ class SharedPreferencesDataSource @Inject constructor(
         get() = prefs.getString("RefreshToken", null)
         set(value) = prefs.edit { putString("RefreshToken", value) }
 
+    var checkLogin: Boolean
+        get() = prefs.getBoolean("CheckLogin", false)
+        set(value) = prefs.edit { putBoolean("CheckLogin", value) }
+
 }
 

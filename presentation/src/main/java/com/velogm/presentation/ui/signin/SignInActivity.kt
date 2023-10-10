@@ -1,4 +1,4 @@
-package com.velogm.presentation.ui
+package com.velogm.presentation.ui.signin
 
 import android.app.Activity
 import android.content.Intent
@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task
 import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.BuildConfig.CLIENT_ID
 import com.velogm.presentation.databinding.ActivitySignInBinding
+import com.velogm.presentation.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -42,8 +43,10 @@ class SignInActivity : AppCompatActivity() {
             when (it) {
                 is UiState.Success -> {
                     viewModel.saveToken(it.data)
+                    viewModel.saveCheckLogin(true)
                     navigateTo<MainActivity>()
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -82,6 +85,7 @@ class SignInActivity : AppCompatActivity() {
             Timber.tag("test").d(googleTokenAuth)
             if (!googleTokenAuth.isNullOrBlank()) {
                 viewModel.getGoogleLogin(googleTokenAuth)
+                viewModel.saveCheckLogin(true)
             }
         } catch (e: ApiException) {
             Timber.d("signInResult:failed Code = " + e.statusCode)
