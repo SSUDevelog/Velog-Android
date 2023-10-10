@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
 import com.velogm.core_ui.base.BindingActivity
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.ActivityWebviewBinding
@@ -22,6 +23,7 @@ class WebViewActivity :
         override fun handleOnBackPressed() {
             // 뒤로 버튼 이벤트 처리
             Timber.tag("WebView").d("뒤로가기")
+            finish()
         }
     }
 
@@ -35,16 +37,14 @@ class WebViewActivity :
         if (url != null) {
             binding.webview.loadUrl(url)
         }
-        //수정할게여
         binding.toolbarHomeSearch.setOnClickListener {
-            callback
+            finish()
         }
 //        binding.webviewBookmark.setOnClickListener {
 //            it.isSelected=true
 //        }
-//
         binding.webviewFollowBtn.setOnClickListener {
-            webViewViewModel.addFollower(followName?:"")
+            webViewViewModel.addFollower(followName ?: "")
         }
     }
 
