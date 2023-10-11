@@ -5,6 +5,7 @@ import com.velogm.data.datasource.SubscribeDataSource
 import com.velogm.data.dto.response.DeleteFollowerDto
 import com.velogm.data.dto.response.FollowerDto
 import com.velogm.data.dto.response.InputFollowerDto
+import com.velogm.data.dto.response.PostFollowListDto
 import com.velogm.data.dto.response.PostListDto
 import javax.inject.Inject
 
@@ -15,7 +16,7 @@ class SubscribeDataSourceImpl @Inject constructor(
         return apiService.getTrendPost()
     }
 
-    override suspend fun getFollowPost(): PostListDto {
+    override suspend fun getFollowPost(): PostFollowListDto {
         return apiService.getFollowPost()
     }
 

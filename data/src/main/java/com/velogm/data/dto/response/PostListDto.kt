@@ -15,7 +15,15 @@ data class PostListDto(
         trendPostDtos.map { it.toPostEntity() }
     )
 }
-
+@Serializable
+data class PostFollowListDto(
+    @SerialName("subscribePostDtoList")
+    val trendPostDtos: List<TrendPostDto>
+) {
+    fun toPostListEntity() = PostList(
+        trendPostDtos.map { it.toPostEntity() }
+    )
+}
 @Serializable
 data class TrendPostDto(
     @SerialName("comment")

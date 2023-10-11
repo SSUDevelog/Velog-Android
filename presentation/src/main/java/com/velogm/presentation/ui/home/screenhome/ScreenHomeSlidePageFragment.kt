@@ -23,14 +23,11 @@ class ScreenHomeSlidePageFragment :
 
     private lateinit var postAdapter: PostAdapter
     private val viewModel by viewModels<ScreenViewModel>()
-    lateinit var data: String
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        data = arguments?.getString("data") ?:""
-
+        val data = arguments?.getString("data")
         collectData(data)
-
         postAdapter = PostAdapter(bookMarkClick = {
             val intent = Intent(requireContext(), WebViewActivity::class.java).apply {
                 putExtra("url", it.url)

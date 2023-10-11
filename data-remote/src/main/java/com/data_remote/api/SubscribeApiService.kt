@@ -3,6 +3,7 @@ package com.data_remote.api
 import com.velogm.data.dto.response.DeleteFollowerDto
 import com.velogm.data.dto.response.FollowerDto
 import com.velogm.data.dto.response.InputFollowerDto
+import com.velogm.data.dto.response.PostFollowListDto
 import com.velogm.data.dto.response.PostListDto
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -18,7 +19,7 @@ interface SubscribeApiService {
 
     @GET("/subscribe/subscriberpost")
     suspend fun getFollowPost(
-    ): PostListDto
+    ): PostFollowListDto
 
     @GET("/subscribe/getsubscriber")
     suspend fun getFollower(
