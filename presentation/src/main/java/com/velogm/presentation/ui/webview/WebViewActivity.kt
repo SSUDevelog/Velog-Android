@@ -37,12 +37,9 @@ class WebViewActivity :
         if (url != null) {
             binding.webview.loadUrl(url)
         }
-        binding.toolbarHomeSearch.setOnClickListener {
+        binding.ivNavigateBack.setOnClickListener {
             finish()
         }
-//        binding.webviewBookmark.setOnClickListener {
-//            it.isSelected=true
-//        }
         binding.webviewFollowBtn.setOnClickListener {
             webViewViewModel.addFollower(followName ?: "")
         }

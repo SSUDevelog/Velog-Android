@@ -24,17 +24,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:elevation="0dp"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:navigationIcon="@drawable/ic_chevron_left">
+                app:layout_scrollFlags="scroll|enterAlways">
 
                 <ImageView
-                    android:id="@+id/webview_bookmark"
+                    android:id="@+id/iv_navigate_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
+                    android:layout_gravity="left"
                     android:layout_marginEnd="6dp"
                     android:padding="10dp"
-                    android:src="@drawable/selector_bookmark_icon" />
+                    android:src="@drawable/ic_chevron_left" />
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/webview_bookmark"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_gravity="right"-->
+                <!--                    android:layout_marginEnd="6dp"-->
+                <!--                    android:padding="10dp"-->
+                <!--                    android:src="@drawable/selector_bookmark_icon" />-->
 
                 <TextView
                     android:id="@+id/webview_follow_btn"
