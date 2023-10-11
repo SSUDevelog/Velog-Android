@@ -1,5 +1,6 @@
 package com.velogm.presentation.ui.search
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doAfterTextChanged
@@ -15,6 +16,7 @@ import com.velogm.presentation.databinding.FragmentHomeSearchBinding
 import com.velogm.presentation.ui.addtag.adapter.PopularTagAdapter
 import com.velogm.presentation.ui.home.screenhome.adapter.PostAdapter
 import com.velogm.presentation.ui.home.screenhome.adapter.PostTagAdapter
+import com.velogm.presentation.ui.webview.WebViewActivity
 import com.velogm.presentation.util.Debouncer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -45,6 +47,11 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
     private fun initPostAdapter() {
         postAdapter = PostAdapter(bookMarkClick = {
             Timber.tag("Post").d(it.url)
+            val intent = Intent(requireContext(), WebViewActivity::class.java).apply {
+                putExtra("url", it.url)
+                putExtra("followName", it.name)
+            }
+            startActivity(intent)
         })
         binding.rvSearchList.adapter = postAdapter
     }
