@@ -1,4 +1,4 @@
-package com.velogm.presentation.ui
+package com.velogm.presentation.ui.signin
 
 import android.app.Activity
 import android.content.Intent
@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task
 import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.BuildConfig.CLIENT_ID
 import com.velogm.presentation.databinding.ActivitySignInBinding
+import com.velogm.presentation.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -27,7 +28,7 @@ class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding
     private lateinit var googleSignResultLauncher: ActivityResultLauncher<Intent>
-    private val viewModel by viewModels<SignInViewModel>()
+    private val viewModel by viewModels<SignViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +43,11 @@ class SignInActivity : AppCompatActivity() {
             when (it) {
                 is UiState.Success -> {
                     viewModel.saveToken(it.data)
+                    viewModel.saveCheckLogin(true)
+                    viewModel.saveWithdrawal(false)
                     navigateTo<MainActivity>()
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -69,9 +73,15 @@ class SignInActivity : AppCompatActivity() {
                     .requestServerAuthCode(CLIENT_ID)
                     .build()
             val mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOption)
+            val signIntent: Intent = mGoogleSignInClient.signInIntent
 
-            var signIntent: Intent = mGoogleSignInClient.signInIntent
-            googleSignResultLauncher.launch(signIntent)
+            if (viewModel.getWithdrawal()) {
+                mGoogleSignInClient.revokeAccess().addOnCompleteListener {
+                    googleSignResultLauncher.launch(signIntent)
+                }
+            } else {
+                googleSignResultLauncher.launch(signIntent)
+            }
         }
     }
 
@@ -82,6 +92,8 @@ class SignInActivity : AppCompatActivity() {
             Timber.tag("test").d(googleTokenAuth)
             if (!googleTokenAuth.isNullOrBlank()) {
                 viewModel.getGoogleLogin(googleTokenAuth)
+                viewModel.saveCheckLogin(true)
+                viewModel.saveWithdrawal(false)
             }
         } catch (e: ApiException) {
             Timber.d("signInResult:failed Code = " + e.statusCode)
