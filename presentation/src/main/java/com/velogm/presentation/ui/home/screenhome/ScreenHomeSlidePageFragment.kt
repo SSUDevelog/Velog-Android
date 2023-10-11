@@ -51,11 +51,6 @@ class ScreenHomeSlidePageFragment :
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        collectData(data)
-
-    }
     private fun collectPostListData() {
         viewModel.postListData.flowWithLifecycle(lifecycle).onEach {
             when (it) {

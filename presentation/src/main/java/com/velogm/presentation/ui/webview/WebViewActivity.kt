@@ -38,10 +38,9 @@ class WebViewActivity :
         webViewSetting()
         val url = intent.getStringExtra("url")
         val followName = intent.getStringExtra("followName")
-        val subscribed = intent.getBooleanExtra("subscribed", false)
+        webViewViewModel.getFollower()
         this.onBackPressedDispatcher.addCallback(this, callback)
-        if (subscribed) binding.webviewFollowBtn.isSelected = true
-        Timber.tag("Post").d(subscribed.toString())
+        collectFollowerNameList(followName?:"")
         if (url != null) {
             binding.webview.loadUrl(url)
         }
@@ -58,6 +57,21 @@ class WebViewActivity :
 
                 is UiState.Success -> {
                     binding.webviewFollowBtn.isSelected = it.data
+                }
+
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun collectFollowerNameList(followName:String) {
+        webViewViewModel.getFollowerNameList.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> {
+                }
+
+                is UiState.Success -> {
+                   if ( it.data.name.contains(followName)) binding.webviewFollowBtn.isSelected = true
                 }
 
                 else -> {}
