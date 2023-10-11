@@ -23,29 +23,39 @@ class ScreenHomeSlidePageFragment :
 
     private lateinit var postAdapter: PostAdapter
     private val viewModel by viewModels<ScreenViewModel>()
+    lateinit var data: String
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        data = arguments?.getString("data") ?:""
+
+        collectData(data)
 
         postAdapter = PostAdapter(bookMarkClick = {
             val intent = Intent(requireContext(), WebViewActivity::class.java).apply {
                 putExtra("url", it.url)
                 putExtra("followName", it.name)
+                putExtra("subscribed",it.subscribed)
             }
             startActivity(intent)
         })
         binding.rvPostList.adapter = postAdapter
+        collectPostListData()
+    }
 
-        val data = arguments?.getString("data")
-
+    private fun collectData(data: String?) {
         when (data) {
             "트렌드" -> viewModel.getTrendPost()
             "팔로우" -> viewModel.getFollowPost()
             else -> viewModel.getTagPost(data.toString())
         }
-        collectPostListData()
     }
 
+    override fun onResume() {
+        super.onResume()
+        collectData(data)
 
+    }
     private fun collectPostListData() {
         viewModel.postListData.flowWithLifecycle(lifecycle).onEach {
             when (it) {

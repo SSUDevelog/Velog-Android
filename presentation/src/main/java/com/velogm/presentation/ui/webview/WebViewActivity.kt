@@ -4,12 +4,18 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.velogm.core_ui.base.BindingActivity
+import com.velogm.core_ui.fragment.toast
+import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.ActivityWebviewBinding
 import com.velogm.presentation.ui.follow.AddFollowerViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 
 
@@ -32,8 +38,10 @@ class WebViewActivity :
         webViewSetting()
         val url = intent.getStringExtra("url")
         val followName = intent.getStringExtra("followName")
+        val subscribed = intent.getBooleanExtra("subscribed", false)
         this.onBackPressedDispatcher.addCallback(this, callback)
-        Timber.tag("Post").d(followName)
+        if (subscribed) binding.webviewFollowBtn.isSelected = true
+        Timber.tag("Post").d(subscribed.toString())
         if (url != null) {
             binding.webview.loadUrl(url)
         }
@@ -41,8 +49,20 @@ class WebViewActivity :
             finish()
         }
         binding.webviewFollowBtn.setOnClickListener {
-            webViewViewModel.addFollower(followName ?: "")
+            if (it.isSelected) webViewViewModel.deleteFollower(followName ?: "")
+            else webViewViewModel.addFollower(followName ?: "")
         }
+        webViewViewModel.eventData.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> {}
+
+                is UiState.Success -> {
+                    binding.webviewFollowBtn.isSelected = it.data
+                }
+
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun webViewSetting() {
