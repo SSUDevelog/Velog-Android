@@ -27,8 +27,6 @@ class WebViewActivity :
     private val webViewViewModel by viewModels<WebviewViewModel>()
     private val callback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            // 뒤로 버튼 이벤트 처리
-            Timber.tag("WebView").d("뒤로가기")
             finish()
         }
     }
@@ -40,17 +38,34 @@ class WebViewActivity :
         val followName = intent.getStringExtra("followName")
         webViewViewModel.getFollower()
         this.onBackPressedDispatcher.addCallback(this, callback)
+        initView(url)
         collectFollowerNameList(followName?:"")
-        if (url != null) {
-            binding.webview.loadUrl(url)
-        }
+        navigateBack()
+        clickFollowBtn(followName)
+
+    }
+
+    private fun navigateBack() {
         binding.ivNavigateBack.setOnClickListener {
             finish()
         }
+    }
+
+    private fun clickFollowBtn(followName: String?) {
         binding.webviewFollowBtn.setOnClickListener {
             if (it.isSelected) webViewViewModel.deleteFollower(followName ?: "")
             else webViewViewModel.addFollower(followName ?: "")
         }
+    }
+
+    private fun initView(url: String?) {
+        if (url != null) {
+            binding.webview.loadUrl(url)
+        }
+        collectSelectedFollow()
+    }
+
+    private fun collectSelectedFollow() {
         webViewViewModel.eventData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> {}
@@ -63,7 +78,6 @@ class WebViewActivity :
             }
         }.launchIn(lifecycleScope)
     }
-
     private fun collectFollowerNameList(followName:String) {
         webViewViewModel.getFollowerNameList.flowWithLifecycle(lifecycle).onEach {
             when (it) {
