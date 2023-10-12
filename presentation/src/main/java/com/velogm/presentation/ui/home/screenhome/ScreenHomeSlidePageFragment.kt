@@ -15,13 +15,13 @@ import com.velogm.presentation.ui.webview.WebViewActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import timber.log.Timber
 
 @AndroidEntryPoint
 class ScreenHomeSlidePageFragment :
     BindingFragment<ItemFragmentHomeBinding>(R.layout.item_fragment_home_) {
 
     private lateinit var postAdapter: PostAdapter
+
     private val viewModel by viewModels<ScreenViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,12 +32,12 @@ class ScreenHomeSlidePageFragment :
             val intent = Intent(requireContext(), WebViewActivity::class.java).apply {
                 putExtra("url", it.url)
                 putExtra("followName", it.name)
-                putExtra("subscribed",it.subscribed)
+                putExtra("subscribed", it.subscribed)
             }
             startActivity(intent)
         })
         binding.rvPostList.adapter = postAdapter
-        collectPostListData()
+        collectPostListData(data)
     }
 
     private fun collectData(data: String?) {
@@ -48,15 +48,23 @@ class ScreenHomeSlidePageFragment :
         }
     }
 
-    private fun collectPostListData() {
+    private fun collectPostListData(data: String?) {
         viewModel.postListData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
                     val trendPostModel = it.data.trendPostModel
                     postAdapter.submitList(trendPostModel)
-                    binding.rvPostList.visibility = if (trendPostModel.isNotEmpty()) View.VISIBLE else View.INVISIBLE
-                    binding.emptyFollow.emptyFollow.visibility = if (trendPostModel.isEmpty()) View.VISIBLE else View.INVISIBLE
+                    binding.rvPostList.visibility =
+                        if (trendPostModel.isNotEmpty()) View.VISIBLE else View.INVISIBLE
+                    if (data == "팔로우") {
+                        binding.emptyFollow.emptyFollow.visibility =
+                            if (trendPostModel.isEmpty()) View.VISIBLE else View.INVISIBLE
+                    } else {
+                        binding.emptyPost.emptyPost.visibility =
+                            if (trendPostModel.isEmpty()) View.VISIBLE else View.INVISIBLE
+                    }
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)

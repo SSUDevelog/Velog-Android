@@ -26,7 +26,11 @@
 
         <include
             android:id="@+id/empty_follow"
-            layout="@layout/empty_follow"/>
+            layout="@layout/empty_follow" />
+
+        <include
+            android:id="@id/empty_post"
+            layout="@layout/empty_post" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -13,6 +13,7 @@ import com.velogm.core_ui.fragment.toast
 import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.FragmentAddTagBinding
+import com.velogm.presentation.model.TagModel
 import com.velogm.presentation.ui.addtag.adapter.AddTagAdapter
 import com.velogm.presentation.ui.addtag.adapter.PopularTagAdapter
 import com.velogm.presentation.ui.addtag.dialog.DeleteDialogFragment
@@ -44,8 +45,25 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
             dialog.show(childFragmentManager, "delete")
         })
         binding.rvAddTagList.adapter = myTagAdapter
-        popularTagAdapter = PopularTagAdapter()
+        popularTagAdapter = PopularTagAdapter(tagClick = {
+            viewModel.addTag(it.tag)
+        })
         binding.rvAddTagPopularList.adapter = popularTagAdapter
+        //QA임시 코드
+        popularTagAdapter.submitList(
+            listOf<TagModel>
+                (
+                TagModel("알고리즘"),
+                TagModel("JavaScript"),
+                TagModel("TIL"),
+                TagModel("Java"),
+                TagModel("React"),
+                TagModel("프로그래머스"),
+                TagModel("코딩테스트"),
+                TagModel("Spring"),
+                TagModel("CSS")
+            )
+        )
     }
 
     private fun setNavigation() {
@@ -60,6 +78,7 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
                 is UiState.Success -> {
                     myTagAdapter.submitList(it.data)
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -69,11 +88,12 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
         viewModel.tagPopularListData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> {
-                    toast("loading")
                 }
+
                 is UiState.Success -> {
                     popularTagAdapter.submitList(it.data)
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -97,9 +117,10 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
         viewModel.eventData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
+                    toast("태그가 추가 되었습니다.")
                     viewModel.getTag()
-                    Timber.d("getTag")
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
