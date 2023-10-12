@@ -23,6 +23,7 @@ class BookMarkFragment : BindingFragment<FragmentBookmarkBinding>(R.layout.fragm
     private fun initView() {
         setMockData()
         initAdapter()
+        initDialog()
     }
 
     private fun setMockData() {
@@ -40,5 +41,11 @@ class BookMarkFragment : BindingFragment<FragmentBookmarkBinding>(R.layout.fragm
 //            layoutManager = GridLayoutManager(requireContext(), 2)
         }
         bookmarkAdapter.submitList(scrapMockList)
+    }
+
+    private fun initDialog() {
+        binding.tvNewFolder.setOnClickListener{
+
+        }
     }
 }

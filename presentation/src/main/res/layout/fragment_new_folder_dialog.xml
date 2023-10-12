@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_white_fill_12_rect"
+        android:padding="20dp">
+
+
+        <TextView
+            android:id="@+id/tv_dialog_follow_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="@string/tv_new_folder"
+            android:textAppearance="@style/TextAppearance.VelogM.Headline"
+            android:textColor="@color/velog_gray700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_new_folder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/shape_white_fill_4_rect_border"
+            android:drawableEnd="@drawable/ic_bottom_sheet_follow_add_cancel_text"
+            android:drawablePadding="12dp"
+            android:hint="@string/et_new_folder_hint"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="10dp"
+            android:textAppearance="@style/TextAppearance.VelogM.Body1_M"
+            android:textColorHint="@color/velog_gray200"
+            app:layout_constraintTop_toBottomOf="@id/tv_dialog_follow_title"
+            tools:ignore="TouchTargetSizeCheck" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_dialog_follow_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_gray100_fill_4_rect"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="41dp"
+            android:paddingVertical="6dp"
+            android:text="@string/tv_follow_new_folder_cancel"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_gray300"
+            app:layout_constraintEnd_toStartOf="@id/btn_dialog_follow_yes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_new_folder"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_dialog_follow_yes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_gray100_fill_4_rect"
+            android:backgroundTint="@color/main"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="41dp"
+            android:paddingVertical="6dp"
+            android:text="@string/tv_dialog_new_folder_ok"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_dialog_follow_no"
+            app:layout_constraintTop_toBottomOf="@id/et_new_folder"
+            tools:ignore="TouchTargetSizeCheck" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
