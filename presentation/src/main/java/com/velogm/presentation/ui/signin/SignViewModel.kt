@@ -44,12 +44,10 @@ class SignViewModel @Inject constructor(
     }
 
     fun postWithdrawal() = viewModelScope.launch {
-        withdrawalUseCase().collect {
-            _withdrawal.value = UiState.Success(true)
-            saveToken("")
-            saveCheckLogin(false)
-            saveWithdrawal(true)
-        }
+        _withdrawal.value = UiState.Success(true)
+        saveToken("")
+        saveCheckLogin(false)
+        saveWithdrawal(true)
     }
 
     fun getToken() = authRepository.getAccessToken()
