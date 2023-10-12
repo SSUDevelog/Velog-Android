@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.velogm.core_ui.view.UiState
 import com.velogm.domain.repository.AuthRepository
 import com.velogm.domain.usecase.AccessTokenUseCase
-import com.velogm.domain.usecase.PostWithdrawalUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +16,6 @@ import javax.inject.Inject
 @HiltViewModel
 class SignViewModel @Inject constructor(
     private val tokenUseCase: AccessTokenUseCase,
-    private val withdrawalUseCase: PostWithdrawalUseCase,
     private val authRepository: AuthRepository
 ) : ViewModel() {
 

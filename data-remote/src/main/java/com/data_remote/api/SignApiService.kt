@@ -1,6 +1,5 @@
 package com.data_remote.api
 
-import com.velogm.data.dto.response.WithdrawalDto
 import com.velogm.data.dto.response.TokenResponseDto
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -11,7 +10,4 @@ interface SignApiService {
     suspend fun getGoogleLogin(
         @Query("code") code: String
     ): TokenResponseDto
-
-    @POST("/sign-api/sign-out")
-    suspend fun postWithdrawal(): WithdrawalDto
 }
