@@ -2,7 +2,6 @@ package com.data_remote.datasource
 
 import com.data_remote.api.SignApiService
 import com.velogm.data.datasource.SignDataSource
-import com.velogm.data.dto.response.WithdrawalDto
 import com.velogm.data.dto.response.TokenResponseDto
 import javax.inject.Inject
 
@@ -12,9 +11,4 @@ class SignDataSourceImpl @Inject constructor(
     override suspend fun getGoogleLogin(code: String): TokenResponseDto {
         return apiService.getGoogleLogin(code)
     }
-
-    override suspend fun postWithdrawal(): WithdrawalDto {
-        return apiService.postWithdrawal()
-    }
-
 }
