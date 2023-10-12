@@ -9,6 +9,7 @@ import com.velogm.presentation.model.TagModel
 import com.velogm.presentation.ui.addtag.viewholder.PopularTagViewHolder
 
 class PopularTagAdapter(
+    private val tagClick: (TagModel) -> Unit = { _ -> }
 ) : ListAdapter<TagModel, PopularTagViewHolder>(
     PopularTagDiffCalback
 ) {
@@ -16,7 +17,7 @@ class PopularTagAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularTagViewHolder {
         val binding =
             ItemPopularTagBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PopularTagViewHolder(binding)
+        return PopularTagViewHolder(binding,tagClick)
     }
 
     override fun onBindViewHolder(holder: PopularTagViewHolder, position: Int) {

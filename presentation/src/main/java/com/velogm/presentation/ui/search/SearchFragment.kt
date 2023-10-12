@@ -2,7 +2,9 @@ package com.velogm.presentation.ui.search
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -13,6 +15,7 @@ import com.velogm.core_ui.fragment.toast
 import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.FragmentHomeSearchBinding
+import com.velogm.presentation.model.TagModel
 import com.velogm.presentation.ui.addtag.adapter.PopularTagAdapter
 import com.velogm.presentation.ui.home.screenhome.adapter.PostAdapter
 import com.velogm.presentation.ui.home.screenhome.adapter.PostTagAdapter
@@ -38,10 +41,25 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
         initPopularTagAdapter()
         initPostAdapter()
         collectMyTagListData()
-        collectPopularTagListData()
+//        collectPopularTagListData()
         search()
         collectSearchData()
         setNavigation()
+
+        popularTagAdapter.submitList(
+            listOf(
+                TagModel("알고리즘"),
+                TagModel("JavaScript"),
+                TagModel("TIL"),
+                TagModel("Java"),
+                TagModel("React"),
+                TagModel("프로그래머스"),
+                TagModel("코딩테스트"),
+                TagModel("Spring"),
+                TagModel("CSS")
+            )
+        )
+
     }
 
     private fun initPostAdapter() {
@@ -57,7 +75,9 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
     }
 
     private fun initPopularTagAdapter() {
-        popularTagAdapter = PopularTagAdapter()
+        popularTagAdapter = PopularTagAdapter(tagClick = {
+            viewModel.getTagPost(it.tag.toString() ?: "")
+        })
         binding.rvHomeSearchPopularList.adapter = popularTagAdapter
     }
 
@@ -79,6 +99,7 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
                 is UiState.Success -> {
                     postTagAdapter.submitList(it.data)
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -88,11 +109,12 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
         viewModel.tagPopularListData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> {
-                    toast("loading")
                 }
+
                 is UiState.Success -> {
                     popularTagAdapter.submitList(it.data)
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
@@ -107,18 +129,23 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
             }
         }
     }
-
     private fun collectSearchData() {
         viewModel.postListData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
                     val trendPostModel = it.data.trendPostModel
                     postAdapter.submitList(trendPostModel)
-                    binding.rvSearchList.visibility =
-                        if (trendPostModel.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE
+
+                    if (trendPostModel.isNullOrEmpty()) {
+                        binding.rvSearchList.visibility = View.INVISIBLE
+                        toast("검색결과가 없습니다.")
+                    } else {
+                        binding.rvSearchList.visibility = View.VISIBLE
+                    }
                     binding.clSearch.visibility =
                         if (trendPostModel.isNullOrEmpty()) View.VISIBLE else View.INVISIBLE
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
