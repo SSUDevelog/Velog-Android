@@ -39,24 +39,41 @@
                     android:layout_marginStart="13dp"
                     android:src="@drawable/ic_chevron_left" />
 
-                <EditText
-                    android:id="@+id/et_add_follower_search"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="22dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/shape_gray100_fill_4_rect"
-                    android:drawableStart="@drawable/ic_follow_reading_glasses"
-                    android:drawableEnd="@drawable/ic_add_follower_cancle"
-                    android:drawablePadding="10dp"
-                    android:hint="@string/et_follow_hint"
-                    android:paddingHorizontal="14dp"
-                    android:paddingVertical="10dp"
-                    android:textAppearance="@style/TextAppearance.VelogM.Body1_M"
-                    android:textColor="@color/velog_gray300"
-                    tools:ignore="TouchTargetSizeCheck"
-                    tools:layout_editor_absoluteX="20dp" />
+                    android:layout_marginEnd="20dp">
 
+                    <EditText
+                        android:id="@+id/et_add_follower_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_gray100_fill_4_rect"
+                        android:drawableStart="@drawable/ic_follow_reading_glasses"
+                        android:drawablePadding="10dp"
+                        android:hint="@string/et_follow_hint"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textAppearance="@style/TextAppearance.VelogM.Body1_M"
+                        android:textColor="@color/velog_gray300"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TouchTargetSizeCheck"
+                        tools:layout_editor_absoluteX="20dp" />
+
+
+                    <ImageView
+                        android:id="@+id/iv_add_follower_cancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:src="@drawable/ic_add_follower_cancle"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/et_add_follower_search"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
