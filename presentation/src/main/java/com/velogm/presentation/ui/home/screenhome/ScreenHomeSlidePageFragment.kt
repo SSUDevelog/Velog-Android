@@ -15,13 +15,13 @@ import com.velogm.presentation.ui.webview.WebViewActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import timber.log.Timber
 
 @AndroidEntryPoint
 class ScreenHomeSlidePageFragment :
     BindingFragment<ItemFragmentHomeBinding>(R.layout.item_fragment_home_) {
 
     private lateinit var postAdapter: PostAdapter
+
     private val viewModel by viewModels<ScreenViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
