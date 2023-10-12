@@ -40,10 +40,6 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
     private fun collectFollowerNameList() {
         viewModel.getFollowerNameList.flowWithLifecycle(lifecycle).onEach {
             when (it) {
-                is UiState.Loading -> {
-                    toast("Loading")
-                }
-
                 is UiState.Success -> {
                     openAddFollower(it.data.name)
                 }
@@ -57,7 +53,6 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
         viewModel.getFollower.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> {
-                    toast("Loading")
                 }
 
                 is UiState.Success -> {

@@ -10,7 +10,6 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.velogm.core_ui.base.BindingFragment
-import com.velogm.core_ui.fragment.toast
 import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.FragmentAddFollowerBinding
@@ -45,7 +44,6 @@ class AddFollowerFragment :
         addFollowerViewModel.getInputFollower.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> {
-                    toast("Loading")
                 }
 
                 is UiState.Success -> {
@@ -111,7 +109,6 @@ class AddFollowerFragment :
         addFollowerViewModel.eventData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> {
-                    toast("Loading")
                 }
 
                 is UiState.Success -> {
