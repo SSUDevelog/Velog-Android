@@ -38,5 +38,6 @@
     <string name="tv_add_follower_emtpy_title">존재하지 않는 사용자입니다.</string>
     <string name="tv_add_follower_empty_detail">다시 검색해주세요.</string>
     <string name="tv_add_follower_button">팔로우</string>
+    <string name="tv_empty_post">아직 관련 글이 없어요.</string>
 
 </resources>
