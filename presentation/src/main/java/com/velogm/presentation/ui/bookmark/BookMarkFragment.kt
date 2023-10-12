@@ -2,6 +2,7 @@ package com.velogm.presentation.ui.bookmark
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.velogm.core_ui.base.BindingFragment
 import com.velogm.domain.model.Bookmark
 import com.velogm.presentation.R
@@ -44,8 +45,8 @@ class BookMarkFragment : BindingFragment<FragmentBookmarkBinding>(R.layout.fragm
     }
 
     private fun initDialog() {
-        binding.tvNewFolder.setOnClickListener{
-
+        binding.tvNewFolder.setOnClickListener() {
+            Toast.makeText(context, "TODO", Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:gravity="center"
-            android:text="@string/tv_new_folder"
+            android:text="@string/tv_edit_folder_name"
             android:textAppearance="@style/TextAppearance.VelogM.Headline"
             android:textColor="@color/velog_gray700"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,6 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
+            android:inputType="text"
             android:id="@+id/et_new_folder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

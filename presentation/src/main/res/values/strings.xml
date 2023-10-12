@@ -29,6 +29,7 @@
     <string name="et_new_folder_hint">이름</string>
     <string name="contentDescription_iv_follow">팔로워 이미지</string>
     <string name="contentDescription_iv_scrap">스크랩 폴더 이미지</string>
+    <string name="tv_edit_folder_name">폴더 이름 변경</string>
     <string name="tv_new_folder">폴더 추가</string>
 
 </resources>
