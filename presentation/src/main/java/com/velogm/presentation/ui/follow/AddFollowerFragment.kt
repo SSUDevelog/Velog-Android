@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.velogm.core_ui.base.BindingFragment
-import com.velogm.core_ui.fragment.toast
 import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.FragmentAddFollowerBinding
@@ -37,13 +37,13 @@ class AddFollowerFragment :
         collectInputResult()
         collectEventData()
         collectDeleteFollower()
+        removeText()
     }
 
     private fun collectInputResult() {
         addFollowerViewModel.getInputFollower.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> {
-                    toast("Loading")
                 }
 
                 is UiState.Success -> {
@@ -109,7 +109,6 @@ class AddFollowerFragment :
         addFollowerViewModel.eventData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> {
-                    toast("Loading")
                 }
 
                 is UiState.Success -> {
@@ -131,6 +130,19 @@ class AddFollowerFragment :
                 else -> {}
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun removeText() {
+        with(binding) {
+            etAddFollowerSearch.doAfterTextChanged { text ->
+                if (text?.length == 0) {
+                    ivAddFollowerCancel.visibility = View.INVISIBLE
+                } else {
+                    ivAddFollowerCancel.visibility = View.VISIBLE
+                    ivAddFollowerCancel.setOnClickListener { etAddFollowerSearch.text.clear() }
+                }
+            }
+        }
     }
 }
 
