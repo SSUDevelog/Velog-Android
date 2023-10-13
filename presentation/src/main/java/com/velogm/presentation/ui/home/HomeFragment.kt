@@ -38,13 +38,16 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         moveToAddTag()
         homeCollectionAdapter = HomeCollectionAdapter(childFragmentManager, lifecycle)
         viewPager = binding.pager
+        viewPager.offscreenPageLimit = 5
         viewPager.adapter = homeCollectionAdapter
+
     }
 
     override fun onResume() {
         super.onResume()
         viewModel.getTag()
     }
+
     private fun moveToAddTag() {
         binding.ivPlusBtn.setOnClickListener {
             findNavController().navigate(
@@ -61,6 +64,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
                     initAdapter(it.data)
                     initTabLayoutItem(it.data)
                 }
+
                 else -> {}
             }
         }.launchIn(lifecycleScope)
