@@ -15,6 +15,7 @@ import com.velogm.presentation.ui.webview.WebViewActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
 @AndroidEntryPoint
 class ScreenHomeSlidePageFragment :
@@ -23,6 +24,20 @@ class ScreenHomeSlidePageFragment :
     private lateinit var postAdapter: PostAdapter
 
     private val viewModel by viewModels<ScreenViewModel>()
+    override fun onResume() {
+        super.onResume()
+        Timber.tag("Screen").d("resume")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Timber.tag("Screen").d("destroyview")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Timber.tag("Screen").d("destroy")
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

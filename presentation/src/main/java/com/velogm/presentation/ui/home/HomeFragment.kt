@@ -1,5 +1,6 @@
 package com.velogm.presentation.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -38,7 +39,6 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         moveToAddTag()
         homeCollectionAdapter = HomeCollectionAdapter(childFragmentManager, lifecycle)
         viewPager = binding.pager
-        viewPager.offscreenPageLimit = 5
         viewPager.adapter = homeCollectionAdapter
 
     }
@@ -88,6 +88,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         val finalTagData = defaultTagData + tagData
         Timber.tag("finalTagData").d("$finalTagData")
         homeCollectionAdapter.setData(finalTagData)
+        homeCollectionAdapter.notifyDataSetChanged()
     }
 
 }
