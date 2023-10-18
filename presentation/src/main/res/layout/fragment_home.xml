@@ -61,7 +61,7 @@
             android:id="@+id/line1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/velog_gray300"
+            android:background="@color/velog_gray200"
             app:layout_constraintTop_toBottomOf="@id/tablayout_home"/>
 
         <androidx.viewpager2.widget.ViewPager2
