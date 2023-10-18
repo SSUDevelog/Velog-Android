@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_white_fill_12_rect"
+        android:elevation="0dp"
         android:paddingVertical="20dp">
 
         <TextView
@@ -53,10 +54,12 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="25dp"
             android:background="@drawable/shape_gray100_fill_4_rect"
+            android:elevation="0dp"
             android:minWidth="0dp"
             android:minHeight="0dp"
             android:paddingHorizontal="41dp"
             android:paddingVertical="6dp"
+            android:stateListAnimator="@null"
             android:text="@string/btn_dialog_follow_no"
             android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
             android:textColor="@color/velog_gray300"
@@ -74,10 +77,12 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/shape_gray100_fill_4_rect"
             android:backgroundTint="@color/main"
+            android:elevation="0dp"
             android:minWidth="0dp"
             android:minHeight="0dp"
             android:paddingHorizontal="55dp"
             android:paddingVertical="6dp"
+            android:stateListAnimator="@null"
             android:text="@string/btn_dialog_follow_yes"
             android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
             android:textColor="@color/velog_white"
