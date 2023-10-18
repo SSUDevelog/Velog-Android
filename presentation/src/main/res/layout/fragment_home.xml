@@ -57,11 +57,18 @@
             app:tabTextAppearance="@style/TextAppearance.VelogM.Body2_B"
             app:tabTextColor="@color/selector_tablayout_text" />
 
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/velog_gray200"
+            app:layout_constraintTop_toBottomOf="@id/tablayout_home"/>
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tablayout_home" />
+            app:layout_constraintTop_toBottomOf="@id/line1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

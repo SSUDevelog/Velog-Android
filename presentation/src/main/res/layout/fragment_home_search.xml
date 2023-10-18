@@ -34,13 +34,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/velog_gray100"
-                    android:drawableStart="@drawable/ic_search"
+                    android:backgroundTint="@color/white"
+                    android:drawableStart="@drawable/ic_search_gray"
                     android:drawablePadding="8dp"
                     android:hint="@string/etv_home_search_title"
                     android:imeOptions="actionDone"
                     android:inputType="text"
                     android:minHeight="48dp"
-                    android:paddingStart="16dp"
                     android:textAppearance="@style/TextAppearance.VelogM.Body1_M"
                     android:textColor="@color/velog_gray500" />
             </androidx.appcompat.widget.Toolbar>
@@ -68,6 +68,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appbar_home_search">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/velog_gray200"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_recent_search"

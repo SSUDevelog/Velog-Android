@@ -50,8 +50,10 @@ dependencies {
     //Hilt
     implementation(Google.HILT_ANDROID)
     kapt(Google.HILT_ANDROID_COMPILER)
+
     // Test Dependency
     androidTestImplementation(TestDependencies.EXT_JUNIT)
     androidTestImplementation(TestDependencies.ESPRESSO_CORE)
     testImplementation(TestDependencies.JUNIT)
+
 }
