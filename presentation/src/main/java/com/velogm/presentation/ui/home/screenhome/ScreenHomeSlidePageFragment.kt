@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.velogm.core_ui.base.BindingFragment
+import com.velogm.core_ui.fragment.toast
 import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.ItemFragmentHomeBinding
@@ -24,20 +25,7 @@ class ScreenHomeSlidePageFragment :
     private lateinit var postAdapter: PostAdapter
 
     private val viewModel by viewModels<ScreenViewModel>()
-    override fun onResume() {
-        super.onResume()
-        Timber.tag("Screen").d("resume")
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Timber.tag("Screen").d("destroyview")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Timber.tag("Screen").d("destroy")
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -78,8 +66,9 @@ class ScreenHomeSlidePageFragment :
                         binding.emptyPost.emptyPost.visibility =
                             if (trendPostModel.isEmpty()) View.VISIBLE else View.INVISIBLE
                     }
-                }
 
+                    binding.progressbar.visibility=View.GONE
+                }
                 else -> {}
             }
         }.launchIn(lifecycleScope)
