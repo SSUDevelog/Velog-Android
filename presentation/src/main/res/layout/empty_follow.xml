@@ -17,7 +17,7 @@
             android:id="@+id/iv_follow_empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/img_follow_empty" />
+            android:src="@drawable/ic_follow_empty" />
 
         <TextView
             android:id="@+id/tv_follow_empty_title_1"

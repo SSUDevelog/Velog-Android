@@ -15,7 +15,7 @@
             android:id="@+id/appbar_follow"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_marginVertical="20dp"
+            android:layout_marginTop="24dp"
             android:background="@color/velog_white"
             app:elevation="0dp"
             app:layout_constraintTop_toTopOf="parent">
@@ -28,7 +28,7 @@
                 app:title="Follow"
                 app:titleMarginStart="20dp"
                 app:titleTextAppearance="@style/TextAppearance.VelogM.Display"
-                app:titleTextColor="@color/velog_gray700">
+                app:titleTextColor="@color/velog_gray500">
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -86,7 +86,7 @@
                 android:id="@+id/iv_follow_empty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/img_follow_empty" />
+                android:src="@drawable/ic_follow_empty" />
 
             <TextView
                 android:id="@+id/tv_follow_empty_title_1"
