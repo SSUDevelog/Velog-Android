@@ -39,6 +39,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         moveToAddTag()
         homeCollectionAdapter = HomeCollectionAdapter(childFragmentManager, lifecycle)
         viewPager = binding.pager
+        viewPager.offscreenPageLimit=6
         viewPager.adapter = homeCollectionAdapter
 
     }

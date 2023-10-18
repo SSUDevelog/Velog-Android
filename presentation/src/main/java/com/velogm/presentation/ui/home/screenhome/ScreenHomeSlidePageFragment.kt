@@ -16,6 +16,7 @@ import com.velogm.presentation.ui.webview.WebViewActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import okhttp3.internal.checkOffsetAndCount
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -40,6 +41,7 @@ class ScreenHomeSlidePageFragment :
             startActivity(intent)
         })
         binding.rvPostList.adapter = postAdapter
+
         collectPostListData(data)
     }
 
