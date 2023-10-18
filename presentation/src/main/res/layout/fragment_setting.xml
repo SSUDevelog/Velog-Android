@@ -14,7 +14,6 @@
             android:id="@+id/appbar_setting"
             android:layout_width="match_parent"
             android:layout_height="84dp"
-            android:layout_marginVertical="20dp"
             android:background="@color/velog_white"
             app:elevation="0dp"
             app:layout_constraintTop_toTopOf="parent">
