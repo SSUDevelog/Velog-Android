@@ -1,26 +1,18 @@
 package com.velogm.data.repositoryimpl
 
-import com.velogm.data_local.datasource.SharedPreferencesDataSource
+import com.velogm.data_local.datasource.TokenImpl
 import com.velogm.domain.repository.AuthRepository
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val sharedPrefDataSource: SharedPreferencesDataSource,
+    private val sharedPrefDataSource: TokenImpl,
 ) : AuthRepository {
     override fun saveAccessToken(a: String) {
-        sharedPrefDataSource.accessToken = a
+        sharedPrefDataSource.token = a
     }
 
     override fun getAccessToken(): String {
-        return sharedPrefDataSource.accessToken ?: ""
-    }
-
-    override fun saveRefreshToken(b: String) {
-        sharedPrefDataSource.refreshToken = b
-    }
-
-    override fun getRefreshToken(): String {
-        return sharedPrefDataSource.refreshToken ?: ""
+        return sharedPrefDataSource.token ?: ""
     }
 
     override fun checkLogin(): Boolean {
@@ -32,11 +24,11 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override fun getWithdrawal(): Boolean {
-        return sharedPrefDataSource.withdrawal
+        return sharedPrefDataSource.checkLogin
     }
 
     override fun saveWithdrawal(checkWithdrawal: Boolean) {
-        sharedPrefDataSource.withdrawal = checkWithdrawal
+        sharedPrefDataSource.checkLogin = checkWithdrawal
     }
 
 
