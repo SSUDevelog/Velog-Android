@@ -28,9 +28,6 @@ class SearchViewModel@Inject constructor(
     private val _tagPopularListData = MutableStateFlow<UiState<List<TagModel>>>(UiState.Loading)
     val tagPopularListData: StateFlow<UiState<List<TagModel>>> = _tagPopularListData.asStateFlow()
 
-//    private val _eventData = MutableStateFlow<UiState<Boolean>>(UiState.Loading)
-//    val eventData: StateFlow<UiState<Boolean>> = _eventData.asStateFlow()
-
     private val _postListData = MutableStateFlow<UiState<PostModelList>>(UiState.Loading)
     val postListData: StateFlow<UiState<PostModelList>> = _postListData.asStateFlow()
 
