@@ -28,20 +28,27 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     private val viewModel by viewModels<HomeViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getTag()
+
+        navigateBack()
+        initAdapter()
+        collectTagListData()
+        moveToAddTag()
+    }
+
+    private fun navigateBack() {
         binding.ivSearchBtn.setOnClickListener {
             findNavController().navigate(
                 R.id.navigation_home_to_home_search, bundleOf(
                 )
             )
         }
-        collectTagListData()
-        moveToAddTag()
+    }
+
+    private fun initAdapter() {
         homeCollectionAdapter = HomeCollectionAdapter(childFragmentManager, lifecycle)
         viewPager = binding.pager
-        viewPager.offscreenPageLimit=6
+        viewPager.offscreenPageLimit = 6
         viewPager.adapter = homeCollectionAdapter
-
     }
 
     override fun onResume() {

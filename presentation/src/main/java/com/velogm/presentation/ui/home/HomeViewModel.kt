@@ -21,6 +21,10 @@ class HomeViewModel @Inject constructor(
 
     private val _tagListData = MutableStateFlow<UiState<List<TagModel>>>(UiState.Loading)
     val tagListData: StateFlow<UiState<List<TagModel>>> = _tagListData.asStateFlow()
+
+    init {
+        getTag()
+    }
     fun getTag() = viewModelScope.launch {
         getTagUseCase().collect {
             val tagList = it.toTagModelEntity()

@@ -56,17 +56,17 @@ class AddTagViewModel @Inject constructor(
         }
     }
 
-    fun deleteTag(tag:String) = viewModelScope.launch {
+    fun deleteTag(tag: String) = viewModelScope.launch {
         deleteTagUseCase(tag).collect {
-            _eventData.value=UiState.Success(true)
+            _eventData.value = UiState.Success(true)
         }
-        _eventData.value=UiState.Loading
+        _eventData.value = UiState.Loading
     }
 
-    fun addTag(tag:String) = viewModelScope.launch {
+    fun addTag(tag: String) = viewModelScope.launch {
         addTagUseCase(tag).collect {
-            _eventData.value=UiState.Success(true)
+            _eventData.value = UiState.Success(true)
         }
-        _eventData.value=UiState.Loading
+        _eventData.value = UiState.Loading
     }
 }
