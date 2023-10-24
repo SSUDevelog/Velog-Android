@@ -17,13 +17,10 @@ import timber.log.Timber
 import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel@Inject constructor(
-    private val getTagUseCase: GetTagUseCase,
     private val getPopularTagUseCase: GetPopularTagUseCase,
     private val getTagPostsUseCase: GetTagPostsUseCase
 ) : ViewModel() {
 
-    private val _tagListData = MutableStateFlow<UiState<List<TagModel>>>(UiState.Loading)
-    val tagListData: StateFlow<UiState<List<TagModel>>> = _tagListData.asStateFlow()
 
     private val _tagPopularListData = MutableStateFlow<UiState<List<TagModel>>>(UiState.Loading)
     val tagPopularListData: StateFlow<UiState<List<TagModel>>> = _tagPopularListData.asStateFlow()
@@ -33,15 +30,6 @@ class SearchViewModel@Inject constructor(
 
     init {
         getPopularTag()
-        getTag()
-    }
-
-    fun getTag() = viewModelScope.launch {
-        getTagUseCase().collect {
-            val tagList = it.toTagModelEntity()
-            _tagListData.value = UiState.Success(tagList)
-            Timber.d(it.toString())
-        }
     }
 
     fun getPopularTag() = viewModelScope.launch {
