@@ -18,7 +18,7 @@ import com.velogm.presentation.model.TagModel
 import com.velogm.presentation.ui.addtag.adapter.AddTagAdapter
 import com.velogm.presentation.ui.addtag.adapter.PopularTagAdapter
 import com.velogm.presentation.ui.addtag.dialog.DeleteDialogFragment
-import com.velogm.presentation.ui.signin.SignViewModel
+import com.velogm.presentation.ui.signin.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -29,7 +29,7 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
     private lateinit var myTagAdapter: AddTagAdapter
     private lateinit var popularTagAdapter: PopularTagAdapter
     private val viewModel by viewModels<AddTagViewModel>()
-    private val parentViewModel by activityViewModels<SignViewModel>()
+    private val parentViewModel by activityViewModels<SignInViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

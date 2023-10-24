@@ -19,7 +19,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class SignViewModel @Inject constructor(
+class SignInViewModel @Inject constructor(
     private val getTagUseCase: GetTagUseCase,
     private val tokenUseCase: AccessTokenUseCase,
     private val authRepository: AuthRepository

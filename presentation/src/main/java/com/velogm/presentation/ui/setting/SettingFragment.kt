@@ -6,13 +6,13 @@ import androidx.fragment.app.activityViewModels
 import com.velogm.core_ui.base.BindingFragment
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.FragmentSettingBinding
-import com.velogm.presentation.ui.signin.SignViewModel
+import com.velogm.presentation.ui.signin.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SettingFragment : BindingFragment<FragmentSettingBinding>(R.layout.fragment_setting) {
 
-    private val viewModel by activityViewModels<SignViewModel>()
+    private val viewModel by activityViewModels<SignInViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

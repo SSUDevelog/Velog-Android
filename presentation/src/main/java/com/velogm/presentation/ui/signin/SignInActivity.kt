@@ -28,7 +28,7 @@ class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding
     private lateinit var googleSignResultLauncher: ActivityResultLauncher<Intent>
-    private val viewModel by viewModels<SignViewModel>()
+    private val viewModel by viewModels<SignInViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

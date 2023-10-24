@@ -18,7 +18,7 @@ import com.velogm.presentation.model.TagModel
 import com.velogm.presentation.ui.addtag.adapter.PopularTagAdapter
 import com.velogm.presentation.ui.home.screenhome.adapter.PostAdapter
 import com.velogm.presentation.ui.home.screenhome.adapter.PostTagAdapter
-import com.velogm.presentation.ui.signin.SignViewModel
+import com.velogm.presentation.ui.signin.SignInViewModel
 import com.velogm.presentation.ui.webview.WebViewActivity
 import com.velogm.presentation.util.Debouncer
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +34,7 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
     private lateinit var postAdapter: PostAdapter
     private val searchDebouncer = Debouncer<String>()
     private val viewModel by viewModels<SearchViewModel>()
-    private val parentViewModel by activityViewModels<SignViewModel>()
+    private val parentViewModel by activityViewModels<SignInViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

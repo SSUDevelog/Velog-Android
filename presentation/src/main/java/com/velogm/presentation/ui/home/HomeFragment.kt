@@ -14,7 +14,7 @@ import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.FragmentHomeBinding
 import com.velogm.presentation.model.TagModel
-import com.velogm.presentation.ui.signin.SignViewModel
+import com.velogm.presentation.ui.signin.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -25,7 +25,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private lateinit var homeCollectionAdapter: HomeCollectionAdapter
     private lateinit var viewPager: ViewPager2
-    private val parentViewModel by activityViewModels<SignViewModel>()
+    private val parentViewModel by activityViewModels<SignInViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

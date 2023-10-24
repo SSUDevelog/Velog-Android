@@ -16,14 +16,14 @@ import com.velogm.presentation.R
 import com.velogm.presentation.databinding.ActivityMainBinding
 import com.velogm.presentation.ui.signin.SignCheck
 import com.velogm.presentation.ui.signin.SignInActivity
-import com.velogm.presentation.ui.signin.SignViewModel
+import com.velogm.presentation.ui.signin.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
-    private val mainViewModel by viewModels<SignViewModel>()
+    private val mainViewModel by viewModels<SignInViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
