@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,6 +18,7 @@ import com.velogm.presentation.model.TagModel
 import com.velogm.presentation.ui.addtag.adapter.AddTagAdapter
 import com.velogm.presentation.ui.addtag.adapter.PopularTagAdapter
 import com.velogm.presentation.ui.addtag.dialog.DeleteDialogFragment
+import com.velogm.presentation.ui.signin.SignViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -27,6 +29,8 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
     private lateinit var myTagAdapter: AddTagAdapter
     private lateinit var popularTagAdapter: PopularTagAdapter
     private val viewModel by viewModels<AddTagViewModel>()
+    private val parentViewModel by activityViewModels<SignViewModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setNavigation()
@@ -76,7 +80,7 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
 
 
     private fun collectMyTagListData() {
-        viewModel.tagListData.flowWithLifecycle(lifecycle).onEach {
+        parentViewModel.tagListData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
                     myTagAdapter.submitList(it.data)
@@ -118,7 +122,7 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
             when (it) {
                 is UiState.Success -> {
                     toast("태그가 추가 되었습니다.")
-                    viewModel.getTag()
+                    parentViewModel.getTag()
                 }
                 else -> {}
             }
