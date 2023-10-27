@@ -82,6 +82,8 @@ dependencies {
     implementation(AndroidX.NAVIGATION_CONPONENT_FRAGMENT)
     implementation(AndroidX.NAVIGATION_CONPONENT_UI)
     implementation(AndroidX.CONSTRAINT_LAYOUT)
+    implementation(AndroidX.ROOM_RUNTIME)
+    kapt(AndroidX.ROOM_COMPILER)
 
     // Matrial Design
     implementation(Google.MATERIAL)

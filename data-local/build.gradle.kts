@@ -42,6 +42,8 @@ dependencies {
     // AndroidX
     implementation(AndroidX.APP_COMPAT)
     implementation(AndroidX.CORE_KTX)
+    implementation(AndroidX.ROOM_RUNTIME)
+    kapt(AndroidX.ROOM_COMPILER)
     // Matrial Design
     implementation(Google.MATERIAL)
     // Test Dependency

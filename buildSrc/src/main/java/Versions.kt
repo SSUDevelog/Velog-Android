@@ -38,9 +38,11 @@ object Versions {
     const val ZXING_VERSION = "4.3.0"
 
     const val CONSTRAINT_VERSION = "2.0.0-beta1"
-  
+
     const val GOOGLE_PLAY_VERSION = "20.6.0"
     const val GOOGLE_SERVICE_VERSION = "4.4.0"
     const val GOOGLE_FIREBASE_BOM = "32.1.1"
+
+    const val ROOM_VERSION = "2.5.0"
 
 }
