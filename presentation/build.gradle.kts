@@ -98,4 +98,6 @@ dependencies {
     implementation(Google.GOOGLE_FIREBASE_ANALYTICS)
     implementation(Google.GOOGLE_FIREBASE_MESSAGING)
 
+    implementation("com.google.firebase:firebase-config-ktx")
+
 }

@@ -1,5 +1,6 @@
 package com.velogm.presentation.ui
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.velogm.core_ui.base.BindingActivity
 import com.velogm.core_ui.context.longToast
 import com.velogm.core_ui.view.UiState
@@ -20,16 +25,27 @@ import com.velogm.presentation.ui.signin.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val mainViewModel by viewModels<SignInViewModel>()
-
+    private lateinit var remoteConfig: FirebaseRemoteConfig
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
         setupLogoutState()
         setUpWithdrawalState()
+
+        remoteConfig = Firebase.remoteConfig
+
+        val configSettings = remoteConfigSettings {
+            minimumFetchIntervalInSeconds = 0
+        }
+
+        remoteConfig.setConfigSettingsAsync(configSettings)
+
+        fetchAppVersion()
     }
 
     private fun initView() {
@@ -93,5 +109,32 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             ) View.VISIBLE else View.GONE
 
         }
+    }
+    private fun fetchAppVersion() {
+        // val appVersion = remoteConfig[REMOTE_KEY_APP_VERSION].asString()
+        var appVersion="0.0.0"
+        Timber.tag("remote config1").d("$appVersion")
+        appVersion=remoteConfig.getString(REMOTE_KEY_APP_VERSION)
+        Timber.tag("remote config2").d("$appVersion")
+
+        AlertDialog.Builder(this)
+            .setTitle("Remote Config")
+            .setMessage("App version :: $appVersion")
+            .show()
+
+        remoteConfig.fetchAndActivate()
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Timber.tag("remoteConfig").d("success")
+                    // fetch and activate 성공
+                } else {
+                    Timber.tag("remoteConfig").d("fail")
+                    // fetch and activate 실패
+                }
+            }
+    }
+
+    companion object {
+        private const val REMOTE_KEY_APP_VERSION = "app_version"
     }
 }
