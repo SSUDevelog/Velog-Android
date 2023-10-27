@@ -1,5 +1,6 @@
 package com.velogandroid.di
 
+import com.velogm.domain.repository.SearchRepository
 import com.velogm.domain.repository.SignRepository
 import com.velogm.domain.repository.SubscribeRepository
 import com.velogm.domain.repository.TagRepository
@@ -84,5 +85,17 @@ class UseCaseModule {
     @Provides
     fun provideAddFollowerUseCase(repository: SubscribeRepository): AddFollowerUseCase {
         return AddFollowerUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetRecentSearchWordUseCase(repository: SearchRepository): GetRecentSearchWordUseCase {
+        return GetRecentSearchWordUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAddRecentWordUseCase(repository: SearchRepository): AddRecentSearchWordUseCase {
+        return AddRecentSearchWordUseCase(repository)
     }
 }

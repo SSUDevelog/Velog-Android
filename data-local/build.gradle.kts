@@ -39,10 +39,12 @@ android {
 dependencies {
 
     implementation(project(":domain"))
+    implementation(project(":data"))
     // AndroidX
     implementation(AndroidX.APP_COMPAT)
     implementation(AndroidX.CORE_KTX)
     implementation(AndroidX.ROOM_RUNTIME)
+    implementation(AndroidX.ROOM_KTX)
     kapt(AndroidX.ROOM_COMPILER)
     // Matrial Design
     implementation(Google.MATERIAL)

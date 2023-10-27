@@ -1,11 +1,11 @@
 package com.velogm.data.repositoryimpl
 
-import com.velogm.data_local.datasource.SharedPreferencesDataSource
+import com.velogm.data.datasource.SharedPreferencesDataSource
 import com.velogm.domain.repository.AuthRepository
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val sharedPrefDataSource: SharedPreferencesDataSource,
+    private val sharedPrefDataSource: SharedPreferencesDataSource
 ) : AuthRepository {
     override fun saveAccessToken(a: String) {
         sharedPrefDataSource.accessToken = a
