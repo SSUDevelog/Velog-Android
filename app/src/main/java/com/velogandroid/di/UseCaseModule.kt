@@ -98,4 +98,10 @@ class UseCaseModule {
     fun provideAddRecentWordUseCase(repository: SearchRepository): AddRecentSearchWordUseCase {
         return AddRecentSearchWordUseCase(repository)
     }
+
+    @Singleton
+    @Provides
+    fun provideDeleteRecentWordUseCase(repository: SearchRepository): DeleteRecentSearchWordUseCase {
+        return DeleteRecentSearchWordUseCase(repository)
+    }
 }

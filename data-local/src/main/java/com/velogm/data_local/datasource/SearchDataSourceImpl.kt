@@ -20,4 +20,8 @@ class SearchDataSourceImpl @Inject constructor(
             )
         )
     }
+
+    override suspend fun deleteRecentSearchWord() {
+        dao.deleteByToken(prefs.getString("AccessToken", "") ?: "")
+    }
 }

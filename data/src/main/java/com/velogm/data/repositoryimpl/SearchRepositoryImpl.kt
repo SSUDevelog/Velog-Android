@@ -27,4 +27,13 @@ class SearchRepositoryImpl @Inject constructor(
             emit(result.getOrDefault("test").toString())
         }
     }
+
+    override suspend fun deleteRecentSearchWord(): Flow<String> {
+        return flow {
+            val result = kotlin.runCatching {
+                searchDataSource.deleteRecentSearchWord()
+            }
+            emit(result.getOrDefault("test").toString())
+        }
+    }
 }

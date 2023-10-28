@@ -9,10 +9,10 @@ import com.velogm.domain.model.RecentSearchWord
     tableName = "recent_search_word"
 )
 data class RecentSearchWordDto(
-    @PrimaryKey @ColumnInfo(name = "access_token") val accessToken: String,
-    @ColumnInfo(name = "recent_search_word") val recentSearchWord: String
+    @ColumnInfo(name = "access_token") val accessToken: String,
+    @PrimaryKey @ColumnInfo(name = "word") val recentSearchWord: String
 ) {
     fun toRecentSearchWordEntity() = RecentSearchWord(
-        accessToken
+        recentSearchWord
     )
 }

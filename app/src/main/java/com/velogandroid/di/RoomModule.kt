@@ -19,8 +19,7 @@ object RoomModule {
     fun provideDataBase(
         @ApplicationContext context: Context
     ): AppDatabase =
-        Room.databaseBuilder(context, AppDatabase::class.java, "velog.db")
-            .createFromAsset("databases/velog.db").build()
+        Room.databaseBuilder(context, AppDatabase::class.java, "velog_search.db").build()
 
     @Provides
     @Singleton

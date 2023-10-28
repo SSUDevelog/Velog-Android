@@ -109,7 +109,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="@id/tv_recent_search"
                 app:layout_constraintTop_toBottomOf="@id/tv_recent_search"
-                tools:listitem="@layout/item_post_tag" />
+                tools:listitem="@layout/item_recent_search" />
 
             <View
                 android:id="@+id/view_home_search_line"
