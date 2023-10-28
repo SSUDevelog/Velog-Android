@@ -88,9 +88,7 @@ class SearchViewModel @Inject constructor(
     }
 
     fun addSearchWord(word: String) = viewModelScope.launch {
-        addRecentSearchWordUseCase(word).collect {
-            _eventData.emit(UiState.Success(true))
-        }
+        addRecentSearchWordUseCase(word).collect {}
     }
 
     fun deleteRecentSearchWord() = viewModelScope.launch {
