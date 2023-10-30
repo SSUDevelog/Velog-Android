@@ -53,6 +53,7 @@
                         android:drawableStart="@drawable/ic_follow_reading_glasses"
                         android:drawablePadding="10dp"
                         android:hint="@string/et_follow_hint"
+                        android:maxLines="1"
                         android:paddingHorizontal="14dp"
                         android:paddingVertical="10dp"
                         android:textAppearance="@style/TextAppearance.VelogM.Body1_M"

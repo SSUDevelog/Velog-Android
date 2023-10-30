@@ -10,6 +10,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.velogm.core_ui.base.BindingFragment
+import com.velogm.core_ui.context.hideKeyboard
 import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.FragmentAddFollowerBinding
@@ -85,6 +86,7 @@ class AddFollowerFragment :
             if (actionId == EditorInfo.IME_ACTION_DONE || (event != null && event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER)) {
                 addFollowerViewModel.getInputFollower(binding.etAddFollowerSearch.text.toString())
                 binding.etAddFollowerSearch.text?.clear()
+                requireActivity().hideKeyboard(binding.root)
                 true
             } else {
                 false
