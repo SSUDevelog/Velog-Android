@@ -7,27 +7,36 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface TagApiService {
-    @GET("/tag/gettag")
+
+    companion object {
+        const val TAG = "tag"
+        const val GET_TAG = "gettag"
+        const val POPULAR_POST = "popularpost"
+        const val DELETE_TAG = "deletetag"
+        const val ADD_TAG = "addtag"
+        const val GET_TAG_POST = "gettagpost"
+    }
+
+    @GET("/$TAG/$GET_TAG")
     suspend fun getTag(
-    ):List<String>
+    ): List<String>
 
-    @GET("/tag/popularpost")
+    @GET("/$TAG/$POPULAR_POST")
     suspend fun getPopularTag(
-    ):List<String>
+    ): List<String>
 
-    @DELETE("/tag/deletetag")
+    @DELETE("/$TAG/$DELETE_TAG")
     suspend fun deleteTag(
-        @Query("tag") tag:String
-    ):String
+        @Query(TAG) tag: String
+    ): String
 
-    @POST("/tag/addtag")
+    @POST("/$TAG/$ADD_TAG")
     suspend fun addTag(
-        @Query("tag") tag:String
-    ):String
+        @Query(TAG) tag: String
+    ): String
 
-    @GET("/tag/gettagpost")
+    @GET("/$TAG/$GET_TAG_POST")
     suspend fun getTagPost(
-        @Query("tag") tag:String
+        @Query(TAG) tag: String
     ): List<TrendPostDto>
-
 }
