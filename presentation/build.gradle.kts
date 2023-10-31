@@ -26,6 +26,9 @@ android {
             buildConfigField("String", "CLIENT_ID", Properties().apply {
                 load(project.rootProject.file("local.properties").inputStream())
             }["client.id"].toString())
+            buildConfigField("String", "VERSION_NAMES", Properties().apply {
+                load(project.rootProject.file("local.properties").inputStream())
+            }["versions.name"].toString())
         }
         release {
             isMinifyEnabled = false

@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.velogm.presentation.BuildConfig
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfig
@@ -36,15 +37,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         initView()
         setupLogoutState()
         setUpWithdrawalState()
-
-        remoteConfig = Firebase.remoteConfig
-
-        val configSettings = remoteConfigSettings {
-            minimumFetchIntervalInSeconds = 0
-        }
-
-        remoteConfig.setConfigSettingsAsync(configSettings)
-
+        setRemoteConfig()
         fetchAppVersion()
     }
 
@@ -110,26 +103,31 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
         }
     }
-    private fun fetchAppVersion() {
-        // val appVersion = remoteConfig[REMOTE_KEY_APP_VERSION].asString()
-        var appVersion="0.0.0"
-        Timber.tag("remote config1").d("$appVersion")
-        appVersion=remoteConfig.getString(REMOTE_KEY_APP_VERSION)
-        Timber.tag("remote config2").d("$appVersion")
 
-        AlertDialog.Builder(this)
-            .setTitle("Remote Config")
-            .setMessage("App version :: $appVersion")
-            .show()
+    private fun setRemoteConfig() {
+        remoteConfig = Firebase.remoteConfig
+        val configSettings = remoteConfigSettings {
+            minimumFetchIntervalInSeconds = 1800
+        }
+        remoteConfig.setConfigSettingsAsync(configSettings)
+    }
+
+    private fun fetchAppVersion() {
+        var appVersion = remoteConfig.getString(REMOTE_KEY_APP_VERSION)
 
         remoteConfig.fetchAndActivate()
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    Timber.tag("remoteConfig").d("success")
-                    // fetch and activate 성공
+                    if (appVersion.equals(BuildConfig.VERSION_NAMES))
+                        Timber.tag("remoteConfig").d("${BuildConfig.VERSION_NAMES}")
+                    else {
+                        AlertDialog.Builder(this)
+                            .setTitle("Alert Version")
+                            .setMessage("새로운 ${appVersion}이 출시했습니다.")
+                            .show()
+                    }
                 } else {
                     Timber.tag("remoteConfig").d("fail")
-                    // fetch and activate 실패
                 }
             }
     }
