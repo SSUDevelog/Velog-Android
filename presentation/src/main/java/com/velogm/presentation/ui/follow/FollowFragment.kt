@@ -8,7 +8,6 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.velogm.core_ui.base.BindingFragment
-import com.velogm.core_ui.fragment.toast
 import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.FragmentFollowBinding
@@ -40,21 +39,23 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
     private fun collectFollowerNameList() {
         viewModel.getFollowerNameList.flowWithLifecycle(lifecycle).onEach {
             when (it) {
-                is UiState.Success -> {
-                    openAddFollower(it.data.name)
-                }
-
-                else -> {}
+                is UiState.Success -> openAddFollower(it.data.name)
+                else -> Unit
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun openAddFollower(list: ArrayList<String>) {
+        binding.tvFollowAddFollower.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_follow_to_addFollowerFragment, bundleOf(FOLLOWER_LIST to list)
+            )
+        }
     }
 
     private fun collectFollower() {
         viewModel.getFollower.flowWithLifecycle(lifecycle).onEach {
             when (it) {
-                is UiState.Loading -> {
-                }
-
                 is UiState.Success -> {
                     binding.rvFollow.adapter = FollowerAdapter(deleteFollowerClick = {
                         val dialog = DeleteFollowerDialogFragment(deleteFollower = {
@@ -68,7 +69,7 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
                     }
                 }
 
-                else -> {}
+                else -> Unit
             }
         }.launchIn(lifecycleScope)
     }
@@ -76,20 +77,9 @@ class FollowFragment : BindingFragment<FragmentFollowBinding>(R.layout.fragment_
     private fun collectDeleteFollower() {
         viewModel.deleteFollower.flowWithLifecycle(lifecycle).onEach {
             when (it) {
-                is UiState.Success -> {
-                    viewModel.getFollower()
-                }
-
-                else -> {}
+                is UiState.Success -> viewModel.getFollower()
+                else -> Unit
             }
         }.launchIn(lifecycleScope)
-    }
-
-    private fun openAddFollower(list: ArrayList<String>) {
-        binding.tvFollowAddFollower.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_follow_to_addFollowerFragment, bundleOf(FOLLOWER_LIST to list)
-            )
-        }
     }
 }

@@ -50,5 +50,4 @@ class FollowViewModel @Inject constructor(
         }
         _deleteFollower.value = UiState.Loading
     }
-
 }
