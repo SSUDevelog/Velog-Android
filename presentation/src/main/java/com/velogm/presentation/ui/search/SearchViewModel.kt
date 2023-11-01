@@ -52,17 +52,9 @@ class SearchViewModel @Inject constructor(
 
     init {
         getPopularTag()
-        getTag()
         getRecentSearchWord()
     }
 
-    fun getTag() = viewModelScope.launch {
-        getTagUseCase().collect {
-            val tagList = it.toTagModelEntity()
-            _tagListData.value = UiState.Success(tagList)
-            Timber.d(it.toString())
-        }
-    }
 
     fun getPopularTag() = viewModelScope.launch {
         getPopularTagUseCase().collect {

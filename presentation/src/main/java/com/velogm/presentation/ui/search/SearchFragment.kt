@@ -96,17 +96,6 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
         }
     }
 
-    private fun collectMyTagListData() {
-        parentViewModel.tagListData.flowWithLifecycle(lifecycle).onEach {
-            when (it) {
-                is UiState.Success -> {
-                    postTagAdapter.submitList(it.data)
-                }
-
-                else -> {}
-            }
-        }.launchIn(lifecycleScope)
-    }
 
     private fun collectPopularTagListData() {
         viewModel.tagPopularListData.flowWithLifecycle(lifecycle).onEach {
