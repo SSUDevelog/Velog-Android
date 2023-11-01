@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,10 +18,10 @@ import com.velogm.presentation.model.TagModel
 import com.velogm.presentation.ui.addtag.adapter.AddTagAdapter
 import com.velogm.presentation.ui.addtag.adapter.PopularTagAdapter
 import com.velogm.presentation.ui.addtag.dialog.DeleteDialogFragment
+import com.velogm.presentation.ui.signin.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import timber.log.Timber
 
 @AndroidEntryPoint
 class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_add_tag) {
@@ -28,27 +29,16 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
     private lateinit var myTagAdapter: AddTagAdapter
     private lateinit var popularTagAdapter: PopularTagAdapter
     private val viewModel by viewModels<AddTagViewModel>()
+    private val parentViewModel by activityViewModels<SignInViewModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setNavigation()
+        setAdapter()
         collectMyTagListData()
         collectPopularTagListData()
         addTag()
         collectEventData()
-        myTagAdapter = AddTagAdapter(deleteTagClick = {
-            Timber.tag("deleteTag").d(it.tag)
-            val dialog = DeleteDialogFragment(
-                deleteTag = {
-                    viewModel.deleteTag(it.tag)
-                }
-            )
-            dialog.show(childFragmentManager, "delete")
-        })
-        binding.rvAddTagList.adapter = myTagAdapter
-        popularTagAdapter = PopularTagAdapter(tagClick = {
-            viewModel.addTag(it.tag)
-        })
-        binding.rvAddTagPopularList.adapter = popularTagAdapter
         //QA임시 코드
         popularTagAdapter.submitList(
             listOf<TagModel>
@@ -72,8 +62,25 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
         }
     }
 
+    private fun setAdapter() {
+        myTagAdapter = AddTagAdapter(deleteTagClick = {
+            val dialog = DeleteDialogFragment(
+                deleteTag = {
+                    viewModel.deleteTag(it.tag)
+                }
+            )
+            dialog.show(childFragmentManager, "delete")
+        })
+        binding.rvAddTagList.adapter = myTagAdapter
+        popularTagAdapter = PopularTagAdapter(tagClick = {
+            viewModel.addTag(it.tag)
+        })
+        binding.rvAddTagPopularList.adapter = popularTagAdapter
+    }
+
+
     private fun collectMyTagListData() {
-        viewModel.tagListData.flowWithLifecycle(lifecycle).onEach {
+        parentViewModel.tagListData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
                     myTagAdapter.submitList(it.data)
@@ -87,9 +94,6 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
     private fun collectPopularTagListData() {
         viewModel.tagPopularListData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
-                is UiState.Loading -> {
-                }
-
                 is UiState.Success -> {
                     popularTagAdapter.submitList(it.data)
                 }
@@ -118,9 +122,8 @@ class AddTagFragment : BindingFragment<FragmentAddTagBinding>(R.layout.fragment_
             when (it) {
                 is UiState.Success -> {
                     toast("태그가 추가 되었습니다.")
-                    viewModel.getTag()
+                    parentViewModel.getTag()
                 }
-
                 else -> {}
             }
         }.launchIn(lifecycleScope)

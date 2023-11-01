@@ -36,8 +36,6 @@ class SearchViewModel @Inject constructor(
     private val deleteRecentSearchWordUseCase: DeleteRecentSearchWordUseCase
 ) : ViewModel() {
 
-    private val _tagListData = MutableStateFlow<UiState<List<TagModel>>>(UiState.Loading)
-    val tagListData: StateFlow<UiState<List<TagModel>>> = _tagListData.asStateFlow()
 
     private val _tagPopularListData = MutableStateFlow<UiState<List<TagModel>>>(UiState.Loading)
     val tagPopularListData: StateFlow<UiState<List<TagModel>>> = _tagPopularListData.asStateFlow()

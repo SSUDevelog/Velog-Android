@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +17,8 @@ import com.velogm.presentation.databinding.FragmentHomeSearchBinding
 import com.velogm.presentation.model.TagModel
 import com.velogm.presentation.ui.addtag.adapter.PopularTagAdapter
 import com.velogm.presentation.ui.home.screenhome.adapter.PostAdapter
+import com.velogm.presentation.ui.home.screenhome.adapter.PostTagAdapter
+import com.velogm.presentation.ui.signin.SignInViewModel
 import com.velogm.presentation.ui.webview.WebViewActivity
 import com.velogm.presentation.util.Debouncer
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +35,7 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
     private lateinit var recentSearchWordAdapter: RecentSearchWordAdapter
     private val searchDebouncer = Debouncer<String>()
     private val viewModel by viewModels<SearchViewModel>()
+    private val parentViewModel by activityViewModels<SignInViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -90,6 +94,18 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
         binding.toolbarHomeSearch.setOnClickListener {
             findNavController().navigateUp()
         }
+    }
+
+    private fun collectMyTagListData() {
+        parentViewModel.tagListData.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> {
+                    postTagAdapter.submitList(it.data)
+                }
+
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun collectPopularTagListData() {

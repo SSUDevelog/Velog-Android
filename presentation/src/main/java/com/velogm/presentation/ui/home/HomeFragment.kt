@@ -1,10 +1,9 @@
 package com.velogm.presentation.ui.home
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -15,6 +14,7 @@ import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.FragmentHomeBinding
 import com.velogm.presentation.model.TagModel
+import com.velogm.presentation.ui.signin.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -25,29 +25,32 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private lateinit var homeCollectionAdapter: HomeCollectionAdapter
     private lateinit var viewPager: ViewPager2
-    private val viewModel by viewModels<HomeViewModel>()
+    private val parentViewModel by activityViewModels<SignInViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getTag()
+
+        navigateBack()
+        initAdapter()
+        collectTagListData()
+        moveToAddTag()
+    }
+
+    private fun navigateBack() {
         binding.ivSearchBtn.setOnClickListener {
             findNavController().navigate(
                 R.id.navigation_home_to_home_search, bundleOf(
                 )
             )
         }
-        collectTagListData()
-        moveToAddTag()
+    }
+
+    private fun initAdapter() {
         homeCollectionAdapter = HomeCollectionAdapter(childFragmentManager, lifecycle)
         viewPager = binding.pager
-        viewPager.offscreenPageLimit=6
+        viewPager.offscreenPageLimit = 6
         viewPager.adapter = homeCollectionAdapter
-
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.getTag()
-    }
 
     private fun moveToAddTag() {
         binding.ivPlusBtn.setOnClickListener {
@@ -59,7 +62,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun collectTagListData() {
-        viewModel.tagListData.flowWithLifecycle(lifecycle).onEach {
+        parentViewModel.tagListData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Success -> {
                     initAdapter(it.data)

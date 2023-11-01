@@ -1,5 +1,6 @@
 package com.velogm.presentation.ui
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.velogm.presentation.BuildConfig
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.velogm.core_ui.base.BindingActivity
 import com.velogm.core_ui.context.longToast
 import com.velogm.core_ui.view.UiState
@@ -16,20 +22,23 @@ import com.velogm.presentation.R
 import com.velogm.presentation.databinding.ActivityMainBinding
 import com.velogm.presentation.ui.signin.SignCheck
 import com.velogm.presentation.ui.signin.SignInActivity
-import com.velogm.presentation.ui.signin.SignViewModel
+import com.velogm.presentation.ui.signin.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
-    private val mainViewModel by viewModels<SignViewModel>()
-
+    private val mainViewModel by viewModels<SignInViewModel>()
+    private lateinit var remoteConfig: FirebaseRemoteConfig
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
         setupLogoutState()
         setUpWithdrawalState()
+        setRemoteConfig()
+        fetchAppVersion()
     }
 
     private fun initView() {
@@ -93,5 +102,37 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             ) View.VISIBLE else View.GONE
 
         }
+    }
+
+    private fun setRemoteConfig() {
+        remoteConfig = Firebase.remoteConfig
+        val configSettings = remoteConfigSettings {
+            minimumFetchIntervalInSeconds = 1800
+        }
+        remoteConfig.setConfigSettingsAsync(configSettings)
+    }
+
+    private fun fetchAppVersion() {
+        var appVersion = remoteConfig.getString(REMOTE_KEY_APP_VERSION)
+
+        remoteConfig.fetchAndActivate()
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    if (appVersion.equals(BuildConfig.VERSION_NAMES))
+                        Timber.tag("remoteConfig").d("${BuildConfig.VERSION_NAMES}")
+                    else {
+                        AlertDialog.Builder(this)
+                            .setTitle("Alert Version")
+                            .setMessage("새로운 ${appVersion}이 출시했습니다.")
+                            .show()
+                    }
+                } else {
+                    Timber.tag("remoteConfig").d("fail")
+                }
+            }
+    }
+
+    companion object {
+        private const val REMOTE_KEY_APP_VERSION = "app_version"
     }
 }

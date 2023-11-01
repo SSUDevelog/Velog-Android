@@ -32,16 +32,7 @@ class ScreenHomeSlidePageFragment :
 
         val data = arguments?.getString("data")
         collectData(data)
-        postAdapter = PostAdapter(bookMarkClick = {
-            val intent = Intent(requireContext(), WebViewActivity::class.java).apply {
-                putExtra("url", it.url)
-                putExtra("followName", it.name)
-                putExtra("subscribed", it.subscribed)
-            }
-            startActivity(intent)
-        })
-        binding.rvPostList.adapter = postAdapter
-
+        initAdapter()
         collectPostListData(data)
     }
 
@@ -51,6 +42,18 @@ class ScreenHomeSlidePageFragment :
             "팔로우" -> viewModel.getFollowPost()
             else -> viewModel.getTagPost(data.toString())
         }
+    }
+
+    private fun initAdapter() {
+        postAdapter = PostAdapter(bookMarkClick = {
+            val intent = Intent(requireContext(), WebViewActivity::class.java).apply {
+                putExtra("url", it.url)
+                putExtra("followName", it.name)
+                putExtra("subscribed", it.subscribed)
+            }
+            startActivity(intent)
+        })
+        binding.rvPostList.adapter = postAdapter
     }
 
     private fun collectPostListData(data: String?) {

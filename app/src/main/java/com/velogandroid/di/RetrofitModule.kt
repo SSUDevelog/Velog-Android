@@ -39,10 +39,12 @@ object RetrofitModule {
     @Provides
     @Singleton
     fun provideDataStore(DataStore: TokenImpl): SharedPreferenceToken = DataStore
+
     @Provides
     @Singleton
     @Token
     fun provideAuthInterceptor(interceptor: TokenInterceptor): Interceptor = interceptor
+
     @Provides
     @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {

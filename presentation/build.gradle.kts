@@ -26,6 +26,9 @@ android {
             buildConfigField("String", "CLIENT_ID", Properties().apply {
                 load(project.rootProject.file("local.properties").inputStream())
             }["client.id"].toString())
+            buildConfigField("String", "VERSION_NAMES", Properties().apply {
+                load(project.rootProject.file("local.properties").inputStream())
+            }["versions.name"].toString())
         }
         release {
             isMinifyEnabled = false
@@ -97,5 +100,7 @@ dependencies {
     implementation(enforcedPlatform(Google.GOOGLE_FIREBASE_BOM))
     implementation(Google.GOOGLE_FIREBASE_ANALYTICS)
     implementation(Google.GOOGLE_FIREBASE_MESSAGING)
+
+    implementation("com.google.firebase:firebase-config-ktx")
 
 }

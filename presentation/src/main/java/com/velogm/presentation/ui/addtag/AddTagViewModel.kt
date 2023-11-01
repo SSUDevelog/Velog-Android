@@ -19,14 +19,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddTagViewModel @Inject constructor(
-    private val getTagUseCase: GetTagUseCase,
     private val getPopularTagUseCase: GetPopularTagUseCase,
     private val deleteTagUseCase: DeleteTagUseCase,
     private val addTagUseCase: AddTagUseCase
 ) : ViewModel() {
-
-    private val _tagListData = MutableStateFlow<UiState<List<TagModel>>>(UiState.Loading)
-    val tagListData: StateFlow<UiState<List<TagModel>>> = _tagListData.asStateFlow()
 
     private val _tagPopularListData = MutableStateFlow<UiState<List<TagModel>>>(UiState.Loading)
     val tagPopularListData: StateFlow<UiState<List<TagModel>>> = _tagPopularListData.asStateFlow()
@@ -37,15 +33,6 @@ class AddTagViewModel @Inject constructor(
 
     init {
         getPopularTag()
-        getTag()
-    }
-
-    fun getTag() = viewModelScope.launch {
-        getTagUseCase().collect {
-            val tagList = it.toTagModelEntity()
-            _tagListData.value = UiState.Success(tagList)
-            Timber.d(it.toString())
-        }
     }
 
     fun getPopularTag() = viewModelScope.launch {
@@ -56,17 +43,17 @@ class AddTagViewModel @Inject constructor(
         }
     }
 
-    fun deleteTag(tag:String) = viewModelScope.launch {
+    fun deleteTag(tag: String) = viewModelScope.launch {
         deleteTagUseCase(tag).collect {
-            _eventData.value=UiState.Success(true)
+            _eventData.value = UiState.Success(true)
         }
-        _eventData.value=UiState.Loading
+        _eventData.value = UiState.Loading
     }
 
-    fun addTag(tag:String) = viewModelScope.launch {
+    fun addTag(tag: String) = viewModelScope.launch {
         addTagUseCase(tag).collect {
-            _eventData.value=UiState.Success(true)
+            _eventData.value = UiState.Success(true)
         }
-        _eventData.value=UiState.Loading
+        _eventData.value = UiState.Loading
     }
 }
