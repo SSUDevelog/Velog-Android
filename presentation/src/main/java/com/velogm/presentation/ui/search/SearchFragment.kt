@@ -29,23 +29,26 @@ import timber.log.Timber
 @AndroidEntryPoint
 class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragment_home_search) {
 
-    private lateinit var postTagAdapter: PostTagAdapter
+    // private lateinit var postTagAdapter: PostTagAdapter
     private lateinit var popularTagAdapter: PopularTagAdapter
     private lateinit var postAdapter: PostAdapter
+    private lateinit var recentSearchWordAdapter: RecentSearchWordAdapter
     private val searchDebouncer = Debouncer<String>()
     private val viewModel by viewModels<SearchViewModel>()
     private val parentViewModel by activityViewModels<SignInViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initTagAdapter()
         initPopularTagAdapter()
         initPostAdapter()
-        collectMyTagListData()
+        initRecentSearchWordAdapter()
 //        collectPopularTagListData()
+        collectRecentSearchWord()
         search()
         collectSearchData()
         setNavigation()
+        collectEventData()
+        setOnClickEventAddTagAllClear()
 
         popularTagAdapter.submitList(
             listOf(
@@ -82,9 +85,9 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
         binding.rvHomeSearchPopularList.adapter = popularTagAdapter
     }
 
-    private fun initTagAdapter() {
-        postTagAdapter = PostTagAdapter()
-        binding.rvRecentSearchTagList.adapter = postTagAdapter
+    private fun initRecentSearchWordAdapter() {
+        recentSearchWordAdapter = RecentSearchWordAdapter()
+        binding.rvRecentSearchTagList.adapter = recentSearchWordAdapter
     }
 
     private fun setNavigation() {
@@ -92,7 +95,6 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
             findNavController().navigateUp()
         }
     }
-
 
     private fun collectMyTagListData() {
         parentViewModel.tagListData.flowWithLifecycle(lifecycle).onEach {
@@ -127,9 +129,17 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
                 if (binding.etvHomeSearch.text.toString() != "") binding.etvHomeSearch.text.toString() else null
             searchDebouncer.setDelay(keyword ?: "", 300L) {
                 viewModel.getTagPost(keyword ?: "")
+                keyword?.let { viewModel.addSearchWord(keyword) }
             }
         }
     }
+
+    private fun setOnClickEventAddTagAllClear() {
+        binding.tvAddTagAllClear.setOnClickListener {
+            viewModel.deleteRecentSearchWord()
+        }
+    }
+
     private fun collectSearchData() {
         viewModel.postListData.flowWithLifecycle(lifecycle).onEach {
             when (it) {
@@ -151,4 +161,23 @@ class SearchFragment : BindingFragment<FragmentHomeSearchBinding>(R.layout.fragm
             }
         }.launchIn(lifecycleScope)
     }
+
+    private fun collectRecentSearchWord() {
+        viewModel.getRecentSearchWord.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> recentSearchWordAdapter.submitList(it.data)
+                else -> Unit
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun collectEventData() {
+        viewModel.eventData.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> viewModel.getRecentSearchWord()
+                else -> Unit
+            }
+        }.launchIn(lifecycleScope)
+    }
+
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="word"
+            type="com.velogm.presentation.model.RecentSearchWordModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/shape_gray200_line_17_rect"
+            android:gravity="center"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="5dp"
+            android:text="@{word.recentSearchWord}"
+            android:textAppearance="@style/TextAppearance.VelogM.Body2_M"
+            android:textColor="@color/velog_gray700"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="ANDROID" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
