@@ -95,7 +95,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.botNavMain.visibility = if (destination.id in listOf(
                     R.id.navigation_home,
-                    R.id.navigation_bookmark,
+//                    R.id.navigation_bookmark,
                     R.id.navigation_setting,
                     R.id.navigation_follow
                 )

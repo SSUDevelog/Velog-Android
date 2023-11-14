@@ -11,10 +11,10 @@
         android:icon="@drawable/selector_follow_icon"
         android:title="팔로우" />
 
-    <item
-        android:id="@+id/navigation_bookmark"
-        android:icon="@drawable/selector_bookmark_icon"
-        android:title="스크랩" />
+<!--    <item-->
+<!--        android:id="@+id/navigation_bookmark"-->
+<!--        android:icon="@drawable/selector_bookmark_icon"-->
+<!--        android:title="스크랩" />-->
 
     <item
         android:id="@+id/navigation_setting"
