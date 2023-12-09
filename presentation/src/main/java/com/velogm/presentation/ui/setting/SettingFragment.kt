@@ -42,5 +42,4 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>(R.layout.fragmen
             dialog.show(childFragmentManager, "withdrawal")
         }
     }
-
 }

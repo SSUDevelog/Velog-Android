@@ -10,6 +10,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.velogm.core_ui.base.BindingFragment
+import com.velogm.core_ui.context.hideKeyboard
 import com.velogm.core_ui.view.UiState
 import com.velogm.presentation.R
 import com.velogm.presentation.databinding.FragmentAddFollowerBinding
@@ -34,42 +35,10 @@ class AddFollowerFragment :
         initClickEventListeners()
         initEditText()
         addFollower()
+        removeText()
         collectInputResult()
         collectEventData()
         collectDeleteFollower()
-        removeText()
-    }
-
-    private fun collectInputResult() {
-        addFollowerViewModel.getInputFollower.flowWithLifecycle(lifecycle).onEach {
-            when (it) {
-                is UiState.Loading -> {
-                }
-
-                is UiState.Success -> {
-                    with(binding) {
-                        addFollower = it.data
-                        val list: ArrayList<String>? =
-                            requireArguments().getStringArrayList(FOLLOWER_LIST)
-
-                        layoutAddFollower.visibility =
-                            if (it.data.validate) View.VISIBLE else View.GONE
-
-                        if (list != null) {
-                            val isFollowing = it.data.userName in list
-                            binding.tvAddFollowerLabel.text = if (isFollowing) "팔로우 취소" else "팔로우"
-                        }
-
-                        layoutAddFollowerEmpty.visibility =
-                            if (!it.data.validate) View.VISIBLE else View.GONE
-                    }
-                }
-
-                else -> {
-                    binding.layoutAddFollowerEmpty.visibility = View.VISIBLE
-                }
-            }
-        }.launchIn(lifecycleScope)
     }
 
     private fun initClickEventListeners() {
@@ -85,6 +54,7 @@ class AddFollowerFragment :
             if (actionId == EditorInfo.IME_ACTION_DONE || (event != null && event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER)) {
                 addFollowerViewModel.getInputFollower(binding.etAddFollowerSearch.text.toString())
                 binding.etAddFollowerSearch.text?.clear()
+                requireActivity().hideKeyboard(binding.root)
                 true
             } else {
                 false
@@ -94,7 +64,7 @@ class AddFollowerFragment :
 
     private fun addFollower() {
         binding.tvAddFollowerLabel.setOnClickListener {
-            if (binding.tvAddFollowerLabel.text == "팔로우") {
+            if (binding.tvAddFollowerLabel.text == getString(R.string.tv_add_follower_button)) {
                 addFollowerViewModel.addFollower(binding.tvAddFollowerName.text.toString())
             } else {
                 val dialog = DeleteFollowerDialogFragment(deleteFollower = {
@@ -103,33 +73,6 @@ class AddFollowerFragment :
                 dialog.show(childFragmentManager, "delete")
             }
         }
-    }
-
-    private fun collectEventData() {
-        addFollowerViewModel.eventData.flowWithLifecycle(lifecycle).onEach {
-            when (it) {
-                is UiState.Loading -> {
-                }
-
-                is UiState.Success -> {
-                    binding.tvAddFollowerLabel.text = "팔로우 취소"
-                }
-
-                else -> {}
-            }
-        }.launchIn(lifecycleScope)
-    }
-
-    private fun collectDeleteFollower() {
-        followViewModel.deleteFollower.flowWithLifecycle(lifecycle).onEach {
-            when (it) {
-                is UiState.Success -> {
-                    binding.tvAddFollowerLabel.text = "팔로우"
-                }
-
-                else -> {}
-            }
-        }.launchIn(lifecycleScope)
     }
 
     private fun removeText() {
@@ -143,6 +86,60 @@ class AddFollowerFragment :
                 }
             }
         }
+    }
+
+    private fun collectInputResult() {
+        addFollowerViewModel.getInputFollower.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> Unit
+
+                is UiState.Success -> {
+                    with(binding) {
+                        addFollower = it.data
+                        val list: ArrayList<String>? =
+                            requireArguments().getStringArrayList(FOLLOWER_LIST)
+
+                        layoutAddFollower.visibility =
+                            if (it.data.validate) View.VISIBLE else View.GONE
+
+                        if (list != null) {
+                            val isFollowing = it.data.userName in list
+                            binding.tvAddFollowerLabel.text =
+                                if (isFollowing) getString(R.string.tv_item_rv_follow_cancel) else getString(
+                                    R.string.tv_add_follower_button
+                                )
+                        }
+
+                        layoutAddFollowerEmpty.visibility =
+                            if (!it.data.validate) View.VISIBLE else View.GONE
+                    }
+                }
+
+                else -> binding.layoutAddFollowerEmpty.visibility = View.VISIBLE
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun collectEventData() {
+        addFollowerViewModel.eventData.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> binding.tvAddFollowerLabel.text =
+                    getString(R.string.tv_item_rv_follow_cancel)
+
+                else -> Unit
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun collectDeleteFollower() {
+        followViewModel.deleteFollower.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Success -> binding.tvAddFollowerLabel.text =
+                    getString(R.string.tv_add_follower_button)
+
+                else -> Unit
+            }
+        }.launchIn(lifecycleScope)
     }
 }
 
